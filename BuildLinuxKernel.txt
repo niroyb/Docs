@@ -1,0 +1,9 @@
+
+Get Linux Kernel Source code from https://kernel.org/
+
+
+// download necessary libraries and headers
+sudo apt-get install ncurses*
+sudo apt-get install libssl-dev
+
+Following instructions from  http://www.thegeekstuff.com/2013/06/compile-linux-kernel/
