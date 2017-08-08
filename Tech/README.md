@@ -1,6 +1,6 @@
-High Density Virtual Machines
+My memory closet
 =============================
 
-This is the place for all the documentation, note, and how-to information
+A place to help remember how to do things
 
 
