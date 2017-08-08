@@ -1,0 +1,8 @@
+---------------------------------
+Jenkin build machine IP
+$ nslookup osb64-ub16-02.scx.com 10.228.124.13
+Server:  scx-dc01.scx.com
+Address:  10.228.124.13
+Name:    osb64-ub16-02.scx.com
+Address:  10.193.247.176
+---------------------------------
