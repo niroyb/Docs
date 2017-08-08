@@ -1,0 +1,46 @@
+From: Adam Burch 
+Sent: Tuesday, February 21, 2017 10:32 AM
+To: Cheng-mean Liu (SOCCER) <soccerl@microsoft.com>
+Subject: FW: Code Review: Linux boot from VMBFS Prototype (adburch)
+
+Hi Cheng-mean,
+
+Here’s the DPK you need to get the bits for testing this code in your own scenario. You’ll need to apply it to both the onecore depot and the vm depot. Rebuild onecore/vm first, and then vm.
+\\redmond\osg\Teams\CORE\BASE\HYP\Codeflow\Reviews\adburch\F56D0FAB_1.dpk
+
+Once you’ve done that, you’ll need to replace the following binaries:
+Vmcompute.exe
+Vmchipset.dll
+Vmusrv.dll
+Vmsmb.dll
+These can all be found in the vm directory of your enlistment’s binary output.
+
+You’ll also need to edit the registry using the following file: \\redmond\osg\Teams\CORE\BASE\HYP\Public\adburch\linuxboot\VsmbSupportXenonAndGen2.reg. 
+
+Use “restart-service vmcompute” and you won’t need to reboot the test machine.
+
+Next you need to install the HCSTest powershell module. Copy the following directory from your binary output to a directory on your test machine (chk or fre is fine):
+Copy Rs.binaries.amd64chk\test_automation_bins\vm\test\compute\hcstest\* -r
+
+Then run the following powershell command in that directory
+Ipmo .\Hcstest.psd1
+
+Now everything is set up!
+
+To run a VM:
+
+Find the test schemas in \\redmond\osg\Teams\CORE\BASE\HYP\Public\adburch\linuxboot\ . Linuxvm.json is the linux vm that I booted. You’ll need to change the path to the directory where your images are located. On my machine, I had it in D:\hcs\imageforintegration. 
+
+Once you’ve edited your .json manifest appropriately, use the following commands in powershell:
+$manifest = Get-Content  .\linuxvm.json -raw
+$guid = [guid]::newguid().guid
+$cs = new-hcssystem $guid $manifest
+Porthole.exe $cs.Id
+Start-hcssystem $cs.Id
+
+Then it should be running! To power off and destroy the machine, use stop-HCSSystem $cs.Id. You’ll need to recreate it using new-hcssystem after this. The machine is totally transient.
+Let me know if you have any questions!
+
+Thanks,
+Adam
+

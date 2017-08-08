@@ -1,0 +1,22 @@
+Creating a patch
+1.	Make your changes and commit them.
+2.	Run git format-patch COMMIT_REFERENCE to convert all commits since the referenced commit (not including it) into patch files.
+For example, let's say you prepared 2 commits. Run:
+
+git format-patch HEAD~~ 
+This will create 2 files, one for each commit since HEAD~~, like these:
+
+0001-make-stuff-more-awesome.patch
+0002-allow-users-to-be-locked.patch
+
+
+Applying patches
+You can use git apply some.patch to have the changes from the .patch file applied to your current working directory. They will be unstaged and need to be committed by you.
+To apply a patch as a commit (with its commit message), use git am some.patch. \
+For all patches to be applied, simply run:
+
+git am *.patch
+Note that in some previous version you could pass the latest patch filename of a list of patches to apply all previous patches as well:
+
+git am 0002-allow-users-to-be-locked.patch # May no longer work for you
+You then have the 2 unpushed commits from the patch file created earlier.
