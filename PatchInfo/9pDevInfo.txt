@@ -1,3 +1,6 @@
+
+https://sourceforge.net/p/v9fs/mailman/v9fs-developer/?viewmonth=201708
+
 https://patchwork.kernel.org/project/v9fs-devel/list/
 
 
