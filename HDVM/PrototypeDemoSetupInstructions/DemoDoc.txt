@@ -1,0 +1,34 @@
+On host:
+
+1. docker pull packages
+eg.
+   docker pull nginx
+
+2. inject layer devices
+   run  C:\Demo\ServiceVM\.\docker_attach_vhds.ps1 <DockerImageName> <GuestLinuxMachineName> <layerDevice file path>
+eg.
+PS C:\Demo\ServiceVM> .\docker_attach_vhds.ps1 nginx Linux ../MockHCS/layerDevices.json
+
+3. lauch MockHCS: runserver.bat sockettest.exe
+eg. C:\Demo\ServiceVM>runserver.bat sockettest.exe
+
+4.On Linux guest VM : run gcs
+
+   cd /home/test/integration
+   ./load_hv_socket
+   sudo ./gcs
+
+
+After all above steps, you should see  a menu on the host as follows
+
+[01:23:29.368] Menu
+[01:23:29.369]   c - close the current connection and attempt to reconnect
+[01:23:29.370]   s - start a new container
+[01:23:29.371]   a - attach to the running container
+[01:23:29.372]   k - kill the running container
+[01:23:29.372]   e - execute new process in container
+[01:23:29.373]   p - pause the running container
+[01:23:29.376]   r - resume the running container
+[01:23:29.377]   l - list processes in the running container
+[01:23:29.378]   q - quit
+[01:23:29.379]   Selection:

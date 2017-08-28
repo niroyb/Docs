@@ -1,0 +1,92 @@
+
+On HD-VM1 Data center machine:
+
+// A RS2 Windows VM was created: It's named DockerDemo, this is our host
+
+Username: Administrator
+password: Rs3Demo@2017
+
+1. Create a VM
+2. Install Linux C:\OSImages\ubuntu-16.04.1-server-amd64
+   (Note: make sure disable secure boot)
+
+// On DockerDemo VM
+
+1. Install Cygwin software
+2. Create a Linux VM, called Linux, with Ubuntu ubuntu-16.04.1-server-amd64 (4.4.0-31-generic)
+
+//On the Linux VM (our guest)
+Username: test
+password: test
+
+
+//Install SSH server
+sudo apt-get install openssh-server
+
+// here are the steps for building a private Linux Kernel from the latest upstrem soruce code
+
+Step 1: get the latest kernel upstream source, 4.10.0.rc3+ (it has both kernel source and driver sources)
+ 
+(use sudo)
+cd /home/test
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git linux
+cd linux
+
+Optional:  you can pick up hv_sock if you need it.
+// HV_sock patches
+git config --global user.name "Cheng-mean Liu"    ?-------replace with your name
+git config --global user.email soccerl@microsoft.com  ?-------replace with your email information
+git remote add -f dexuan-github https://github.com/dcui/linux.git
+ 
+# when trying to cherry-pick your patches, it’s complaining about bad object.
+root@ubuntu-dev:/home/soccerl/linux# git cherry-pick 59c6094640ccfc05c89520f78715e7c4a0ef298a
+root@ubuntu-dev:/home/soccerl/linux# git cherry-pick 84146dfbcaedb47428334f179a3fa3ebeb4674fb
+ 
+
+Step 2: installation of build library and tools
+
+apt-get install make
+apt-get install gcc
+apt-get install libncurses5-dev libncursesw5-dev
+apt-get install bc
+apt-get update && sudo apt-get install libssl-dev
+
+Step 3: Modify build config
+
+Run the following command  to config your kernel build options
+
+make menuconfig   
+
+note: you can get the default config by hitt right arrow key and exit without changing anything
+
+Step 3: Build the kernel
+
+// switch to root
+sudo –i
+cd /home/yourusername/linux   
+
+// build everything in one go!
+make && make modules && make INSTALL_MOD_STRIP=1 modules_install && make install
+ 
+
+//
+// Instructions for setting up Linux VM
+//
+(from Ben) 
+
+Pull down the repository
+Install Go (https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04)
+Try to build gogcs and runcclient (use “go get” to install missing dependencies)
+Install runc (“sudo apt install runc”)
+Make busybox bundle rootfs in runcclient’s bundle directory (https://github.com/opencontainers/runc, read the “Creating an OCI Bundle” README section)
+                NOTE: You only need to do this if you’re planning on playing with the runcclient or running its tests
+                NOTE: There’s already a config, so you just have to create the rootfs
+                NOTE: You’ll have to install docker with “sudo apt install docker.io”, although this should be able to be removed afterwards with “sudo apt remove docker.io”
+                NOTE: If the docker daemon won’t start, you may have to run the docker commands as sudo
+NOTE: If docker says it can’t find the specified page, you may have to put the $(…) portion of the command in quotation marks
+
+Installing runc should be the only step necessary to set up if you aren’t also building the code
+
+// Host setup
+Add GCS communication service GUIDs to the host by running the following reg files
+"C:\Users\Administrator\Desktop\RS3 Demo Setup Instructions.reg"

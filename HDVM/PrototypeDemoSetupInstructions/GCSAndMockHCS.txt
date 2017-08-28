@@ -1,0 +1,44 @@
+
+//
+// Instructions for setting up Linux VM
+
+Pull down the repository
+Install Go (https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04)
+Try to build gogcs and runcclient (use “go get” to install missing dependencies)
+Install runc (“sudo apt install runc”)
+Make busybox bundle rootfs in runcclient’s bundle directory (https://github.com/opencontainers/runc, read the “Creating an OCI Bundle” README section)
+                NOTE: You only need to do this if you’re planning on playing with the runcclient or running its tests
+                NOTE: There’s already a config, so you just have to create the rootfs
+                NOTE: You’ll have to install docker with “sudo apt install docker.io”, although this should be able to be removed afterwards with “sudo apt remove docker.io”
+                NOTE: If the docker daemon won’t start, you may have to run the docker commands as sudo
+NOTE: If docker says it can’t find the specified page, you may have to put the $(…) portion of the command in quotation marks
+
+Installing runc should be the only step necessary to set up if you aren’t also building the code
+
+// Host setup
+Add GCS communication service GUIDs to the host by running the following reg files
+"C:\Users\Administrator\Desktop\RS3 Demo Setup Instructions.reg"
+
+Run MockHCS on the host
+
+C:\MockHCS> runserver.bat sockettest.exe
+[01:23:26.953] WSAStartup() passed.
+[01:23:26.956] Server start: Binding and Listening...
+[01:23:26.961] Waiting to accept new connection...
+[01:23:29.343] Connection established
+[01:23:29.366] Welcome to the interactive socket tool.
+
+[01:23:29.368] Menu
+[01:23:29.369]   c - close the current connection and attempt to reconnect
+[01:23:29.370]   s - start a new container
+[01:23:29.371]   a - attach to the running container
+[01:23:29.372]   k - kill the running container
+[01:23:29.372]   e - execute new process in container
+[01:23:29.373]   p - pause the running container
+[01:23:29.376]   r - resume the running container
+[01:23:29.377]   l - list processes in the running container
+[01:23:29.378]   q - quit
+[01:23:29.379]   Selection:
+
+// Run gcs on the Linux VM
+test@ubuntu:~/repos/hd-vm/gogcs$ ./gcs

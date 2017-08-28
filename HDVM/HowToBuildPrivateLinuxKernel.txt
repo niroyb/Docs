@@ -1,0 +1,52 @@
+ 
+BuildPrivateLinuxKernel (using example of a ubuntu OS)
+
+This instrucitons assumes you started with a Linux VM machine 
+
+(You can achieve that by creating a VM and install and Linux distro , such as ubuntu-16.04.1-server-amd64.)
+
+Note: 1. make sure disable secure boot
+
+c
+Step 1: get the latest kernel upstream source (it contained  both kernel source and driver sources)
+
+(use sudo)
+cd /home/test
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git linux
+
+cd linux
+Optional:  you can pick up hv_sock if you need it.
+
+// HV_sock patches
+git config --global user.name "Cheng-mean Liu"    ?-------replace with your name
+git config --global user.email soccerl@microsoft.com  ?-------replace with your email information
+git remote add -f dexuan-github https://github.com/dcui/linux.git
+
+# when trying to cherry-pick your patches, it’s complaining about bad object.
+root@ubuntu-dev:/home/soccerl/linux# git cherry-pick 59c6094640ccfc05c89520f78715e7c4a0ef298a
+root@ubuntu-dev:/home/soccerl/linux# git cherry-pick 84146dfbcaedb47428334f179a3fa3ebeb4674fb
+
+Step 2: installation of build library and tools
+
+apt-get install make
+apt-get install gcc
+apt-get install libncurses5-dev libncursesw5-dev
+apt-get install bc
+apt-get update && sudo apt-get install libssl-dev
+
+Step 3: Modify build config
+Run the following command  to config your kernel build options
+make menuconfig   
+note: you can get the default config by hitt right arrow key and exit without changing anything
+
+Step 3: Build the kernel
+
+// switch to root
+sudo –i
+
+cd /home/yourusername/linux   
+// build everything in one go!
+
+make && make modules && make INSTALL_MOD_STRIP=1 modules_install && make install
+
+reboot to use the the new private built kernel
