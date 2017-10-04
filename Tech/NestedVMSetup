@@ -1,0 +1,7 @@
+Steps for setup nested VM
+
+1. Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true 
+2. Get-VMNetworkAdapter -VMName <VMName> | Set-VMNetworkAdapter -MacAddressSpoofing On
+3. You need to do the following additional step if the host VM is a gen2 vm:
+  # N.B. VBS has to be opted out for Gen2 VMs. We currently only create Gen2 VMs.
+  Set-VMSecurity -VMname <VMName> -VirtualizationBasedSecurityOptOut $true
