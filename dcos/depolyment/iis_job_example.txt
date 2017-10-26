@@ -1,0 +1,32 @@
+{
+  "id": "microsoft/iis",
+  "instances": 1,
+  "cpus": 1,
+  "mem": 128,
+  "constraints": [
+    [
+      "os",
+      "LIKE",
+      "Windows"
+    ]
+  ],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "microsoft/iis",
+      "parameters": [
+        {
+          "key": "network",
+          "value": "nat"
+        },
+        {
+          "key": "publish",
+          "value": "80:80"
+        }
+      ]
+    }
+  },
+  "acceptedResourceRoles": [
+    "slave_public"
+  ]
+}
