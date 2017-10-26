@@ -1,7 +1,7 @@
 
 # How to setup a DC/OS cluster in Azure via ACS engine 
 
-// generate cluster depolymentfile
+// generate cluster depolyment file
 
 - acs-engine.exe generate dcos-hybrid-1w.json
 
