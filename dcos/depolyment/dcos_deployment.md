@@ -8,7 +8,7 @@
 // output could be found under the _output directory
 
 // create new resource group
-- az group create -l westus -n soccerl-dcos-1winslave 
+- az group create -l westus2 -n soccerl-dcos-1winslave 
  
 //Deploy our DCOS cluster environment: 
 
