@@ -1,6 +1,8 @@
 
 // generate cluster depolymentfile
+
 D:\dcos\acsEngine>acs-engine.exe generate dcos-hybrid-1w.json
+
 // output could be found under the _output directory
 
 // create new resource group
