@@ -1,4 +1,6 @@
 
+# How to setup a DC/OS cluster in Azure via ACS engine 
+
 // generate cluster depolymentfile
 
 D:\dcos\acsEngine>acs-engine.exe generate dcos-hybrid-1w.json
@@ -14,39 +16,4 @@ az group create -l westus -n soccerl-dcos-1winslave
 az group deployment create -g soccerl-dcos-1winslave --template-file azuredeploy.json --parameters @azuredeploy.parameters.json  
 
 
-
-
-===== iis job =====
-
-{
-  "id": "microsoft/iis",
-  "instances": 4,
-  "cpus": 1,
-  "mem": 128,
-  "constraints": [
-    [
-      "os",
-      "LIKE",
-      "Windows"
-    ]
-  ],
-  "container": {
-    "type": "DOCKER",
-    "docker": {
-      "image": "microsoft/iis",
-      "parameters": [
-        {
-          "key": "network",
-          "value": "nat"
-        },
-        {
-          "key": "publish",
-          "value": "80:80"
-        }
-      ]
-    }
-  },
-  "acceptedResourceRoles": [
-    "slave_public"
-  ]
-}
+See job example in iis_job_example.txt
