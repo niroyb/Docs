@@ -16,3 +16,11 @@
 
 
 See job example in iis_job_example.txt
+
+
+# DCOS CLI
+
+[DC/OS CLI installation](https://dcos.io/docs/1.9/cli/install/#windows)
+
+dcos config set core.dcos_url http://soccerl-master14.westus2.cloudapp.azure.com
+dcos help
