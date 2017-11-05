@@ -1,6 +1,8 @@
 # Kubernetes Intro
 https://www.youtube.com/watch?v=PH-2FfFD2PU
 
+[Introducing Container Runtime Interface (CRI) in Kubernetes](http://blog.kubernetes.io/2016/12/container-runtime-interface-cri-in-kubernetes.html)
+
 
 # Windows Networking at Parity with Linux for Kubernetes
 
