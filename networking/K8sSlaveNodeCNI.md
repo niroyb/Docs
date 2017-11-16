@@ -1,5 +1,5 @@
     
-    * The K8 Slave Node setup
+    # The K8 Slave Node setup
     
     c:\k\kubelet.exe 
 	
