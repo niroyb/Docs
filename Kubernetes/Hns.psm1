@@ -47,12 +47,6 @@ function New-HnsNetwork
                 }
             }
 
-            if ($DNSServerName) {
-                $netobj += @{
-                    DNSServerList = $DNSServer
-                }
-            }
-
             $JsonString = ConvertTo-Json $netobj -Depth 10
         }
 
