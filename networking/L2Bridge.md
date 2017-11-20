@@ -1,6 +1,7 @@
 # How to create a Docker L2Bridge network on Windows
 
 * Find out the container host subnet information
+
     PS C:\WINDOWS\system32> ipconfig
 
     Windows IP Configuration
@@ -42,19 +43,33 @@
 
         vEthernet (nat)           Hyper-V Virtual Ethernet Adapter #2           4 Up           00-15-5D-9A-47-E2        10 Gbps
 
-        Ethernet                  Intel(R) 82579LM Gigabit Network Con...       3 Up           A0-D3-C1-20-DD-5D       100 Mbps
+        `Ethernet`                 Intel(R) 82579LM Gigabit Network Con...       3 Up           A0-D3-C1-20-DD-5D       100 Mbps
 
         * Create l2bridge with adapter and host subnet with subset information
 
     PS C:\WINDOWS\system32> 'docker network create -d l2bridge --subnet=10.123.6.0/23 --gateway=10.123.6.1 -o com.docker.network.windowsshim.interface="Ethernet" myl2bridge`
     
-            bb6b1535ad641bc982e03c9342d6ca6001fcd2b56eb4ad731900058096aaeae8
+                bb6b1535ad641bc982e03c9342d6ca6001fcd2b56eb4ad731900058096aaeae8
+                
+    PS C:\WINDOWS\system32> get-vmswitch
+
+            Name   SwitchType NetAdapterInterfaceDescription
+            ----   ---------- ------------------------------
+
+            nat     Internal
+
+            `mynat External   Intel(R) 82579LM Gigabit Network Connection`
+
+    
+    Note: you will hit "not adapter found" error message if there is already a vSwith created on the same adpater ("Ethernet" in this case. The L2Bridge require excuslive use of an adapter. You need to delete its corresponding vSwitch before recreating a L2Bridge.
+    
+
     
     PS C:\WINDOWS\system32> `docker network ls`
     
             NETWORK ID          NAME                DRIVER              SCOPE
 
-            bb6b1535ad64        myl2bridge          l2bridge            local
+            `bb6b1535ad64        myl2bridge          l2bridge            local`
 
             cd58a7bc88fc        mynat               nat                 local
 
