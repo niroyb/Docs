@@ -3,6 +3,8 @@
   
   A L2Bridge mode is similar to the Docker's MACVLan, See [MacVLan driver](https://docs.docker.com/engine/userguide/networking/get-started-macvlan/) for background information.
   
+ Also see the l2bridge section of [Windows Container Networking](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-networking)
+    
    l2bridge - containers attached to a network created with the 'l2bridge' driver will be in the same IP subnet as the container host. All container endpoints on the host will have the same MAC address due to Layer-2 address translation (MAC re-write) operation on ingress and egress.
 
 # How to create a Docker L2Bridge network on Windows
