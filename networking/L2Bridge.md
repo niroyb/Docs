@@ -31,6 +31,7 @@
        Subnet Mask . . . . . . . . . . . : '255.255.254.0`
        Default Gateway . . . . . . . . . : fe80::221:d7ff:feb8:3000%3
                                            `10.123.6.1`
+                                           
 
 * Get the Net adapter information
 
@@ -45,7 +46,8 @@
 
         `Ethernet`                 Intel(R) 82579LM Gigabit Network Con...       3 Up           A0-D3-C1-20-DD-5D       100 Mbps
 
-        * Create l2bridge with adapter and host subnet with subset information
+
+ * Create l2bridge with adapter and host subnet information
 
     PS C:\WINDOWS\system32> 'docker network create -d l2bridge --subnet=10.123.6.0/23 --gateway=10.123.6.1 -o com.docker.network.windowsshim.interface="Ethernet" myl2bridge`
     
