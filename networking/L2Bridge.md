@@ -1,6 +1,9 @@
 # How to create a Docker L2Bridge network on Windows
 
-* Find out the container host subnet information
+* Find out the container subnet information of the Docker host net interface
+
+  This is because a l2bridge network's subnet values needs to match the NIC’s interface of the Docker host. 
+  (10.123.6.0/23 in below case)
 
     PS C:\WINDOWS\system32> ipconfig
 
@@ -33,6 +36,9 @@
                                            `10.123.6.1`
                                            
 
+* What is L2Bridge network?
+  It's same as Docker MacVLan driver, see [here](https://docs.docker.com/engine/userguide/networking/get-started-macvlan/)
+
 * Get the Net adapter information
 
         PS C:\WINDOWS\system32> `Get-NetAdapter`
@@ -49,7 +55,7 @@
 
  * Create l2bridge with adapter and host subnet information
 
-    PS C:\WINDOWS\system32> 'docker network create -d l2bridge --subnet=10.123.6.0/23 --gateway=10.123.6.1 -o com.docker.network.windowsshim.interface="Ethernet" myl2bridge`
+    PS C:\WINDOWS\system32> docker network create -d l2bridge --subnet=10.123.6.0/23 --gateway=10.123.6.1 -o com.docker.network.windowsshim.interface="Ethernet" myl2bridge
     
                 bb6b1535ad641bc982e03c9342d6ca6001fcd2b56eb4ad731900058096aaeae8
                 
@@ -64,9 +70,8 @@
 
     
     Note: you will hit "not adapter found" error message if there is already a vSwith created on the same adpater ("Ethernet" in this case. The L2Bridge require excuslive use of an adapter. You need to delete its corresponding vSwitch before recreating a L2Bridge.
-    
 
-    
+     
     PS C:\WINDOWS\system32> `docker network ls`
     
             NETWORK ID          NAME                DRIVER              SCOPE
