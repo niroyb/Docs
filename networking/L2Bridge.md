@@ -45,9 +45,6 @@
                                            `10.123.6.1`
                                            
 
-* What is L2Bridge network?
-  It's same as Docker MacVLan driver, see [here](https://docs.docker.com/engine/userguide/networking/get-started-macvlan/)
-
 * Get the Net adapter information
 
         PS C:\WINDOWS\system32> `Get-NetAdapter`
@@ -78,7 +75,7 @@
             `mynat External   Intel(R) 82579LM Gigabit Network Connection`
 
     
-    Note: you will hit "not adapter found" error message if there is already a vSwith created on the same adpater ("Ethernet" in this case. The L2Bridge require excuslive use of an adapter. You need to delete its corresponding vSwitch before recreating a L2Bridge.
+    Note: you will hit "no adapter found" error message if there is already a vSwith created on the same adpater ("Ethernet" in this case. The L2Bridge require excuslive use of an adapter. You need to delete its corresponding vSwitch before recreating a L2Bridge.
 
      
     PS C:\WINDOWS\system32> `docker network ls`
