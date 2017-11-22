@@ -11,7 +11,6 @@ $ sudo iptables -t nat \
                 -i "$INTERFACE"
                 
                 
- Netsh add v4tov4 listenport=80 connectaddress=ipaddressOfProxyContainer 
-                 connectport=8080  listenaddress=169.254.169.254 protocol=tcp
+PS C:\> Netsh interface portproxy add v4tov4 listenport=80 connectaddress=172.24.42.152 connectp.rt=8080 listenaddress=169.254.169.254 protocol=tcp
 
 https://technet.microsoft.com/en-us/library/cc731068(v=ws.10).aspx#BKMK_1
