@@ -9,6 +9,9 @@
 
   PS C:\Users\azureuser> choco install git-credential-winstore
 
-  C:\Users\azureuser>"C:\Program Files\Git\usr\bin\ssh-keygen" -t rsa -C "soccerl@microsoft.com"
-  ssh-keygen -t rsa -C "soccerl@microsoft.com"
+  C:\Users\azureuser>
+  cd C:\Program Files\Git\usr\bin
+  .\ssh-keygen.exe -t rsa -C "soccerl@microsoft.com"
+  
+  git clone https://github.com/soccerGB/Tools
 
