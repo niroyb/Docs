@@ -1,4 +1,4 @@
-# How to setup git environment from WindowsServierCore
+# How to setup git environment on WindowsServierCore
 
   https://stackoverflow.com/questions/46731433/how-to-download-and-install-git-client-for-window-using-powershell
   
