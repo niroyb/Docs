@@ -1,4 +1,4 @@
-
+﻿
 # L2Bridge
   
   A L2Bridge mode is similar to the Docker's MACVLan, See [MacVLan driver](https://docs.docker.com/engine/userguide/networking/get-started-macvlan/) for background information.
