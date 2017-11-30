@@ -4,6 +4,8 @@
 Stop dockerd
 
 PS C:\temp> ipmo ./Hns.psm1
+
+
 PS C:\temp> New-HNSNetwork -Type l2bridge  -AddressPrefix 10.123.6.0/23 -Gateway 172.8.128.1 -Name Newl2bridge
 
 
@@ -57,6 +59,7 @@ PS C:\WINDOWS\system32> docker run -it --network=Newl2bridge busybox
     / #
 
 PS C:\temp> docker network inspect Newl2bridge
+
         [
             {
                 "Name": "Newl2bridge",
@@ -105,5 +108,5 @@ PS C:\temp> docker network inspect Newl2bridge
                 "Labels": {}
             }
         ]
-   
+
 
