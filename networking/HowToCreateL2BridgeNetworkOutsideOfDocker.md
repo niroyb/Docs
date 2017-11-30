@@ -25,7 +25,7 @@ PS C:\temp> New-HNSNetwork -Type l2bridge  -AddressPrefix 10.123.6.0/23 -Gateway
             Type                   : l2bridge
             Version                : 21474836481
 
-stop dockerd service
+Restart the dockerd service
 
 PS C:\temp> docker network ls
 
