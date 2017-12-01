@@ -26,3 +26,29 @@
     PS D:\github\mesos\build\src>
      .\mesos-agent.exe --master=zk://10.123.6.119:2181/mesos --ip=10.123.7.72 --work_dir=$HOME\work_dir --launcher_dir=D:\github\mesos\
     build\src --isolation=windows/cpu,filesystem/windows --containerizers=docker,mesos
+
+
+
+
+## Test container
+        {
+          "type": "DOCKER",
+          "volumes": [],
+          "docker": {
+            "image": "msitest/test:proxycontainer",
+            "network": null,
+            "portMappings": [],
+            "privileged": false,
+            "parameters": [
+              {
+                "key": "network",
+                "value": "nat"
+              },
+              {
+                "key": "label",
+                "value": "MSIProxyContainer"
+              }      
+            ],
+            "forcePullImage": false
+          }
+        }
