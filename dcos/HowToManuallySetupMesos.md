@@ -1,10 +1,9 @@
 
 ## Zookeeper
 
-  root@ubuntu:/home/soccerl# cd mesos/build/3rdparty/zookeeper-3.4.8/bin
-  root@ubuntu:/home/soccerl/mesos/build/3rdparty/zookeeper-3.4.8/bin# 
-  ./zkServer.sh start-foreground
-
+    root@ubuntu:/home/soccerl# cd mesos/build/3rdparty/zookeeper-3.4.8/bin
+    root@ubuntu:/home/soccerl/mesos/build/3rdparty/zookeeper-3.4.8/bin# 
+    ./zkServer.sh start-foreground
 
 ##  Mesos Master 
 
@@ -15,16 +14,15 @@
 
 ## Marathon framework
 
-   export MESOS_NATIVE_JAVA_LIBRARY=/home/soccerl/mesos/build/src/.libs/libmesos.so 
-   root@ubuntu:/home/soccerl# cd /home/soccerl/marathon/marathon-1.4.3/bin
-   root@ubuntu:/home/soccerl/marathon/marathon-1.4.3/bin#
-   export MESOS_NATIVE_JAVA_LIBRARY=/home/soccerl/mesos/build/src/.libs/libmesos.so
-   ./start --master zk://10.123.6.119:2181/mesos --zk zk://10.123.6.119:2181/marathon --task_launch_timeout 600000
+     export MESOS_NATIVE_JAVA_LIBRARY=/home/soccerl/mesos/build/src/.libs/libmesos.so 
+     root@ubuntu:/home/soccerl# cd /home/soccerl/marathon/marathon-1.4.3/bin
+     root@ubuntu:/home/soccerl/marathon/marathon-1.4.3/bin#
+     export MESOS_NATIVE_JAVA_LIBRARY=/home/soccerl/mesos/build/src/.libs/libmesos.so
+     ./start --master zk://10.123.6.119:2181/mesos --zk zk://10.123.6.119:2181/marathon --task_launch_timeout 600000
 
 
 ## Windows slave
 
-
-  PS D:\github\mesos\build\src>
-   .\mesos-agent.exe --master=zk://10.123.6.119:2181/mesos --ip=10.123.7.72 --work_dir=$HOME\work_dir --launcher_dir=D:\github\mesos\
-  build\src --isolation=windows/cpu,filesystem/windows --containerizers=docker,mesos
+    PS D:\github\mesos\build\src>
+     .\mesos-agent.exe --master=zk://10.123.6.119:2181/mesos --ip=10.123.7.72 --work_dir=$HOME\work_dir --launcher_dir=D:\github\mesos\
+    build\src --isolation=windows/cpu,filesystem/windows --containerizers=docker,mesos
