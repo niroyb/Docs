@@ -31,24 +31,30 @@
 
 
 ## Test container
-        {
-          "type": "DOCKER",
-          "volumes": [],
-          "docker": {
-            "image": "msitest/test:proxycontainer",
-            "network": null,
-            "portMappings": [],
-            "privileged": false,
-            "parameters": [
-              {
-                "key": "network",
-                "value": "nat"
-              },
-              {
-                "key": "label",
-                "value": "MSIProxyContainer"
-              }      
-            ],
-            "forcePullImage": false
-          }
-        }
+        { 
+            "id": "2", 
+            "cmd": null, 
+            "cpus": 1, 
+            "mem": 128, 
+            "disk": 0, 
+            "instances": 1, 
+            "container": { 
+                "type": "DOCKER", 
+                "volumes": [], 
+                "docker": { 
+                    "image": "msitest/test:proxycontainer", 
+                    "privileged": false, 
+                    "parameters": [ 
+                    { 
+                    "key": "network", 
+                    "value": "nat" 
+                    },
+                          {
+                            "key": "label",
+                            "value": "MSIProxyContainer"
+                          }
+                    ], 
+                    "forcePullImage": false 
+                } 
+            } 
+        } 
