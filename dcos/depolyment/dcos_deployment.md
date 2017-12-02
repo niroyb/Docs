@@ -88,7 +88,7 @@
 
 - Sample DCOS job json
 
-     See job example in iis_job_example.txt
+     [iis_job_example](https://github.com/soccerGB/Docs/blob/master/dcos/depolyment/iis_job_example.txt)
 
 
 # DCOS CLI
