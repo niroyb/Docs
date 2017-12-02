@@ -1,30 +1,37 @@
 
 # How to setup a DC/OS cluster in Azure via ACS engine 
 
+- [Install Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 
-- generate cluster deployment file
+- Get a DC/OS cluster depolyment json file
+          Examples    
+
+- Use ACS to Generate cluster deployment files
           
           D:\dcos\acsEngine>acs-engine.exe generate dcos-hybrid-1w.json
           // output could be found under the _output directory
-          D:\dcos\acsEngine\_output\soccerl-mastera0>
-          
-- acs-engine.exe generate dcos-hybrid-1w.json
+          D:\dcos\acsEngine\_output\soccerl-mastera0>dir
+           Volume in drive D is Data
+           Volume Serial Number is B6F0-767C
 
-          By default, the generated output files will use Windows server 2016 as Windows Agent OS. If you want to use 1709 build, you need modify these lines in azuredeploy.json manually for now,  
-          "agentWindowsOffer": "WindowsServerSemiAnnual"
-          "agentWindowsPublisher": "MicrosoftWindowsServer"
-          "agentWindowsSku": "Datacenter-Core-1709-with-Containers-smalldisk",
+           Directory of D:\dcos\acsEngine\_output\soccerl-mastera0
 
+          12/01/2017  03:56 PM    <DIR>          .
+          12/01/2017  03:56 PM    <DIR>          ..
+          12/01/2017  03:56 PM             1,915 apimodel.json
+          12/01/2017  04:11 PM            60,807 azuredeploy.json
+          12/01/2017  03:56 PM             1,998 azuredeploy.parameters.json
+                         3 File(s)         64,720 bytes
+                         2 Dir(s)  499,426,963,456 bytes free
 
-
-          By default, the generated output files will use Windows server 2016 as Windows Agent OS. If you want to use 1709 build, you need modify these lines in azuredeploy.json manually for now,  
-          "agentWindowsOffer": "WindowsServerSemiAnnual"
-          "agentWindowsPublisher": "MicrosoftWindowsServer"
-          "agentWindowsSku": "Datacenter-Core-1709-with-Containers-smalldisk",
-
-
-- az login
+          Note: By default, the generated output files will use Windows server 2016 as Windows Agent OS. 
+                If you want to use 1709 build, you need modify these lines in azuredeploy.json manually for now,  
+                "agentWindowsOffer": "WindowsServerSemiAnnual"
+                "agentWindowsPublisher": "MicrosoftWindowsServer"
+                 "agentWindowsSku": "Datacenter-Core-1709-with-Containers-smalldisk",
+                 
+- Login to Azure Portal
 
           D:\dcos\acsEngine\_output\soccerl-mastera0>az login
           To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the code FUAK5RCPC to authenticate.
@@ -72,7 +79,7 @@
           D:\dcos\acsEngine\_output\soccerl-mastera0>
 
 
-- Deploy our DCOS cluster environment: 
+- Deploy DCOS cluster environment: 
 
           az group deployment create -g soccerl-dcos-msi --template-file azuredeploy.json --parameters @azuredeploy.parameters.json  
 
