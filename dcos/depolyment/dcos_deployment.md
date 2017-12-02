@@ -84,8 +84,11 @@
 
           az group deployment create -g soccerl-dcos-msi --template-file azuredeploy.json --parameters @azuredeploy.parameters.json  
 
+          Note: it will take ~10 mins to completed
 
-See job example in iis_job_example.txt
+- Sample DCOS job json
+
+     See job example in iis_job_example.txt
 
 
 # DCOS CLI
