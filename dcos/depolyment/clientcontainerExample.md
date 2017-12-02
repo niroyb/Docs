@@ -7,7 +7,7 @@
               "instances": 1,
               "uris": [
                 "https://fetcherstorage.blob.core.windows.net/fetchercontainer/helper.zip"
-              ]  
+              ],
               "container": { 
                   "type": "DOCKER", 
                   "volumes": [], 
