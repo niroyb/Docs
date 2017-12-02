@@ -1,3 +1,6 @@
+
+Note: replace the publicKeys parameter with your own ssh key!
+
 - Cluster with single winslave node
 
             D:\dcos\acsEngine>type dcos-hybrid-1w.json
