@@ -1,11 +1,28 @@
 
 # How to setup a DC/OS cluster in Azure via ACS engine 
 
-// generate cluster depolyment file
 
+
+- generate cluster deployment file
+          
+          D:\dcos\acsEngine>acs-engine.exe generate dcos-hybrid-1w.json
+          // output could be found under the _output directory
+          D:\dcos\acsEngine\_output\soccerl-mastera0>
+          
 - acs-engine.exe generate dcos-hybrid-1w.json
 
-// output could be found under the _output directory
+          By default, the generated output files will use Windows server 2016 as Windows Agent OS. If you want to use 1709 build, you need modify these lines in azuredeploy.json manually for now,  
+          "agentWindowsOffer": "WindowsServerSemiAnnual"
+          "agentWindowsPublisher": "MicrosoftWindowsServer"
+          "agentWindowsSku": "Datacenter-Core-1709-with-Containers-smalldisk",
+
+
+
+          By default, the generated output files will use Windows server 2016 as Windows Agent OS. If you want to use 1709 build, you need modify these lines in azuredeploy.json manually for now,  
+          "agentWindowsOffer": "WindowsServerSemiAnnual"
+          "agentWindowsPublisher": "MicrosoftWindowsServer"
+          "agentWindowsSku": "Datacenter-Core-1709-with-Containers-smalldisk",
+
 
 - az login
 
@@ -40,7 +57,7 @@
 
 - Create new resource group
 
-            D:\dcos\acsEngine\_output\soccerl-mastera0>az group create -l westus2 -n soccerl-dcos-msi
+          D:\dcos\acsEngine\_output\soccerl-mastera0>az group create -l westus2 -n soccerl-dcos-msi
                 {
                   "id": "/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998/resourceGroups/soccerl-dcos-msi",
                   "location": "westus2",
@@ -52,15 +69,12 @@
                   "tags": null
                 }
 
-D:\dcos\acsEngine\_output\soccerl-mastera0>
+          D:\dcos\acsEngine\_output\soccerl-mastera0>
 
 
-// create new resource group
-- az group create -l westus2 -n soccerl-dcos-1winslave 
- 
-//Deploy our DCOS cluster environment: 
+- Deploy our DCOS cluster environment: 
 
-- az group deployment create -g soccerl-dcos-1winslave --template-file azuredeploy.json --parameters @azuredeploy.parameters.json  
+          az group deployment create -g soccerl-dcos-msi --template-file azuredeploy.json --parameters @azuredeploy.parameters.json  
 
 
 See job example in iis_job_example.txt
