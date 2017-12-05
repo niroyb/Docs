@@ -5,6 +5,13 @@
         "mem": 512, 
         "disk": 0, 
         "instances": 1, 
+        "constraints": [
+          [
+            "os",
+            "LIKE",
+            "Windows"
+          ]
+        ],        
         "container": { 
             "type": "DOCKER", 
             "volumes": [], 
