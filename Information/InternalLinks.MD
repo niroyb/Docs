@@ -5,3 +5,5 @@
 
 
 [Jeff's private Mesos branch](https://github.com/jeffaco/mesos/commits/mesos-6705-d)
+
+[Paul's Go test script](https://github.com/paulcallen/dcos-go/blob/paulcallen/windows/scripts/test.ps1)
