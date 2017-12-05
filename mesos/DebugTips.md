@@ -1,6 +1,8 @@
 
 # How to to access the DC/OS UI panels
 
+Assuming 51.141.162.197 is the master node address
+
 DC/OS UI
 
     http://51.141.162.197/
