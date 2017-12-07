@@ -1,4 +1,4 @@
-
+# Services on the Mesos master node
 
         root@dcos-master-32683824-0:/# systemctl | grep dcos
           dcos-3dt.service                         loaded active     running         DC/OS Diagnostics (3DT) Master: aggregates and exposes component health
@@ -36,3 +36,51 @@
           dcos-mesos-dns.service                   loaded active     running         Mesos DNS: domain name based service discovery
           dcos-mesos-master.service                loaded active     running         Mesos Master: distributed systems kernel
         root@dcos-master-32683824-0:/#
+
+
+
+
+# Marathon framework run parameters
+
+
+                ├─dcos-marathon.service
+                  └─36728 /opt/mesosphere/bin/java -Xmx2G -jar /opt/mesosphere/packages/marathon--bfb24f7f90cb3cd52a1cb22a07caafa5013bba21/usr/marathon.jar 
+
+                --zk zk://zk-1.zk:2181,zk-2.zk:2181,zk-3.zk:2181,zk-4.zk:2181,zk-5.zk:2181/marathon 
+                --master zk://zk-1.zk:2181,zk-2.zk:2181,zk-3.zk:2181,zk-4.zk:2181,zk-5.zk:2181/mesos 
+                --hostname 192.168.255.5 
+                --default_accepted_resource_roles * 
+                --mesos_role slave_public 
+                --max_tasks_per_offer 100 
+                --task_launch_timeout 86400000 
+                --decline_offer_duration 300000 
+                --revive_offers_for_new_apps 
+                --zk_compression 
+                --mesos_leader_ui_url /mesos 
+                --enable_features vips,task_killing,external_volumes,gpu_resources 
+                --mesos_authentication_principal dcos_marathon 
+                --mesos_user root
+                
+               
+# Windows Agent node parameters
+
+        C:\DCOS\mesos\service>notepad mesos-service.xml
+
+        <configuration>
+          <id>dcos-mesos-slave</id>
+          <name>DCOS Mesos Windows Slave</name>
+          <description>Windows Service for the DCOS Mesos Slave</description>
+          <executable>C:\DCOS\mesos\bin\mesos-agent.exe</executable>
+          <arguments>--master="zk://192.168.255.5:2181/mesos" --work_dir="C:\DCOS\mesos\work" --runtime_dir="C:\DCOS\mesos\work" --launcher_dir="C:\DCOS\mesos\bin" --log_dir="C:\DCOS\mesos\log" --ip="10.0.0.5" --isolation="windows/cpu,filesystem/windows" --containerizers="docker,mesos" --attributes="os:windows;public_ip:yes" --default_role="slave_public"</arguments>
+          <logpath>C:\DCOS\mesos\log</logpath>
+          <priority>Normal</priority>
+          <stoptimeout>20 sec</stoptimeout>
+          <stopparentprocessfirst>false</stopparentprocessfirst>
+          <startmode>Automatic</startmode>
+          <waithint>15 sec</waithint>
+          <sleeptime>1 sec</sleeptime>
+          <log mode="roll">
+            <sizeThreshold>10240</sizeThreshold>
+            <keepFiles>8</keepFiles>
+          </log>
+        </configuration>
