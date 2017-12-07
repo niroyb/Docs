@@ -241,3 +241,15 @@
             <keepFiles>8</keepFiles>
           </log>
         </configuration>
+
+
+# Linux Agent run parameters
+
+        To be filled with information
+        
+        
+          │ ├─dcos-mesos-slave-public.service
+           │ │ └─36907 /opt/mesosphere/packages/mesos--aaedd03eee0d57f5c0d49c74ff1e5721862cad98/bin/mesos-agent
+               │ └─17860 grep --color=auto mesos
+               
+           
