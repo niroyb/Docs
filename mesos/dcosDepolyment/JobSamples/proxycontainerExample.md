@@ -1,7 +1,7 @@
       { 
         "id": "3", 
         "cmd": null, 
-        "cpus": 1, 
+        "cpus": 0.1, 
         "mem": 512, 
         "disk": 0, 
         "instances": 1, 
@@ -9,7 +9,7 @@
           [
             "os",
             "LIKE",
-            "Windows"
+            "windows"
           ]
         ],        
         "container": { 
