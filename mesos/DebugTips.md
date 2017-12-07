@@ -32,3 +32,33 @@ Other
     location for logging files on a Linux Agent node 
 
     ./var/lib/mesos/slave/
+
+
+# How to update Windows mesos-agent with private mesos-agent.exe
+
+        C:\DCOS\mesos\bin>copy \\tsclient\d\github\mesos\build\src\mesos-agent.exe
+        Overwrite C:\DCOS\mesos\bin\mesos-agent.exe? (Yes/No/All): a
+        The process cannot access the file because it is being used by another process.
+                0 file(s) copied.
+
+        C:\DCOS\mesos\bin>net stop dcos-meso-slave
+        The service name is invalid.
+
+        More help is available by typing NET HELPMSG 2185.
+
+
+        C:\DCOS\mesos\bin>net stop dcos-mesos-slave
+        The DCOS Mesos Windows Slave service is stopping.
+        The DCOS Mesos Windows Slave service was stopped successfully.
+
+
+        C:\DCOS\mesos\bin>copy \\tsclient\d\github\mesos\build\src\mesos-agent.exe
+        Overwrite C:\DCOS\mesos\bin\mesos-agent.exe? (Yes/No/All): a
+                1 file(s) copied.
+
+        C:\DCOS\mesos\bin>net start dcos-mesos-slave
+        The DCOS Mesos Windows Slave service is starting.
+        The DCOS Mesos Windows Slave service was started successfully.
+
+
+        C:\DCOS\mesos\bin>dir
