@@ -1,7 +1,7 @@
 
 # Docker Pause : supported on Window Containers?
 
-    Yes, but  only Hyper-V containers can be paused, not the Windows Server Containers
+    Yes, but only Hyper-V containers can be paused, not the Windows Server Containers
 
     See [Docker pause Extended description](https://docs.docker.com/engine/reference/commandline/pause/#extended-description) for more information
 
