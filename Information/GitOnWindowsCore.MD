@@ -17,7 +17,8 @@
 
 4. Generate ssh key under C:\Program Files\Git\usr\bin
  
-    cd C:\Program Files\Git\usr\bin
+    cd "C:\Program Files\Git\usr\bin"
+    
     C:\Program Files\Git\usr\bin\.\ssh-keygen.exe -t rsa -C "soccerl@microsoft.com"
    
     key can be found in c:\Users\azureuser\.ssh\id_rsa.pub
