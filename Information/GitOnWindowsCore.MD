@@ -3,13 +3,15 @@
 
 1. Fetch chocolatey package 
 
-      powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" 
-      
-      SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+            powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" 
 
+            SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+      
 2. Install Git
 
-  choco install -y git
+        Create a new Powershell window
+
+        choco install -y git
 
 3. Setup credential store
 
