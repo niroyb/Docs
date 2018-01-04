@@ -25,7 +25,9 @@
 
                 key can be found in c:\Users\azureuser\.ssh\id_rsa.pub
 
- 5. Add the SSH key to the repo settings
+                ps. replace "azureuser" in above line with your username
+                
+ 5. Add the SSH key to the repo settings in the Github
    
  6. git clone https://github.com/soccerGB/Tools
 
