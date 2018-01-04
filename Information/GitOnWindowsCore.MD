@@ -9,21 +9,21 @@
       
 2. Install Git
 
-        Create a new Powershell window
+            Create a new Powershell window
 
-        choco install -y git
+            choco install -y git
 
 3. Setup credential store
 
-  PS C:\Users\azureuser> choco install git-credential-winstore
+            PS C:\Users\azureuser> choco install git-credential-winstore
 
 4. Generate ssh key under C:\Program Files\Git\usr\bin
  
-    cd "C:\Program Files\Git\usr\bin"
-    
-    C:\Program Files\Git\usr\bin\.\ssh-keygen.exe -t rsa -C "soccerl@microsoft.com"
-   
-    key can be found in c:\Users\azureuser\.ssh\id_rsa.pub
+                cd "C:\Program Files\Git\usr\bin"
+
+                C:\Program Files\Git\usr\bin\.\ssh-keygen.exe -t rsa -C "soccerl@microsoft.com"
+
+                key can be found in c:\Users\azureuser\.ssh\id_rsa.pub
 
  5. Add the SSH key to the repo settings
    
