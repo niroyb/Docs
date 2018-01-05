@@ -23,7 +23,7 @@
 
                 C:\Program Files\Git\usr\bin\.\ssh-keygen.exe -t rsa -C "soccerl@microsoft.com"
 
-                key can be found in c:\Users\azureuser\.ssh\id_rsa.pub
+                Run "cat c:\Users\azureuser\.ssh\id_rsa.pub" to get newly created SSH key
 
                 ps. replace "azureuser" in above line with your username
                 
