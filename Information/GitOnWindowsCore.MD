@@ -15,21 +15,20 @@
 
 3. Setup credential store
 
-            PS C:\Users\azureuser> choco install git-credential-winstore
-
+            choco install git-credential-winstore
+            
 4. Generate ssh key under C:\Program Files\Git\usr\bin
  
                 cd "C:\Program Files\Git\usr\bin"
 
-                C:\Program Files\Git\usr\bin\.\ssh-keygen.exe -t rsa -C "soccerl@microsoft.com"
+                C:\Program Files\Git\usr\bin\.\ssh-keygen.exe -t rsa -C "youremailsaddess@live.com"
 
                 Run "type c:\Users\azureuser\.ssh\id_rsa.pub" to get newly created SSH key
 
-                ps. replace "azureuser" in above line with your username
+                ps. replace "azureuser" in above line with your username and email address
 
                 C:\Users\Administrator>type c:\Users\%Username%\.ssh\id_rsa.pub
-                
-                
+                    
                 
  5. Add the SSH key to the repo settings in the Github
    
