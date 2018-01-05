@@ -5,9 +5,16 @@
 
 - Create a DC/OS cluster depolyment json file
 
-     Here is the example file I used: [dcos-1winSalve.json](https://github.com/soccerGB/Docs/blob/master/mesos/dcosDepolyment/ClusterSamples/dcos-1winSalve.json)
+     Here is the example delopment file I used: [dcos-1winSalve.json](https://github.com/soccerGB/Docs/blob/master/mesos/dcosDepolyment/ClusterSamples/dcos-1winSalve.json)
 
+   Note: The key information from above json file is WindowsImageSourceUrl field. You would need to prepare a RS4 VHD for this purpose and stores it in an Azure storage account. Since we are sharing the same subscription, you can use my following vhd file.
+   
+    "windowsProfile": {
+     ..
+      "WindowsImageSourceUrl": "https://soccerlstoragers4stack2.blob.core.windows.net/rs4stack2container/AzureRs4Stack2.vhd"
+    },
 
+  
 - Use ACS to Generate cluster deployment files
           
           PS D:\dcos\acsEngine2> .\acs-engine.exe generate dcos-1winSalve.json
