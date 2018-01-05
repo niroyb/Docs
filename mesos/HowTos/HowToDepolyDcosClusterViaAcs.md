@@ -3,7 +3,6 @@
 
 - [Install Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
-          Bruce's private acs-engine.exe binary (Windows version) could be found in \\apollon\public\Soccerl\acs
 
 - Get a DC/OS cluster depolyment json file
 
