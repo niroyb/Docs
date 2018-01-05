@@ -23,9 +23,13 @@
 
                 C:\Program Files\Git\usr\bin\.\ssh-keygen.exe -t rsa -C "soccerl@microsoft.com"
 
-                Run "cat c:\Users\azureuser\.ssh\id_rsa.pub" to get newly created SSH key
+                Run "type c:\Users\azureuser\.ssh\id_rsa.pub" to get newly created SSH key
 
                 ps. replace "azureuser" in above line with your username
+
+                C:\Users\Administrator>type c:\Users\%Username%\.ssh\id_rsa.pub
+                
+                
                 
  5. Add the SSH key to the repo settings in the Github
    
