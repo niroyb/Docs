@@ -7,7 +7,8 @@
 
      Here is the example file I used 
 
-     [dcos-1winSalve.json](Docs/mesos/dcosDepolyment/ClusterSamples/dcos-1winSalve.json
+     [dcos-1winSalve.json](https://github.com/soccerGB/Docs/blob/master/mesos/dcosDepolyment/ClusterSamples/dcos-1winSalve.json)
+     
            
      
      [Examples](https://github.com/soccerGB/Docs/blob/master/dcos/depolyment/DCOSClusterDefinitionJsonFiles.md)
