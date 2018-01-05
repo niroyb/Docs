@@ -12,10 +12,6 @@
           
           PS D:\dcos\acsEngine2> .\acs-engine.exe generate dcos-1winSalve.json
           // output could be found under the _output directory
-          
-          D:\dcos\acsEngine\_output\soccerl-mastera0>dir
-           Volume in drive D is Data
-           Volume Serial Number is B6F0-767C
                 
 - Login to Azure Portal
 
