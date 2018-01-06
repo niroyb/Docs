@@ -3,6 +3,8 @@
 
 - [Install Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
+       You want to pick up Bruce's private acs-engine.exe binary (Windows version) from \\apollon\public\Soccerl\acs
+
 - Create a DC/OS cluster depolyment json file
 
      Here is the example delopment file I used: [dcos-1winSalve.json](https://github.com/soccerGB/Docs/blob/master/mesos/dcosDepolyment/ClusterSamples/dcos-1winSalve.json)
