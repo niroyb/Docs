@@ -2,6 +2,8 @@
 # DCOS Mesos Windows Slave
    
    dcos-meoso-slave service
+    
+   This service spawns a child agent process mesos-agent.exe
 
 
 ## Mesos Windows [Agent Options](http://mesos.apache.org/documentation/latest/configuration/agent/)
@@ -17,7 +19,6 @@
         --containerizers="docker,mesos" 
         --attributes="os:Windows;public_ip:yes" 
         --default_role="slave_public"
-        
         
         
 # Spartan Windows Agent 
