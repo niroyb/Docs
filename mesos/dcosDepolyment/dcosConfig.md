@@ -1,5 +1,10 @@
 
-# Mesos Windows [Agent Options](http://mesos.apache.org/documentation/latest/configuration/agent/)
+# DCOS Mesos Windows Slave
+   
+   dcos-meoso-slave service
+
+
+## Mesos Windows [Agent Options](http://mesos.apache.org/documentation/latest/configuration/agent/)
 
     "C:\DCOS\mesos\bin\mesos-agent.exe" 
         --master="zk://192.168.255.5:2181/mesos" 
@@ -12,3 +17,9 @@
         --containerizers="docker,mesos" 
         --attributes="os:Windows;public_ip:yes" 
         --default_role="slave_public"
+        
+        
+        
+# Spartan Windows Agent 
+
+    dcos-spartan service
