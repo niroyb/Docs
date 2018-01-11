@@ -5,11 +5,12 @@
 
        You want to pick up Bruce's private acs-engine.exe binary (Windows version) from \\apollon\public\Soccerl\acs
 
-- Create a DC/OS cluster depolyment json file
+- Create a DC/OS cluster depolyment json file 
 
-     Here is the example delopment file I used: [dcos-RS4-hybrid-1winSalve.json](https://github.com/soccerGB/Docs/blob/master/mesos/dcosDepolyment/ClusterSamples/dcos-RS4-hybrid-1winSalve.json)
+     Here is the example delopment file I used: [dcos-RS4-1winSalve.json](https://github.com/soccerGB/Docs/blob/master/mesos/dcosDepolyment/ClusterSamples/dcos-RS4-1winSalve.json)
 
-   Note: The key information from above json file is WindowsImageSourceUrl field. You would need to prepare a RS4 VHD for this purpose and stores it in an Azure storage account. Since we are sharing the same subscription, you can use my following vhd file.
+   Note: The key information from above json file is WindowsImageSourceUrl field. You would need to
+   [prepare a VHD](https://github.com/soccerGB/Tools/blob/master/Azure/prepAzureVHD/AzureVHDUploadInstructions.md) (RS4) for this purpose and stores it in an Azure storage account. Since we are sharing the same subscription, you can use my following vhd file.
    
            "windowsProfile": {
             ..
@@ -19,7 +20,7 @@
   
 - Use ACS to Generate cluster deployment files
           
-          PS D:\dcos\acsEngine2> .\acs-engine.exe generate dcos-RS4-hybrid-1winSalve.json
+          PS D:\dcos\acsEngine2> .\acs-engine.exe generate dcos-RS4-1winSalve.json
           // output could be found under the _output directory
                 
 - Login to Azure Portal
