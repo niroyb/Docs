@@ -30,9 +30,11 @@
                 C:\Users\Administrator>type c:\Users\%Username%\.ssh\id_rsa.pub
                     
                 
- 5. Add the SSH key to the repo settings in the Github
+ 5. Add the SSH key to the profile settings in the Github
    
- 6. git clone https://github.com/soccerGB/Tools
+ 6. git clone pathToYourRepro
+ 
+            eg: git clone https://github.com/soccerGB/Tools
 
 
 
