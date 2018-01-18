@@ -81,5 +81,5 @@
 
      [iis_job_example](https://github.com/soccerGB/Docs/blob/master/mesos/dcosDepolyment/JobSamples/iis_job_example.txt)
      
-     [Other Samples](https://github.com/soccerGB/Docs/tree/master/mesos/dcosDepolyment/JobSamples)
+     [Other examples](https://github.com/soccerGB/Docs/tree/master/mesos/dcosDepolyment/JobSamples)
 
