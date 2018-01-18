@@ -6,7 +6,5 @@
 
 [Jeff's private Mesos branch](https://github.com/jeffaco/mesos/commits/mesos-6705-d)
 
-[Paul's Go test script](https://github.com/paulcallen/dcos-go/blob/paulcallen/windows/scripts/test.ps1)
-
 
 [Kubernetes Networking in Windows](https://microsoft.sharepoint.com/:p:/r/teams/ECG_Networking/_layouts/15/Doc.aspx?sourcedoc=%7B61F930E6-D29F-4EC0-9D52-A60365A3B67B%7D&file=Kubernetes%20Networking%20in%20WIndows.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1)
