@@ -6,7 +6,7 @@
 
 - Get a DC/OS cluster depolyment json file
 
-     [Examples](https://github.com/soccerGB/Docs/blob/master/dcos/depolyment/DCOSClusterDefinitionJsonFiles.md)
+     [Examples](https://github.com/soccerGB/Docs/tree/master/mesos/dcosDepolyment/ClusterSamples)
 
 - Use ACS to Generate cluster deployment files
           
