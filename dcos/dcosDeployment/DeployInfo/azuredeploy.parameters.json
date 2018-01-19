@@ -1,0 +1,126 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "agentWindowsSourceUrl": {
+      "value": "https://soccerlstoragers4onecore.blob.core.windows.net/rs4onecorecontainer/AzureRs4Onecore.vhd"
+    },
+    "dcosBootstrapURL": {
+      "value": "https://dcosio.azureedge.net/dcos/stable/bootstrap/e38ab2aa282077c8eb7bf103c6fff7b0f08db1a4.bootstrap.tar.xz"
+    },
+    "dcosWindowsBootstrapURL": {
+      "value": "http://dcos-win.westus.cloudapp.azure.com/dcos-windows/stable/"
+    },
+    "firstConsecutiveStaticIP": {
+      "value": "192.168.255.5"
+    },
+    "fqdnEndpointSuffix": {
+      "value": "cloudapp.azure.com"
+    },
+    "linpub40012Count": {
+      "value": 2
+    },
+    "linpub40012EndpointDNSNamePrefix": {
+      "value": "linpub40012"
+    },
+    "linpub40012Subnet": {
+      "value": "10.2.0.0/16"
+    },
+    "linpub40012VMSize": {
+      "value": "Standard_D2_v2"
+    },
+    "linpub40012osImageOffer": {
+      "value": "UbuntuServer"
+    },
+    "linpub40012osImagePublisher": {
+      "value": "Canonical"
+    },
+    "linpub40012osImageSKU": {
+      "value": "16.04-LTS"
+    },
+    "linpub40012osImageVersion": {
+      "value": "16.04.201801050"
+    },
+    "linux40012Count": {
+      "value": 1
+    },
+    "linux40012Subnet": {
+      "value": "10.3.0.0/16"
+    },
+    "linux40012VMSize": {
+      "value": "Standard_DS2_v2"
+    },
+    "linux40012osImageOffer": {
+      "value": "UbuntuServer"
+    },
+    "linux40012osImagePublisher": {
+      "value": "Canonical"
+    },
+    "linux40012osImageSKU": {
+      "value": "16.04-LTS"
+    },
+    "linux40012osImageVersion": {
+      "value": "16.04.201801050"
+    },
+    "linuxAdminUsername": {
+      "value": "azureuser"
+    },
+    "location": {
+      "value": ""
+    },
+    "masterEndpointDNSNamePrefix": {
+      "value": "dcos-rs40012"
+    },
+    "masterSubnet": {
+      "value": "192.168.255.0/24"
+    },
+    "masterVMSize": {
+      "value": "Standard_DS5_v2"
+    },
+    "osImageOffer": {
+      "value": "UbuntuServer"
+    },
+    "osImagePublisher": {
+      "value": "Canonical"
+    },
+    "osImageSKU": {
+      "value": "16.04-LTS"
+    },
+    "osImageVersion": {
+      "value": "16.04.201801050"
+    },
+    "sshRSAPublicKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYkJbzHCY038GVzfDQX2VYT1kZhJa4oMW/D6Z2G/NEoKeB3K/zUux95w7HtdYaq3RXNxk2dMtJv27QOUmOuPpdVWCKjwi03XvhRwHwuwlkJVRb4DLgoK7QPG+j04KtPSsgOj8Qd+ljXwHB2Zpz2kFifVF1D8mcEpRWZvxhpYSt6Ze2yqdxkffq3wddJuXskGsTSYTOcBzLwGcr4c9+kA3S8fnoAW0LRyXyOvB8v0YKqIJ8t3J/g4Lj3iCGIwOWraJ2EwnpOsAzhxgBRbiWflG/cHhxDlQsOYIbJcCfb7cSkow0Qcrff/gwzBtNCuANowDeGjyL/fzu9NrSQZZzgEdf soccerl@hdvm"
+    },
+    "targetEnvironment": {
+      "value": "AzurePublicCloud"
+    },
+    "win40012Count": {
+      "value": 1
+    },
+    "win40012Subnet": {
+      "value": "10.1.0.0/16"
+    },
+    "win40012VMSize": {
+      "value": "Standard_DS2_v2"
+    },
+    "windowsAdminPassword": {
+      "value": "replacepassword1234$"
+    },
+    "windowsAdminUsername": {
+      "value": "azureuser"
+    },
+    "wrs40012Count": {
+      "value": 1
+    },
+    "wrs40012EndpointDNSNamePrefix": {
+      "value": "wpub40012"
+    },
+    "wrs40012Subnet": {
+      "value": "10.0.0.0/16"
+    },
+    "wrs40012VMSize": {
+      "value": "Standard_D2s_v3"
+    }
+  }
+}

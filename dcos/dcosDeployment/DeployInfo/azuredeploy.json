@@ -1,0 +1,2778 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "agentWindowsSourceUrl": {
+      "defaultValue": "",
+      "metadata": {
+        "description": "The source of the generalized blob which will be used to create a custom windows image for the agent virtual machines."
+      },
+      "type": "string"
+    },
+    "agentWindowsVersion": {
+      "defaultValue": "latest",
+      "metadata": {
+        "description": "Version of the Windows Server 2016 OS image to use for the agent virtual machines."
+      },
+      "type": "string"
+    },
+    "dcosBinariesURL": {
+      "defaultValue": "",
+      "metadata": {
+        "description": "The download url for dcos/mesos windows binaries."
+      },
+      "type": "string"
+    },
+    "dcosBinariesVersion": {
+      "defaultValue": "",
+      "metadata": {
+        "description": "DCOS windows binaries version"
+      },
+      "type": "string"
+    },
+    "dcosBootstrapURL": {
+      "defaultValue": "https://dcosio.azureedge.net/dcos/stable/bootstrap/58fd0833ce81b6244fc73bf65b5deb43217b0bd7.bootstrap.tar.xz",
+      "metadata": {
+        "description": "The default mesosphere bootstrap package."
+      },
+      "type": "string"
+    },
+    "dcosWindowsBootstrapURL": {
+      "defaultValue": "http://dcos-win.westus.cloudapp.azure.com/dcos-windows/stable/",
+      "metadata": {
+        "description": "The default mesosphere bootstrap package location for windows."
+      },
+      "type": "string"
+    },
+    "firstConsecutiveStaticIP": {
+      "defaultValue": "192.168.255.5",
+      "metadata": {
+        "description": "Sets the static IP of the first master"
+      },
+      "type": "string"
+    },
+    "fqdnEndpointSuffix": {
+      "defaultValue": "cloudapp.azure.com",
+      "metadata": {
+        "description": "Endpoint of FQDN."
+      },
+      "type": "string"
+    },
+    "linpub40012Count": {
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "defaultValue": 2,
+      "metadata": {
+        "description": "The number of agents for the cluster.  This value can be from 1 to 100"
+      },
+      "type": "int"
+    },
+    "linpub40012EndpointDNSNamePrefix": {
+      "metadata": {
+        "description": "Sets the Domain name label for the agent pool IP Address.  The concatenation of the domain name label and the regional DNS zone make up the fully qualified domain name associated with the public IP address."
+      },
+      "type": "string"
+    },
+    "linpub40012Subnet": {
+      "defaultValue": "10.2.0.0/16",
+      "metadata": {
+        "description": "Sets the subnet of agent pool 'linpub40012'."
+      },
+      "type": "string"
+    },
+    "linpub40012VMSize": {
+      "allowedValues": [
+        "Standard_A10",
+        "Standard_A11",
+        "Standard_A2",
+        "Standard_A2_v2",
+        "Standard_A2m_v2",
+        "Standard_A3",
+        "Standard_A4",
+        "Standard_A4_v2",
+        "Standard_A4m_v2",
+        "Standard_A5",
+        "Standard_A6",
+        "Standard_A7",
+        "Standard_A8",
+        "Standard_A8_v2",
+        "Standard_A8m_v2",
+        "Standard_A9",
+        "Standard_B2ms",
+        "Standard_B2s",
+        "Standard_B4ms",
+        "Standard_B8ms",
+        "Standard_D11",
+        "Standard_D11_v2",
+        "Standard_D11_v2_Promo",
+        "Standard_D12",
+        "Standard_D12_v2",
+        "Standard_D12_v2_Promo",
+        "Standard_D13",
+        "Standard_D13_v2",
+        "Standard_D13_v2_Promo",
+        "Standard_D14",
+        "Standard_D14_v2",
+        "Standard_D14_v2_Promo",
+        "Standard_D15_v2",
+        "Standard_D16_v3",
+        "Standard_D16s_v3",
+        "Standard_D2",
+        "Standard_D2_v2",
+        "Standard_D2_v2_Promo",
+        "Standard_D2_v3",
+        "Standard_D2s_v3",
+        "Standard_D3",
+        "Standard_D32_v3",
+        "Standard_D32s_v3",
+        "Standard_D3_v2",
+        "Standard_D3_v2_Promo",
+        "Standard_D4",
+        "Standard_D4_v2",
+        "Standard_D4_v2_Promo",
+        "Standard_D4_v3",
+        "Standard_D4s_v3",
+        "Standard_D5_v2",
+        "Standard_D5_v2_Promo",
+        "Standard_D64_v3",
+        "Standard_D64s_v3",
+        "Standard_D8_v3",
+        "Standard_D8s_v3",
+        "Standard_DS11",
+        "Standard_DS11_v2",
+        "Standard_DS11_v2_Promo",
+        "Standard_DS12",
+        "Standard_DS12_v2",
+        "Standard_DS12_v2_Promo",
+        "Standard_DS13",
+        "Standard_DS13-2_v2",
+        "Standard_DS13-4_v2",
+        "Standard_DS13_v2",
+        "Standard_DS13_v2_Promo",
+        "Standard_DS14",
+        "Standard_DS14-4_v2",
+        "Standard_DS14-8_v2",
+        "Standard_DS14_v2",
+        "Standard_DS14_v2_Promo",
+        "Standard_DS15_v2",
+        "Standard_DS2",
+        "Standard_DS2_v2",
+        "Standard_DS2_v2_Promo",
+        "Standard_DS3",
+        "Standard_DS3_v2",
+        "Standard_DS3_v2_Promo",
+        "Standard_DS4",
+        "Standard_DS4_v2",
+        "Standard_DS4_v2_Promo",
+        "Standard_DS5_v2",
+        "Standard_DS5_v2_Promo",
+        "Standard_E16_v3",
+        "Standard_E16s_v3",
+        "Standard_E2_v3",
+        "Standard_E2s_v3",
+        "Standard_E32-16s_v3",
+        "Standard_E32-8s_v3",
+        "Standard_E32_v3",
+        "Standard_E32s_v3",
+        "Standard_E4_v3",
+        "Standard_E4s_v3",
+        "Standard_E64-16s_v3",
+        "Standard_E64-32s_v3",
+        "Standard_E64_v3",
+        "Standard_E64s_v3",
+        "Standard_E8_v3",
+        "Standard_E8s_v3",
+        "Standard_F16",
+        "Standard_F16s",
+        "Standard_F16s_v2",
+        "Standard_F2",
+        "Standard_F2s",
+        "Standard_F2s_v2",
+        "Standard_F32s_v2",
+        "Standard_F4",
+        "Standard_F4s",
+        "Standard_F4s_v2",
+        "Standard_F64s_v2",
+        "Standard_F72s_v2",
+        "Standard_F8",
+        "Standard_F8s",
+        "Standard_F8s_v2",
+        "Standard_G1",
+        "Standard_G2",
+        "Standard_G3",
+        "Standard_G4",
+        "Standard_G5",
+        "Standard_GS1",
+        "Standard_GS2",
+        "Standard_GS3",
+        "Standard_GS4",
+        "Standard_GS4-4",
+        "Standard_GS4-8",
+        "Standard_GS5",
+        "Standard_GS5-16",
+        "Standard_GS5-8",
+        "Standard_H16",
+        "Standard_H16m",
+        "Standard_H16mr",
+        "Standard_H16r",
+        "Standard_H8",
+        "Standard_H8m",
+        "Standard_L16s",
+        "Standard_L32s",
+        "Standard_L4s",
+        "Standard_L8s",
+        "Standard_M128-32ms",
+        "Standard_M128-64ms",
+        "Standard_M128ms",
+        "Standard_M128s",
+        "Standard_M64-16ms",
+        "Standard_M64-32ms",
+        "Standard_M64ms",
+        "Standard_M64s",
+        "Standard_NC12",
+        "Standard_NC12s_v2",
+        "Standard_NC12s_v3",
+        "Standard_NC24",
+        "Standard_NC24r",
+        "Standard_NC24rs_v2",
+        "Standard_NC24rs_v3",
+        "Standard_NC24s_v2",
+        "Standard_NC24s_v3",
+        "Standard_NC6",
+        "Standard_NC6s_v2",
+        "Standard_NC6s_v3",
+        "Standard_ND12s",
+        "Standard_ND24rs",
+        "Standard_ND24s",
+        "Standard_ND6s",
+        "Standard_NV12",
+        "Standard_NV24",
+        "Standard_NV6"
+      ],
+      "defaultValue": "Standard_D2_v2",
+      "metadata": {
+        "description": "The size of the Virtual Machine."
+      },
+      "type": "string"
+    },
+    "linpub40012osImageOffer": {
+      "defaultValue": "UbuntuServer",
+      "metadata": {
+        "description": "Linux OS image type."
+      },
+      "type": "string"
+    },
+    "linpub40012osImagePublisher": {
+      "defaultValue": "Canonical",
+      "metadata": {
+        "description": "OS image publisher."
+      },
+      "type": "string"
+    },
+    "linpub40012osImageSKU": {
+      "defaultValue": "16.04-LTS",
+      "metadata": {
+        "description": "OS image SKU."
+      },
+      "type": "string"
+    },
+    "linpub40012osImageVersion": {
+      "defaultValue": "16.04.201801050",
+      "metadata": {
+        "description": "OS image version."
+      },
+      "type": "string"
+    },
+    "linux40012Count": {
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "defaultValue": 1,
+      "metadata": {
+        "description": "The number of agents for the cluster.  This value can be from 1 to 100"
+      },
+      "type": "int"
+    },
+    "linux40012Subnet": {
+      "defaultValue": "10.3.0.0/16",
+      "metadata": {
+        "description": "Sets the subnet of agent pool 'linux40012'."
+      },
+      "type": "string"
+    },
+    "linux40012VMSize": {
+      "allowedValues": [
+        "Standard_A10",
+        "Standard_A11",
+        "Standard_A2",
+        "Standard_A2_v2",
+        "Standard_A2m_v2",
+        "Standard_A3",
+        "Standard_A4",
+        "Standard_A4_v2",
+        "Standard_A4m_v2",
+        "Standard_A5",
+        "Standard_A6",
+        "Standard_A7",
+        "Standard_A8",
+        "Standard_A8_v2",
+        "Standard_A8m_v2",
+        "Standard_A9",
+        "Standard_B2ms",
+        "Standard_B2s",
+        "Standard_B4ms",
+        "Standard_B8ms",
+        "Standard_D11",
+        "Standard_D11_v2",
+        "Standard_D11_v2_Promo",
+        "Standard_D12",
+        "Standard_D12_v2",
+        "Standard_D12_v2_Promo",
+        "Standard_D13",
+        "Standard_D13_v2",
+        "Standard_D13_v2_Promo",
+        "Standard_D14",
+        "Standard_D14_v2",
+        "Standard_D14_v2_Promo",
+        "Standard_D15_v2",
+        "Standard_D16_v3",
+        "Standard_D16s_v3",
+        "Standard_D2",
+        "Standard_D2_v2",
+        "Standard_D2_v2_Promo",
+        "Standard_D2_v3",
+        "Standard_D2s_v3",
+        "Standard_D3",
+        "Standard_D32_v3",
+        "Standard_D32s_v3",
+        "Standard_D3_v2",
+        "Standard_D3_v2_Promo",
+        "Standard_D4",
+        "Standard_D4_v2",
+        "Standard_D4_v2_Promo",
+        "Standard_D4_v3",
+        "Standard_D4s_v3",
+        "Standard_D5_v2",
+        "Standard_D5_v2_Promo",
+        "Standard_D64_v3",
+        "Standard_D64s_v3",
+        "Standard_D8_v3",
+        "Standard_D8s_v3",
+        "Standard_DS11",
+        "Standard_DS11_v2",
+        "Standard_DS11_v2_Promo",
+        "Standard_DS12",
+        "Standard_DS12_v2",
+        "Standard_DS12_v2_Promo",
+        "Standard_DS13",
+        "Standard_DS13-2_v2",
+        "Standard_DS13-4_v2",
+        "Standard_DS13_v2",
+        "Standard_DS13_v2_Promo",
+        "Standard_DS14",
+        "Standard_DS14-4_v2",
+        "Standard_DS14-8_v2",
+        "Standard_DS14_v2",
+        "Standard_DS14_v2_Promo",
+        "Standard_DS15_v2",
+        "Standard_DS2",
+        "Standard_DS2_v2",
+        "Standard_DS2_v2_Promo",
+        "Standard_DS3",
+        "Standard_DS3_v2",
+        "Standard_DS3_v2_Promo",
+        "Standard_DS4",
+        "Standard_DS4_v2",
+        "Standard_DS4_v2_Promo",
+        "Standard_DS5_v2",
+        "Standard_DS5_v2_Promo",
+        "Standard_E16_v3",
+        "Standard_E16s_v3",
+        "Standard_E2_v3",
+        "Standard_E2s_v3",
+        "Standard_E32-16s_v3",
+        "Standard_E32-8s_v3",
+        "Standard_E32_v3",
+        "Standard_E32s_v3",
+        "Standard_E4_v3",
+        "Standard_E4s_v3",
+        "Standard_E64-16s_v3",
+        "Standard_E64-32s_v3",
+        "Standard_E64_v3",
+        "Standard_E64s_v3",
+        "Standard_E8_v3",
+        "Standard_E8s_v3",
+        "Standard_F16",
+        "Standard_F16s",
+        "Standard_F16s_v2",
+        "Standard_F2",
+        "Standard_F2s",
+        "Standard_F2s_v2",
+        "Standard_F32s_v2",
+        "Standard_F4",
+        "Standard_F4s",
+        "Standard_F4s_v2",
+        "Standard_F64s_v2",
+        "Standard_F72s_v2",
+        "Standard_F8",
+        "Standard_F8s",
+        "Standard_F8s_v2",
+        "Standard_G1",
+        "Standard_G2",
+        "Standard_G3",
+        "Standard_G4",
+        "Standard_G5",
+        "Standard_GS1",
+        "Standard_GS2",
+        "Standard_GS3",
+        "Standard_GS4",
+        "Standard_GS4-4",
+        "Standard_GS4-8",
+        "Standard_GS5",
+        "Standard_GS5-16",
+        "Standard_GS5-8",
+        "Standard_H16",
+        "Standard_H16m",
+        "Standard_H16mr",
+        "Standard_H16r",
+        "Standard_H8",
+        "Standard_H8m",
+        "Standard_L16s",
+        "Standard_L32s",
+        "Standard_L4s",
+        "Standard_L8s",
+        "Standard_M128-32ms",
+        "Standard_M128-64ms",
+        "Standard_M128ms",
+        "Standard_M128s",
+        "Standard_M64-16ms",
+        "Standard_M64-32ms",
+        "Standard_M64ms",
+        "Standard_M64s",
+        "Standard_NC12",
+        "Standard_NC12s_v2",
+        "Standard_NC12s_v3",
+        "Standard_NC24",
+        "Standard_NC24r",
+        "Standard_NC24rs_v2",
+        "Standard_NC24rs_v3",
+        "Standard_NC24s_v2",
+        "Standard_NC24s_v3",
+        "Standard_NC6",
+        "Standard_NC6s_v2",
+        "Standard_NC6s_v3",
+        "Standard_ND12s",
+        "Standard_ND24rs",
+        "Standard_ND24s",
+        "Standard_ND6s",
+        "Standard_NV12",
+        "Standard_NV24",
+        "Standard_NV6"
+      ],
+      "defaultValue": "Standard_DS2_v2",
+      "metadata": {
+        "description": "The size of the Virtual Machine."
+      },
+      "type": "string"
+    },
+    "linux40012osImageOffer": {
+      "defaultValue": "UbuntuServer",
+      "metadata": {
+        "description": "Linux OS image type."
+      },
+      "type": "string"
+    },
+    "linux40012osImagePublisher": {
+      "defaultValue": "Canonical",
+      "metadata": {
+        "description": "OS image publisher."
+      },
+      "type": "string"
+    },
+    "linux40012osImageSKU": {
+      "defaultValue": "16.04-LTS",
+      "metadata": {
+        "description": "OS image SKU."
+      },
+      "type": "string"
+    },
+    "linux40012osImageVersion": {
+      "defaultValue": "16.04.201801050",
+      "metadata": {
+        "description": "OS image version."
+      },
+      "type": "string"
+    },
+    "linuxAdminUsername": {
+      "metadata": {
+        "description": "User name for the Linux Virtual Machines (SSH or Password)."
+      },
+      "type": "string"
+    },
+    "location": {
+      "defaultValue": "",
+      "metadata": {
+        "description": "Sets the location for all resources in the cluster"
+      },
+      "type": "string"
+    },
+    "masterEndpointDNSNamePrefix": {
+      "metadata": {
+        "description": "Sets the Domain name label for the master IP Address.  The concatenation of the domain name label and the regional DNS zone make up the fully qualified domain name associated with the public IP address."
+      },
+      "type": "string"
+    },
+    "masterSubnet": {
+      "defaultValue": "192.168.255.0/24",
+      "metadata": {
+        "description": "Sets the subnet of the master node(s)."
+      },
+      "type": "string"
+    },
+    "masterVMSize": {
+      "allowedValues": [
+        "Standard_A10",
+        "Standard_A11",
+        "Standard_A2",
+        "Standard_A3",
+        "Standard_A4",
+        "Standard_A5",
+        "Standard_A6",
+        "Standard_A7",
+        "Standard_A8",
+        "Standard_A9",
+        "Standard_D11",
+        "Standard_D11_v2",
+        "Standard_D11_v2_Promo",
+        "Standard_D12",
+        "Standard_D12_v2",
+        "Standard_D12_v2_Promo",
+        "Standard_D13",
+        "Standard_D13_v2",
+        "Standard_D13_v2_Promo",
+        "Standard_D14",
+        "Standard_D14_v2",
+        "Standard_D14_v2_Promo",
+        "Standard_D15_v2",
+        "Standard_D16_v3",
+        "Standard_D16s_v3",
+        "Standard_D2",
+        "Standard_D2_v2",
+        "Standard_D2_v2_Promo",
+        "Standard_D3",
+        "Standard_D32_v3",
+        "Standard_D32s_v3",
+        "Standard_D3_v2",
+        "Standard_D3_v2_Promo",
+        "Standard_D4",
+        "Standard_D4_v2",
+        "Standard_D4_v2_Promo",
+        "Standard_D4_v3",
+        "Standard_D5_v2",
+        "Standard_D5_v2_Promo",
+        "Standard_D64_v3",
+        "Standard_D64s_v3",
+        "Standard_D8_v3",
+        "Standard_DS13",
+        "Standard_DS13-2_v2",
+        "Standard_DS13-4_v2",
+        "Standard_DS13_v2",
+        "Standard_DS13_v2_Promo",
+        "Standard_DS14",
+        "Standard_DS14-4_v2",
+        "Standard_DS14-8_v2",
+        "Standard_DS14_v2",
+        "Standard_DS14_v2_Promo",
+        "Standard_DS15_v2",
+        "Standard_DS5_v2",
+        "Standard_DS5_v2_Promo",
+        "Standard_E16_v3",
+        "Standard_E16s_v3",
+        "Standard_E32-16s_v3",
+        "Standard_E32-8s_v3",
+        "Standard_E32_v3",
+        "Standard_E32s_v3",
+        "Standard_E4_v3",
+        "Standard_E64-16s_v3",
+        "Standard_E64-32s_v3",
+        "Standard_E64_v3",
+        "Standard_E64s_v3",
+        "Standard_E8_v3",
+        "Standard_E8s_v3",
+        "Standard_F16",
+        "Standard_F16s_v2",
+        "Standard_F32s_v2",
+        "Standard_F64s_v2",
+        "Standard_F72s_v2",
+        "Standard_F8",
+        "Standard_G1",
+        "Standard_G2",
+        "Standard_G3",
+        "Standard_G4",
+        "Standard_G5",
+        "Standard_GS2",
+        "Standard_GS3",
+        "Standard_GS4",
+        "Standard_GS4-4",
+        "Standard_GS4-8",
+        "Standard_GS5",
+        "Standard_GS5-16",
+        "Standard_GS5-8",
+        "Standard_H16",
+        "Standard_H16m",
+        "Standard_H16mr",
+        "Standard_H16r",
+        "Standard_H8",
+        "Standard_H8m",
+        "Standard_L16s",
+        "Standard_L32s",
+        "Standard_L4s",
+        "Standard_L8s",
+        "Standard_M128-32ms",
+        "Standard_M128-64ms",
+        "Standard_M128ms",
+        "Standard_M128s",
+        "Standard_M64-16ms",
+        "Standard_M64-32ms",
+        "Standard_M64ms",
+        "Standard_M64s",
+        "Standard_NC12",
+        "Standard_NC12s_v2",
+        "Standard_NC12s_v3",
+        "Standard_NC24",
+        "Standard_NC24r",
+        "Standard_NC24rs_v2",
+        "Standard_NC24rs_v3",
+        "Standard_NC24s_v2",
+        "Standard_NC24s_v3",
+        "Standard_NC6",
+        "Standard_NC6s_v2",
+        "Standard_NC6s_v3",
+        "Standard_ND12s",
+        "Standard_ND24rs",
+        "Standard_ND24s",
+        "Standard_ND6s",
+        "Standard_NV12",
+        "Standard_NV24",
+        "Standard_NV6"
+      ],
+      "metadata": {
+        "description": "The size of the Virtual Machine."
+      },
+      "type": "string"
+    },
+    "nameSuffix": {
+      "defaultValue": "14267337",
+      "metadata": {
+        "description": "A string hash of the master DNS name to uniquely identify the cluster."
+      },
+      "type": "string"
+    },
+    "osImageOffer": {
+      "defaultValue": "UbuntuServer",
+      "metadata": {
+        "description": "Linux OS image type."
+      },
+      "type": "string"
+    },
+    "osImagePublisher": {
+      "defaultValue": "Canonical",
+      "metadata": {
+        "description": "OS image publisher."
+      },
+      "type": "string"
+    },
+    "osImageSKU": {
+      "defaultValue": "16.04-LTS",
+      "metadata": {
+        "description": "OS image SKU."
+      },
+      "type": "string"
+    },
+    "osImageVersion": {
+      "defaultValue": "16.04.201801050",
+      "metadata": {
+        "description": "OS image version."
+      },
+      "type": "string"
+    },
+    "sshRSAPublicKey": {
+      "metadata": {
+        "description": "SSH public key used for auth to all Linux machines.  Not Required.  If not set, you must provide a password key."
+      },
+      "type": "string"
+    },
+    "targetEnvironment": {
+      "defaultValue": "AzurePublicCloud",
+      "metadata": {
+        "description": "The azure deploy environment. Currently support: AzurePublicCloud, AzureChinaCloud"
+      },
+      "type": "string"
+    },
+    "win40012Count": {
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "defaultValue": 1,
+      "metadata": {
+        "description": "The number of agents for the cluster.  This value can be from 1 to 100"
+      },
+      "type": "int"
+    },
+    "win40012Subnet": {
+      "defaultValue": "10.1.0.0/16",
+      "metadata": {
+        "description": "Sets the subnet of agent pool 'win40012'."
+      },
+      "type": "string"
+    },
+    "win40012VMSize": {
+      "allowedValues": [
+        "Standard_A10",
+        "Standard_A11",
+        "Standard_A2",
+        "Standard_A2_v2",
+        "Standard_A2m_v2",
+        "Standard_A3",
+        "Standard_A4",
+        "Standard_A4_v2",
+        "Standard_A4m_v2",
+        "Standard_A5",
+        "Standard_A6",
+        "Standard_A7",
+        "Standard_A8",
+        "Standard_A8_v2",
+        "Standard_A8m_v2",
+        "Standard_A9",
+        "Standard_B2ms",
+        "Standard_B2s",
+        "Standard_B4ms",
+        "Standard_B8ms",
+        "Standard_D11",
+        "Standard_D11_v2",
+        "Standard_D11_v2_Promo",
+        "Standard_D12",
+        "Standard_D12_v2",
+        "Standard_D12_v2_Promo",
+        "Standard_D13",
+        "Standard_D13_v2",
+        "Standard_D13_v2_Promo",
+        "Standard_D14",
+        "Standard_D14_v2",
+        "Standard_D14_v2_Promo",
+        "Standard_D15_v2",
+        "Standard_D16_v3",
+        "Standard_D16s_v3",
+        "Standard_D2",
+        "Standard_D2_v2",
+        "Standard_D2_v2_Promo",
+        "Standard_D2_v3",
+        "Standard_D2s_v3",
+        "Standard_D3",
+        "Standard_D32_v3",
+        "Standard_D32s_v3",
+        "Standard_D3_v2",
+        "Standard_D3_v2_Promo",
+        "Standard_D4",
+        "Standard_D4_v2",
+        "Standard_D4_v2_Promo",
+        "Standard_D4_v3",
+        "Standard_D4s_v3",
+        "Standard_D5_v2",
+        "Standard_D5_v2_Promo",
+        "Standard_D64_v3",
+        "Standard_D64s_v3",
+        "Standard_D8_v3",
+        "Standard_D8s_v3",
+        "Standard_DS11",
+        "Standard_DS11_v2",
+        "Standard_DS11_v2_Promo",
+        "Standard_DS12",
+        "Standard_DS12_v2",
+        "Standard_DS12_v2_Promo",
+        "Standard_DS13",
+        "Standard_DS13-2_v2",
+        "Standard_DS13-4_v2",
+        "Standard_DS13_v2",
+        "Standard_DS13_v2_Promo",
+        "Standard_DS14",
+        "Standard_DS14-4_v2",
+        "Standard_DS14-8_v2",
+        "Standard_DS14_v2",
+        "Standard_DS14_v2_Promo",
+        "Standard_DS15_v2",
+        "Standard_DS2",
+        "Standard_DS2_v2",
+        "Standard_DS2_v2_Promo",
+        "Standard_DS3",
+        "Standard_DS3_v2",
+        "Standard_DS3_v2_Promo",
+        "Standard_DS4",
+        "Standard_DS4_v2",
+        "Standard_DS4_v2_Promo",
+        "Standard_DS5_v2",
+        "Standard_DS5_v2_Promo",
+        "Standard_E16_v3",
+        "Standard_E16s_v3",
+        "Standard_E2_v3",
+        "Standard_E2s_v3",
+        "Standard_E32-16s_v3",
+        "Standard_E32-8s_v3",
+        "Standard_E32_v3",
+        "Standard_E32s_v3",
+        "Standard_E4_v3",
+        "Standard_E4s_v3",
+        "Standard_E64-16s_v3",
+        "Standard_E64-32s_v3",
+        "Standard_E64_v3",
+        "Standard_E64s_v3",
+        "Standard_E8_v3",
+        "Standard_E8s_v3",
+        "Standard_F16",
+        "Standard_F16s",
+        "Standard_F16s_v2",
+        "Standard_F2",
+        "Standard_F2s",
+        "Standard_F2s_v2",
+        "Standard_F32s_v2",
+        "Standard_F4",
+        "Standard_F4s",
+        "Standard_F4s_v2",
+        "Standard_F64s_v2",
+        "Standard_F72s_v2",
+        "Standard_F8",
+        "Standard_F8s",
+        "Standard_F8s_v2",
+        "Standard_G1",
+        "Standard_G2",
+        "Standard_G3",
+        "Standard_G4",
+        "Standard_G5",
+        "Standard_GS1",
+        "Standard_GS2",
+        "Standard_GS3",
+        "Standard_GS4",
+        "Standard_GS4-4",
+        "Standard_GS4-8",
+        "Standard_GS5",
+        "Standard_GS5-16",
+        "Standard_GS5-8",
+        "Standard_H16",
+        "Standard_H16m",
+        "Standard_H16mr",
+        "Standard_H16r",
+        "Standard_H8",
+        "Standard_H8m",
+        "Standard_L16s",
+        "Standard_L32s",
+        "Standard_L4s",
+        "Standard_L8s",
+        "Standard_M128-32ms",
+        "Standard_M128-64ms",
+        "Standard_M128ms",
+        "Standard_M128s",
+        "Standard_M64-16ms",
+        "Standard_M64-32ms",
+        "Standard_M64ms",
+        "Standard_M64s",
+        "Standard_NC12",
+        "Standard_NC12s_v2",
+        "Standard_NC12s_v3",
+        "Standard_NC24",
+        "Standard_NC24r",
+        "Standard_NC24rs_v2",
+        "Standard_NC24rs_v3",
+        "Standard_NC24s_v2",
+        "Standard_NC24s_v3",
+        "Standard_NC6",
+        "Standard_NC6s_v2",
+        "Standard_NC6s_v3",
+        "Standard_ND12s",
+        "Standard_ND24rs",
+        "Standard_ND24s",
+        "Standard_ND6s",
+        "Standard_NV12",
+        "Standard_NV24",
+        "Standard_NV6"
+      ],
+      "defaultValue": "Standard_DS2_v2",
+      "metadata": {
+        "description": "The size of the Virtual Machine."
+      },
+      "type": "string"
+    },
+    "win40012osImageOffer": {
+      "defaultValue": "UbuntuServer",
+      "metadata": {
+        "description": "Linux OS image type."
+      },
+      "type": "string"
+    },
+    "win40012osImagePublisher": {
+      "defaultValue": "Canonical",
+      "metadata": {
+        "description": "OS image publisher."
+      },
+      "type": "string"
+    },
+    "win40012osImageSKU": {
+      "defaultValue": "16.04-LTS",
+      "metadata": {
+        "description": "OS image SKU."
+      },
+      "type": "string"
+    },
+    "win40012osImageVersion": {
+      "defaultValue": "16.04.201801050",
+      "metadata": {
+        "description": "OS image version."
+      },
+      "type": "string"
+    },
+    "windowsAdminPassword": {
+      "metadata": {
+        "description": "Password for the Windows Swarm Agent Virtual Machines."
+      },
+      "type": "securestring"
+    },
+    "windowsAdminUsername": {
+      "metadata": {
+        "description": "User name for the Windows Swarm Agent Virtual Machines (Password Only Supported)."
+      },
+      "type": "string"
+    },
+    "wrs40012Count": {
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "defaultValue": 1,
+      "metadata": {
+        "description": "The number of agents for the cluster.  This value can be from 1 to 100"
+      },
+      "type": "int"
+    },
+    "wrs40012EndpointDNSNamePrefix": {
+      "metadata": {
+        "description": "Sets the Domain name label for the agent pool IP Address.  The concatenation of the domain name label and the regional DNS zone make up the fully qualified domain name associated with the public IP address."
+      },
+      "type": "string"
+    },
+    "wrs40012Subnet": {
+      "defaultValue": "10.0.0.0/16",
+      "metadata": {
+        "description": "Sets the subnet of agent pool 'wrs40012'."
+      },
+      "type": "string"
+    },
+    "wrs40012VMSize": {
+      "allowedValues": [
+        "Standard_A10",
+        "Standard_A11",
+        "Standard_A2",
+        "Standard_A2_v2",
+        "Standard_A2m_v2",
+        "Standard_A3",
+        "Standard_A4",
+        "Standard_A4_v2",
+        "Standard_A4m_v2",
+        "Standard_A5",
+        "Standard_A6",
+        "Standard_A7",
+        "Standard_A8",
+        "Standard_A8_v2",
+        "Standard_A8m_v2",
+        "Standard_A9",
+        "Standard_B2ms",
+        "Standard_B2s",
+        "Standard_B4ms",
+        "Standard_B8ms",
+        "Standard_D11",
+        "Standard_D11_v2",
+        "Standard_D11_v2_Promo",
+        "Standard_D12",
+        "Standard_D12_v2",
+        "Standard_D12_v2_Promo",
+        "Standard_D13",
+        "Standard_D13_v2",
+        "Standard_D13_v2_Promo",
+        "Standard_D14",
+        "Standard_D14_v2",
+        "Standard_D14_v2_Promo",
+        "Standard_D15_v2",
+        "Standard_D16_v3",
+        "Standard_D16s_v3",
+        "Standard_D2",
+        "Standard_D2_v2",
+        "Standard_D2_v2_Promo",
+        "Standard_D2_v3",
+        "Standard_D2s_v3",
+        "Standard_D3",
+        "Standard_D32_v3",
+        "Standard_D32s_v3",
+        "Standard_D3_v2",
+        "Standard_D3_v2_Promo",
+        "Standard_D4",
+        "Standard_D4_v2",
+        "Standard_D4_v2_Promo",
+        "Standard_D4_v3",
+        "Standard_D4s_v3",
+        "Standard_D5_v2",
+        "Standard_D5_v2_Promo",
+        "Standard_D64_v3",
+        "Standard_D64s_v3",
+        "Standard_D8_v3",
+        "Standard_D8s_v3",
+        "Standard_DS11",
+        "Standard_DS11_v2",
+        "Standard_DS11_v2_Promo",
+        "Standard_DS12",
+        "Standard_DS12_v2",
+        "Standard_DS12_v2_Promo",
+        "Standard_DS13",
+        "Standard_DS13-2_v2",
+        "Standard_DS13-4_v2",
+        "Standard_DS13_v2",
+        "Standard_DS13_v2_Promo",
+        "Standard_DS14",
+        "Standard_DS14-4_v2",
+        "Standard_DS14-8_v2",
+        "Standard_DS14_v2",
+        "Standard_DS14_v2_Promo",
+        "Standard_DS15_v2",
+        "Standard_DS2",
+        "Standard_DS2_v2",
+        "Standard_DS2_v2_Promo",
+        "Standard_DS3",
+        "Standard_DS3_v2",
+        "Standard_DS3_v2_Promo",
+        "Standard_DS4",
+        "Standard_DS4_v2",
+        "Standard_DS4_v2_Promo",
+        "Standard_DS5_v2",
+        "Standard_DS5_v2_Promo",
+        "Standard_E16_v3",
+        "Standard_E16s_v3",
+        "Standard_E2_v3",
+        "Standard_E2s_v3",
+        "Standard_E32-16s_v3",
+        "Standard_E32-8s_v3",
+        "Standard_E32_v3",
+        "Standard_E32s_v3",
+        "Standard_E4_v3",
+        "Standard_E4s_v3",
+        "Standard_E64-16s_v3",
+        "Standard_E64-32s_v3",
+        "Standard_E64_v3",
+        "Standard_E64s_v3",
+        "Standard_E8_v3",
+        "Standard_E8s_v3",
+        "Standard_F16",
+        "Standard_F16s",
+        "Standard_F16s_v2",
+        "Standard_F2",
+        "Standard_F2s",
+        "Standard_F2s_v2",
+        "Standard_F32s_v2",
+        "Standard_F4",
+        "Standard_F4s",
+        "Standard_F4s_v2",
+        "Standard_F64s_v2",
+        "Standard_F72s_v2",
+        "Standard_F8",
+        "Standard_F8s",
+        "Standard_F8s_v2",
+        "Standard_G1",
+        "Standard_G2",
+        "Standard_G3",
+        "Standard_G4",
+        "Standard_G5",
+        "Standard_GS1",
+        "Standard_GS2",
+        "Standard_GS3",
+        "Standard_GS4",
+        "Standard_GS4-4",
+        "Standard_GS4-8",
+        "Standard_GS5",
+        "Standard_GS5-16",
+        "Standard_GS5-8",
+        "Standard_H16",
+        "Standard_H16m",
+        "Standard_H16mr",
+        "Standard_H16r",
+        "Standard_H8",
+        "Standard_H8m",
+        "Standard_L16s",
+        "Standard_L32s",
+        "Standard_L4s",
+        "Standard_L8s",
+        "Standard_M128-32ms",
+        "Standard_M128-64ms",
+        "Standard_M128ms",
+        "Standard_M128s",
+        "Standard_M64-16ms",
+        "Standard_M64-32ms",
+        "Standard_M64ms",
+        "Standard_M64s",
+        "Standard_NC12",
+        "Standard_NC12s_v2",
+        "Standard_NC12s_v3",
+        "Standard_NC24",
+        "Standard_NC24r",
+        "Standard_NC24rs_v2",
+        "Standard_NC24rs_v3",
+        "Standard_NC24s_v2",
+        "Standard_NC24s_v3",
+        "Standard_NC6",
+        "Standard_NC6s_v2",
+        "Standard_NC6s_v3",
+        "Standard_ND12s",
+        "Standard_ND24rs",
+        "Standard_ND24s",
+        "Standard_ND6s",
+        "Standard_NV12",
+        "Standard_NV24",
+        "Standard_NV6"
+      ],
+      "defaultValue": "Standard_D2s_v3",
+      "metadata": {
+        "description": "The size of the Virtual Machine."
+      },
+      "type": "string"
+    },
+    "wrs40012osImageOffer": {
+      "defaultValue": "UbuntuServer",
+      "metadata": {
+        "description": "Linux OS image type."
+      },
+      "type": "string"
+    },
+    "wrs40012osImagePublisher": {
+      "defaultValue": "Canonical",
+      "metadata": {
+        "description": "OS image publisher."
+      },
+      "type": "string"
+    },
+    "wrs40012osImageSKU": {
+      "defaultValue": "16.04-LTS",
+      "metadata": {
+        "description": "OS image SKU."
+      },
+      "type": "string"
+    },
+    "wrs40012osImageVersion": {
+      "defaultValue": "16.04.201801050",
+      "metadata": {
+        "description": "OS image version."
+      },
+      "type": "string"
+    }
+  },
+  "variables": {
+    "adminUsername": "[parameters('linuxAdminUsername')]",
+    "agentWindowsBackendPort": 3389,
+    "agentWindowsOffer": "WindowsServer",
+    "agentWindowsPublisher": "MicrosoftWindowsServer",
+    "agentWindowsSku": "2016-Datacenter-with-Containers",
+    "agentWindowsVersion": "[parameters('agentWindowsVersion')]",
+    "apiVersionDefault": "2016-03-30",
+    "apiVersionLinkDefault": "2015-01-01",
+    "apiVersionStorage": "2015-06-15",
+    "apiVersionStorageManagedDisks": "2016-04-30-preview",
+    "dcosBootstrapURL": "[parameters('dcosBootstrapURL')]",
+    "dcosWindowsBootstrapURL": "[parameters('dcosWindowsBootstrapURL')]",
+    "doubleSingleQuote": "''",
+    "linpub40012Count": "[parameters('linpub40012Count')]",
+    "linpub40012EndpointDNSNamePrefix": "[tolower(parameters('linpub40012EndpointDNSNamePrefix'))]",
+    "linpub40012IPAddressName": "[concat(variables('orchestratorName'), '-agent-ip-', variables('linpub40012EndpointDNSNamePrefix'), '-', variables('nameSuffix'))]",
+    "linpub40012Index": 2,
+    "linpub40012LbBackendPoolName": "[concat(variables('orchestratorName'), '-linpub40012-', variables('nameSuffix'))]",
+    "linpub40012LbID": "[resourceId('Microsoft.Network/loadBalancers',variables('linpub40012LbName'))]",
+    "linpub40012LbIPConfigID": "[concat(variables('linpub40012LbID'),'/frontendIPConfigurations/', variables('linpub40012LbIPConfigName'))]",
+    "linpub40012LbIPConfigName": "[concat(variables('orchestratorName'), '-linpub40012-', variables('nameSuffix'))]",
+    "linpub40012LbName": "[concat(variables('orchestratorName'), '-linpub40012-', variables('nameSuffix'))]",
+    "linpub40012NSGID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('linpub40012NSGName'))]",
+    "linpub40012NSGName": "[concat(variables('orchestratorName'), '-linpub40012-nsg-', variables('nameSuffix'))]",
+    "linpub40012Subnet": "[parameters('linpub40012Subnet')]",
+    "linpub40012SubnetName": "[concat(variables('orchestratorName'), '-linpub40012Subnet')]",
+    "linpub40012VMNamePrefix": "[concat(variables('orchestratorName'), '-linpub40012-', variables('nameSuffix'), '-')]",
+    "linpub40012VMSize": "[parameters('linpub40012VMSize')]",
+    "linpub40012VMSizeTier": "[split(parameters('linpub40012VMSize'),'_')[0]]",
+    "linpub40012VnetSubnetID": "[concat(variables('vnetID'),'/subnets/',variables('linpub40012SubnetName'))]",
+    "linux40012Count": "[parameters('linux40012Count')]",
+    "linux40012Index": 3,
+    "linux40012NSGID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('linux40012NSGName'))]",
+    "linux40012NSGName": "[concat(variables('orchestratorName'), '-linux40012-nsg-', variables('nameSuffix'))]",
+    "linux40012Subnet": "[parameters('linux40012Subnet')]",
+    "linux40012SubnetName": "[concat(variables('orchestratorName'), '-linux40012Subnet')]",
+    "linux40012VMNamePrefix": "[concat(variables('orchestratorName'), '-linux40012-', variables('nameSuffix'), '-')]",
+    "linux40012VMSize": "[parameters('linux40012VMSize')]",
+    "linux40012VMSizeTier": "[split(parameters('linux40012VMSize'),'_')[0]]",
+    "linux40012VnetSubnetID": "[concat(variables('vnetID'),'/subnets/',variables('linux40012SubnetName'))]",
+    "location": "[variables('locations')[mod(add(2,length(parameters('location'))),add(1,length(parameters('location'))))]]",
+    "locations": [
+      "[resourceGroup().location]",
+      "[parameters('location')]"
+    ],
+    "masterAvailabilitySet": "[concat(variables('orchestratorName'), '-master-availabilitySet-', variables('nameSuffix'))]",
+    "masterCount": 1,
+    "masterEndpointDNSNamePrefix": "[tolower(parameters('masterEndpointDNSNamePrefix'))]",
+    "masterFirstAddrOctet4": "[variables('masterFirstAddrOctets')[3]]",
+    "masterFirstAddrOctets": "[split(parameters('firstConsecutiveStaticIP'),'.')]",
+    "masterFirstAddrPrefix": "[concat(variables('masterFirstAddrOctets')[0],'.',variables('masterFirstAddrOctets')[1],'.',variables('masterFirstAddrOctets')[2],'.')]",
+    "masterHttpSourceAddressPrefix": "*",
+    "masterLbBackendPoolName": "[concat(variables('orchestratorName'), '-master-pool-', variables('nameSuffix'))]",
+    "masterLbID": "[resourceId('Microsoft.Network/loadBalancers',variables('masterLbName'))]",
+    "masterLbIPConfigID": "[concat(variables('masterLbID'),'/frontendIPConfigurations/', variables('masterLbIPConfigName'))]",
+    "masterLbIPConfigName": "[concat(variables('orchestratorName'), '-master-lbFrontEnd-', variables('nameSuffix'))]",
+    "masterLbName": "[concat(variables('orchestratorName'), '-master-lb-', variables('nameSuffix'))]",
+    "masterNSGID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('masterNSGName'))]",
+    "masterNSGName": "[concat(variables('orchestratorName'), '-master-nsg-', variables('nameSuffix'))]",
+    "masterPublicIPAddressName": "[concat(variables('orchestratorName'), '-master-ip-', variables('masterEndpointDNSNamePrefix'), '-', variables('nameSuffix'))]",
+    "masterStorageAccountExhibitorName": "[concat(variables('storageAccountBaseName'), 'exhb0')]",
+    "masterSubnet": "[parameters('masterSubnet')]",
+    "masterSubnetName": "[concat(variables('orchestratorName'), '-masterSubnet')]",
+    "masterVMNamePrefix": "[concat(variables('orchestratorName'), '-master-', variables('nameSuffix'), '-')]",
+    "masterVMNic": [
+      "[concat(variables('masterVMNamePrefix'), 'nic-0')]",
+      "[concat(variables('masterVMNamePrefix'), 'nic-1')]",
+      "[concat(variables('masterVMNamePrefix'), 'nic-2')]",
+      "[concat(variables('masterVMNamePrefix'), 'nic-3')]",
+      "[concat(variables('masterVMNamePrefix'), 'nic-4')]",
+      "[concat(variables('masterVMNamePrefix'), 'nic-5')]",
+      "[concat(variables('masterVMNamePrefix'), 'nic-6')]"
+    ],
+    "masterVMSize": "[parameters('masterVMSize')]",
+    "masterVnetSubnetID": "[concat(variables('vnetID'),'/subnets/',variables('masterSubnetName'))]",
+    "maxVMsPerPool": 100,
+    "nameSuffix": "[parameters('nameSuffix')]",
+    "oauthEnabled": "false",
+    "orchestratorName": "dcos",
+    "osImageOffer": "[parameters('osImageOffer')]",
+    "osImagePublisher": "[parameters('osImagePublisher')]",
+    "osImageSKU": "[parameters('osImageSKU')]",
+    "osImageVersion": "[parameters('osImageVersion')]",
+    "singleQuote": "'",
+    "sshKeyPath": "[concat('/home/', variables('adminUsername'), '/.ssh/authorized_keys')]",
+    "sshRSAPublicKey": "[parameters('sshRSAPublicKey')]",
+    "storageAccountBaseName": "[uniqueString(concat(variables('masterEndpointDNSNamePrefix'),variables('location'),variables('orchestratorName')))]",
+    "storageAccountPrefixes": [],
+    "storageAccountType": "Standard_LRS",
+    "targetEnvironment": "[parameters('targetEnvironment')]",
+    "virtualNetworkName": "[concat(variables('orchestratorName'), '-vnet-', variables('nameSuffix'))]",
+    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+    "win40012Count": "[parameters('win40012Count')]",
+    "win40012Index": 1,
+    "win40012NSGID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('win40012NSGName'))]",
+    "win40012NSGName": "[concat(variables('orchestratorName'), '-win40012-nsg-', variables('nameSuffix'))]",
+    "win40012Subnet": "[parameters('win40012Subnet')]",
+    "win40012SubnetName": "[concat(variables('orchestratorName'), '-win40012Subnet')]",
+    "win40012VMNamePrefix": "[concat('w', variables('winResourceNamePrefix'), add(900,variables('win40012Index')))]",
+    "win40012VMSize": "[parameters('win40012VMSize')]",
+    "win40012VMSizeTier": "[split(parameters('win40012VMSize'),'_')[0]]",
+    "win40012VnetSubnetID": "[concat(variables('vnetID'),'/subnets/',variables('win40012SubnetName'))]",
+    "win40012windowsAgentCustomAttributes": "[concat(' -customAttrs ', variables('doubleSingleQuote'), 'os:Windows', variables('doubleSingleQuote') )]",
+    "win40012windowsAgentCustomScript": "[concat('powershell.exe -ExecutionPolicy Unrestricted -command \"', variables('win40012windowsAgentCustomScriptArguments'), variables('windowsCustomScriptSuffix'), '\" > %SYSTEMDRIVE%\\AzureData\\dcosWindowsProvision.log 2>&1')]",
+    "win40012windowsAgentCustomScriptArguments": "[concat('$arguments = ', variables('singleQuote'), '-subnet ', variables('win40012Subnet'), ' -MasterCount ', variables('masterCount'), ' -firstMasterIP ', parameters('firstConsecutiveStaticIP'), ' -bootstrapUri ', '\"', variables('dcosWindowsBootstrapURL'), '\"', ' -isAgent $true -isPublic $false ',  variables('win40012windowsAgentCustomAttributes'), variables('singleQuote'), ' ; ')]",
+    "winResourceNamePrefix": "[substring(variables('nameSuffix'), 0, 5)]",
+    "windowsAdminPassword": "[parameters('windowsAdminPassword')]",
+    "windowsAdminUsername": "[parameters('windowsAdminUsername')]",
+    "windowsCustomScriptSuffix": " $inputFile = '%SYSTEMDRIVE%\\AzureData\\CustomData.bin' ; $outputFile = '%SYSTEMDRIVE%\\AzureData\\dcosWindowsProvision.ps1' ; $inputStream = New-Object System.IO.FileStream $inputFile, ([IO.FileMode]::Open), ([IO.FileAccess]::Read), ([IO.FileShare]::Read) ; $sr = New-Object System.IO.StreamReader(New-Object System.IO.Compression.GZipStream($inputStream, [System.IO.Compression.CompressionMode]::Decompress)) ; $sr.ReadToEnd() | Out-File($outputFile) ; Invoke-Expression('{0} {1}' -f $outputFile, $arguments) ; ",
+    "windowsMasterCustomScript": "[concat('powershell.exe -ExecutionPolicy Unrestricted -command \"', variables('windowsMasterCustomScriptArguments'), variables('windowsCustomScriptSuffix'), '\" > %SYSTEMDRIVE%\\AzureData\\dcosWindowsProvision.log 2>&1')]",
+    "windowsMasterCustomScriptArguments": "[concat('$arguments = ', variables('singleQuote'),'-MasterCount ', variables('masterCount'), ' -firstMasterIP ', parameters('firstConsecutiveStaticIP'), variables('singleQuote'), ' ; ')]",
+    "wrs40012Count": "[parameters('wrs40012Count')]",
+    "wrs40012EndpointDNSNamePrefix": "[tolower(parameters('wrs40012EndpointDNSNamePrefix'))]",
+    "wrs40012IPAddressName": "[concat(variables('orchestratorName'), '-agent-ip-', variables('wrs40012EndpointDNSNamePrefix'), '-', variables('nameSuffix'))]",
+    "wrs40012Index": 0,
+    "wrs40012LbBackendPoolName": "[concat(variables('orchestratorName'), '-wrs40012-', variables('nameSuffix'))]",
+    "wrs40012LbID": "[resourceId('Microsoft.Network/loadBalancers',variables('wrs40012LbName'))]",
+    "wrs40012LbIPConfigID": "[concat(variables('wrs40012LbID'),'/frontendIPConfigurations/', variables('wrs40012LbIPConfigName'))]",
+    "wrs40012LbIPConfigName": "[concat(variables('orchestratorName'), '-wrs40012-', variables('nameSuffix'))]",
+    "wrs40012LbName": "[concat(variables('orchestratorName'), '-wrs40012-', variables('nameSuffix'))]",
+    "wrs40012NSGID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('wrs40012NSGName'))]",
+    "wrs40012NSGName": "[concat(variables('orchestratorName'), '-wrs40012-nsg-', variables('nameSuffix'))]",
+    "wrs40012Subnet": "[parameters('wrs40012Subnet')]",
+    "wrs40012SubnetName": "[concat(variables('orchestratorName'), '-wrs40012Subnet')]",
+    "wrs40012VMNamePrefix": "[concat('wp', variables('winResourceNamePrefix'), add(900,variables('wrs40012Index')))]",
+    "wrs40012VMSize": "[parameters('wrs40012VMSize')]",
+    "wrs40012VMSizeTier": "[split(parameters('wrs40012VMSize'),'_')[0]]",
+    "wrs40012VnetSubnetID": "[concat(variables('vnetID'),'/subnets/',variables('wrs40012SubnetName'))]",
+    "wrs40012WindowsRDPEndRangeStop": "[add(variables('wrs40012WindowsRDPNatRangeStart'), add(variables('wrs40012Count'),variables('wrs40012Count')))]",
+    "wrs40012WindowsRDPNatRangeStart": 3389,
+    "wrs40012windowsAgentCustomAttributes": "[concat(' -customAttrs ', variables('doubleSingleQuote'), 'os:Windows;public_ip:yes', variables('doubleSingleQuote') )]",
+    "wrs40012windowsAgentCustomScript": "[concat('powershell.exe -ExecutionPolicy Unrestricted -command \"', variables('wrs40012windowsAgentCustomScriptArguments'), variables('windowsCustomScriptSuffix'), '\" > %SYSTEMDRIVE%\\AzureData\\dcosWindowsProvision.log 2>&1')]",
+    "wrs40012windowsAgentCustomScriptArguments": "[concat('$arguments = ', variables('singleQuote'), '-subnet ', variables('wrs40012Subnet'), ' -MasterCount ', variables('masterCount'), ' -firstMasterIP ', parameters('firstConsecutiveStaticIP'), ' -bootstrapUri ', '\"', variables('dcosWindowsBootstrapURL'), '\"', ' -isAgent $true -isPublic $true ',  variables('wrs40012windowsAgentCustomAttributes'), variables('singleQuote'), ' ; ')]"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('wrs40012NSGName')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "Allow_80",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow traffic from the Internet to port 80",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "80",
+              "direction": "Inbound",
+              "priority": 200,
+              "protocol": "*",
+              "sourceAddressPrefix": "Internet",
+              "sourcePortRange": "*"
+            }
+          },
+          {
+            "name": "Allow_443",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow traffic from the Internet to port 443",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "443",
+              "direction": "Inbound",
+              "priority": 201,
+              "protocol": "*",
+              "sourceAddressPrefix": "Internet",
+              "sourcePortRange": "*"
+            }
+          },
+          {
+            "name": "Allow_8080",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow traffic from the Internet to port 8080",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "8080",
+              "direction": "Inbound",
+              "priority": 202,
+              "protocol": "*",
+              "sourceAddressPrefix": "Internet",
+              "sourcePortRange": "*"
+            }
+          },
+          {
+            "name": "Allow_3389",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow traffic from the Internet to port 3389",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "3389",
+              "direction": "Inbound",
+              "priority": 203,
+              "protocol": "*",
+              "sourceAddressPrefix": "Internet",
+              "sourcePortRange": "*"
+            }
+          }
+        ]
+      },
+      "type": "Microsoft.Network/networkSecurityGroups"
+    },
+    {
+      "apiVersion": "2017-12-01",
+      "location": "[variables('location')]",
+      "name": "wrs40012CustomWindowsImage",
+      "properties": {
+        "storageProfile": {
+          "osDisk": {
+            "blobUri": "[parameters('agentWindowsSourceUrl')]",
+            "osState": "Generalized",
+            "osType": "Windows",
+            "storageAccountType": "Standard_LRS"
+          }
+        }
+      },
+      "type": "Microsoft.Compute/images"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('wrs40012IPAddressName')]",
+      "properties": {
+        "dnsSettings": {
+          "domainNameLabel": "[variables('wrs40012EndpointDNSNamePrefix')]"
+        },
+        "publicIPAllocationMethod": "Dynamic"
+      },
+      "type": "Microsoft.Network/publicIPAddresses"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('wrs40012IPAddressName'))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[variables('wrs40012LbName')]",
+      "properties": {
+        "backendAddressPools": [
+          {
+            "name": "[variables('wrs40012LbBackendPoolName')]"
+          }
+        ],
+        "frontendIPConfigurations": [
+          {
+            "name": "[variables('wrs40012LbIPConfigName')]",
+            "properties": {
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('wrs40012IPAddressName'))]"
+              }
+            }
+          }
+        ],
+        "inboundNatRules": [],
+        "loadBalancingRules": [
+          {
+            "name": "LBRule80",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[concat(variables('wrs40012LbID'), '/backendAddressPools/', variables('wrs40012LbBackendPoolName'))]"
+              },
+              "backendPort": 80,
+              "enableFloatingIP": false,
+              "frontendIPConfiguration": {
+                "id": "[variables('wrs40012LbIPConfigID')]"
+              },
+              "frontendPort": 80,
+              "idleTimeoutInMinutes": 5,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(variables('wrs40012LbID'),'/probes/tcp80Probe')]"
+              },
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "LBRule443",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[concat(variables('wrs40012LbID'), '/backendAddressPools/', variables('wrs40012LbBackendPoolName'))]"
+              },
+              "backendPort": 443,
+              "enableFloatingIP": false,
+              "frontendIPConfiguration": {
+                "id": "[variables('wrs40012LbIPConfigID')]"
+              },
+              "frontendPort": 443,
+              "idleTimeoutInMinutes": 5,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(variables('wrs40012LbID'),'/probes/tcp443Probe')]"
+              },
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "LBRule8080",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[concat(variables('wrs40012LbID'), '/backendAddressPools/', variables('wrs40012LbBackendPoolName'))]"
+              },
+              "backendPort": 8080,
+              "enableFloatingIP": false,
+              "frontendIPConfiguration": {
+                "id": "[variables('wrs40012LbIPConfigID')]"
+              },
+              "frontendPort": 8080,
+              "idleTimeoutInMinutes": 5,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(variables('wrs40012LbID'),'/probes/tcp8080Probe')]"
+              },
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "LBRule3389",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[concat(variables('wrs40012LbID'), '/backendAddressPools/', variables('wrs40012LbBackendPoolName'))]"
+              },
+              "backendPort": 3389,
+              "enableFloatingIP": false,
+              "frontendIPConfiguration": {
+                "id": "[variables('wrs40012LbIPConfigID')]"
+              },
+              "frontendPort": 3389,
+              "idleTimeoutInMinutes": 5,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(variables('wrs40012LbID'),'/probes/tcp3389Probe')]"
+              },
+              "protocol": "tcp"
+            }
+          }
+        ],
+        "probes": [
+          {
+            "name": "tcp80Probe",
+            "properties": {
+              "intervalInSeconds": "5",
+              "numberOfProbes": "2",
+              "port": 80,
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "tcp443Probe",
+            "properties": {
+              "intervalInSeconds": "5",
+              "numberOfProbes": "2",
+              "port": 443,
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "tcp8080Probe",
+            "properties": {
+              "intervalInSeconds": "5",
+              "numberOfProbes": "2",
+              "port": 8080,
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "tcp3389Probe",
+            "properties": {
+              "intervalInSeconds": "5",
+              "numberOfProbes": "2",
+              "port": 3389,
+              "protocol": "tcp"
+            }
+          }
+        ]
+      },
+      "type": "Microsoft.Network/loadBalancers"
+    },
+    {
+      "apiVersion": "[variables('apiVersionStorageManagedDisks')]",
+      "dependsOn": [
+        "[variables('vnetID')]",
+        "[concat('Microsoft.Network/loadBalancers/', variables('wrs40012LbName'))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('wrs40012VMNamePrefix'), '-vmss')]",
+      "properties": {
+        "upgradePolicy": {
+          "mode": "Manual"
+        },
+        "virtualMachineProfile": {
+          "extensionProfile": {
+            "extensions": [
+              {
+                "name": "vmssCustomScriptExtension",
+                "properties": {
+                  "autoUpgradeMinorVersion": true,
+                  "publisher": "Microsoft.Compute",
+                  "settings": {
+                    "commandToExecute": "[variables('wrs40012windowsAgentCustomScript')]"
+                  },
+                  "type": "CustomScriptExtension",
+                  "typeHandlerVersion": "1.8"
+                }
+              }
+            ]
+          },
+          "networkProfile": {
+            "networkInterfaceConfigurations": [
+              {
+                "name": "nic",
+                "properties": {
+                  "ipConfigurations": [
+                    {
+                      "name": "nicipconfig",
+                      "properties": {
+                        "loadBalancerBackendAddressPools": [
+                          {
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('wrs40012LbName'), '/backendAddressPools/',variables('wrs40012LbBackendPoolName'))]"
+                          }
+                        ],
+                        "subnet": {
+                          "id": "[variables('wrs40012VnetSubnetID')]"
+                        }
+                      }
+                    }
+                  ],
+                  "primary": "true"
+                }
+              }
+            ]
+          },
+          "osProfile": {
+            "adminPassword": "[variables('windowsAdminPassword')]",
+            "adminUsername": "[variables('windowsAdminUsername')]",
+            "computerNamePrefix": "[concat(substring(variables('nameSuffix'), 0, 5), 'acs')]",
+            "customData": "H4sIAAAAAAAA/7xXbW/bOBL+rl8xUISzBEVO290PC9+5uMRJCy+axIjTFnep4aOlsc2GIlWSiuvt5r8fSOrNiZNuF7fnDwlEzjufeTj8x4EHANCf/uvicjIdT+2X+U2kuKOKCq7gwzkQBQROR5dTICvkuu85rdOz6ehqPLkeX178kCKM+Z24RVhsB7Wed/Da825GecZQn1CeUb4KT3FJSqYnRJIcNcop6guS49CfasIzIjM/mnmF2Q2tmRulJeWrmfv4QBjNiMYLoS9Kxi7lWV7obRi57SAnSqMciZLrQ+/H1ZdUKn1ubYwnh3btx40shNBKS1K8l7QOoqizraW+Z4SqY1PaP62vygXHZ9SPGRMbo9jxOCkXjKYwhGBJmMK9BXysl5ZKi/xYa6lgCL7vRZ75BSsmFoQNTupqjLnShLFTKo3YaPDp+LdS4inRxPe8JWUaJVzTHJUmeQHf/CB8izo5JRoheSNkTjSIaADB3L/3PG9Z8lRTwb2PkmpM3olVGOSoFFlh5H2rwKBWJplqGX5vzdt9p3lZ6qLUVtjbMXz2tSA8S/49nryhDMNgSRkeQpCh0pQTI9I4UmtkDIbAcZOIxWdMNSSpyMGu90lRMJpaDSf+Gy1MXG7XYH9akLTyEFmRpZBI0nUYUI05UG51+uZDhZET+db0ZseQcoa6MfZTUWzXKNEZO4QXX1/+7Ezc7yQM3hXm4g6TUyox1UJuwyCjkpPcVtRqaLntOD4wBzRaU5aNTZi1NCRXmJZSmYpXJu0+JEshUzSl4Usq84GDWWsOrtdUQSZQ8Z6GjZC3sMCUlApBLIEJvgJTIjBOVEftpNSga9WGeyo6Ss6+FhKV4S4I/TTP4GgEMs+ohCMFR1/Aj9s0XVXM35TodN3NFcZL52RJKFOwQciEDZNwDVSDFqC0KLy9lR2tMb1NprYnIaw7KkhpJg+bBgtoUSPK1bk9YY7alOMQbijXs6q5GXIDI2OkPy0Y1WHvqBe1pGV+dAlhRzzBL/Aianbb9Dqc4cz+AgdQMbXBX0oUmpxXqIFwGE+AZCZ2LjSMxqdXjaH7NmgCQwhvxpPjLDMHMGvSaAO4KSnXP72aQVBWezBsFgPSr1R3czIkb+SShfEehu5/rfUigkStGYQ/vYKkk1P0oDI2vE50AS32hWVb9XsRSdSl5BC2WZhChy7QZEF4Zi1FzwGsstHpCQuiA+8A3qJWoNcIzc0CKpW00LCUInc7TCwM/iSC8VYwkqIysDRn16HaDr+Z5m3IeWrthUEmNpwJks1LSQ3Z1Z8ZlTU2bTxwjkooOKGcSFo1Y+CCsi06BN/MBx8pz8TGXWVT1GXRL9RL3+vQ7zuxAt/CqkrJj2E3jNg/8uOO7Qhi8G2SpW28XYWMytj/tKvg/FV08BEXV/ilRKUheS/pd52ZC8JcAN91UgPiQRkKkt6SFSqX+b7EKwnHbX9F+v+P7C3habltQDJFy4kWzuY+gwwX5WpF+aoPjug3lDEQ7vo1GFaayAYGWlR2uuj9lKVCNaOow2yfidWhBb1eI4etKCElHK5OJ1BZ0MKa3zgsQk7SNeXodGTJnW/nNSe8JIxtjc7GNGhtYo1VpP2HR2iawWxTN95Ulh5hPPSbgdeMSdV4Z7jFj5tpzxztDNwMm5oZ1u0H5+1U60TemDm1EgRaGCmId8fXwgouhHCE8f5qXDvrzqexP4PqWqp2HWFC7M+MSR+S7nxnvXQXqt5ynFBRVJeh3PYeqtkNA56ZFmsPI8HvUGpw+YGrjzlDm7W5krQAAr9OLy+ASEm2Zmho+L3mKMvn3Vtpt2hRf4W62jrZalRhVM29xuJsMLjCO5TKDFNF9IRFswfJZ0E59Pq9KGruDCdfPy9gCP/cCYSXjHUuKdMzYUBhCC/+DgGFhGnoIsEsxjFEsDsOBhw388dZ0idT25udMxI9NrqTZ7Xa5trIN0nGw1q52mtEaBHHXrt0333AzZWWYIab2k6/cXstpnZcqmFxnNnOh0JIDbzMFyjdUdvRpzXXd4AxF/PLqDs9dzzGQ/AHr17+UhG1CwkNgbXye4/loRt3NhE8NWm18jcBnT302/reLcpnJcxoVjXCtUh+NQsdY/ukdz4TiXY0gJszfkel4DlyPRsMLnDzznCiX/FWUEh6RzRWQLINfIG6OQT4HTbmTQHfIJjX+H5Dcsq2tsL+eHL3sw/3HbmdEbhmmWDeHizcQ2QO9CPCLRcbR8tObINAJILgfTgnt26wQaIoSksAuRl7pFiUSrtm3U1uirqz8IFIShYMQzugzI/fnl1cz8cT/7CbdBvVIfjn7sLwK66zuKoI+9FTTJZ8bt4Yw+cYLfY/PTkcQdK0Tq97dD1IrODExTiegB+HeyOOIPahpdv3kkFvh2x74D94INRP/6cBW+dlkApJLT/4T6BlifAQto3hzlXxR213b5de10Bvn5cd5dd+/GeqzsQKXr3+W6f5Ote7GRCUEatHhNqj/8w7s5Z5yCIW3HmpNCwQMiyY2FK+AlLd5P8DMDnw/BE0uY0WTjWWulz7PIz+snrde/ZxVI2SzviZlEJCMPfuvf8GAAD//xJFHhXeFAAA"
+          },
+          "storageProfile": {
+            "imageReference": {
+              "id": "[resourceId('Microsoft.Compute/images','wrs40012CustomWindowsImage')]"
+            },
+            "osDisk": {
+              "caching": "ReadOnly",
+              "createOption": "FromImage"
+            }
+          }
+        }
+      },
+      "sku": {
+        "capacity": "[variables('wrs40012Count')]",
+        "name": "[variables('wrs40012VMSize')]",
+        "tier": "[variables('wrs40012VMSizeTier')]"
+      },
+      "tags": {
+        "creationSource": "[concat('acsengine-', variables('wrs40012VMNamePrefix'), '-vmss')]"
+      },
+      "type": "Microsoft.Compute/virtualMachineScaleSets"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('win40012NSGName')]",
+      "properties": {
+        "securityRules": []
+      },
+      "type": "Microsoft.Network/networkSecurityGroups"
+    },
+    {
+      "apiVersion": "2017-12-01",
+      "location": "[variables('location')]",
+      "name": "win40012CustomWindowsImage",
+      "properties": {
+        "storageProfile": {
+          "osDisk": {
+            "blobUri": "[parameters('agentWindowsSourceUrl')]",
+            "osState": "Generalized",
+            "osType": "Windows",
+            "storageAccountType": "Standard_LRS"
+          }
+        }
+      },
+      "type": "Microsoft.Compute/images"
+    },
+    {
+      "apiVersion": "[variables('apiVersionStorageManagedDisks')]",
+      "dependsOn": [
+        "[variables('vnetID')]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('win40012VMNamePrefix'), '-vmss')]",
+      "properties": {
+        "upgradePolicy": {
+          "mode": "Manual"
+        },
+        "virtualMachineProfile": {
+          "extensionProfile": {
+            "extensions": [
+              {
+                "name": "vmssCustomScriptExtension",
+                "properties": {
+                  "autoUpgradeMinorVersion": true,
+                  "publisher": "Microsoft.Compute",
+                  "settings": {
+                    "commandToExecute": "[variables('win40012windowsAgentCustomScript')]"
+                  },
+                  "type": "CustomScriptExtension",
+                  "typeHandlerVersion": "1.8"
+                }
+              }
+            ]
+          },
+          "networkProfile": {
+            "networkInterfaceConfigurations": [
+              {
+                "name": "nic",
+                "properties": {
+                  "ipConfigurations": [
+                    {
+                      "name": "nicipconfig",
+                      "properties": {
+                        "subnet": {
+                          "id": "[variables('win40012VnetSubnetID')]"
+                        }
+                      }
+                    }
+                  ],
+                  "primary": "true"
+                }
+              }
+            ]
+          },
+          "osProfile": {
+            "adminPassword": "[variables('windowsAdminPassword')]",
+            "adminUsername": "[variables('windowsAdminUsername')]",
+            "computerNamePrefix": "[concat(substring(variables('nameSuffix'), 0, 5), 'acs')]",
+            "customData": "H4sIAAAAAAAA/7xXbW/bOBL+rl8xUISzBEVO290PC9+5uMRJCy+axIjTFnep4aOlsc2GIlWSiuvt5r8fSOrNiZNuF7fnDwlEzjufeTj8x4EHANCf/uvicjIdT+2X+U2kuKOKCq7gwzkQBQROR5dTICvkuu85rdOz6ehqPLkeX178kCKM+Z24RVhsB7Wed/Da825GecZQn1CeUb4KT3FJSqYnRJIcNcop6guS49CfasIzIjM/mnmF2Q2tmRulJeWrmfv4QBjNiMYLoS9Kxi7lWV7obRi57SAnSqMciZLrQ+/H1ZdUKn1ubYwnh3btx40shNBKS1K8l7QOoqizraW+Z4SqY1PaP62vygXHZ9SPGRMbo9jxOCkXjKYwhGBJmMK9BXysl5ZKi/xYa6lgCL7vRZ75BSsmFoQNTupqjLnShLFTKo3YaPDp+LdS4inRxPe8JWUaJVzTHJUmeQHf/CB8izo5JRoheSNkTjSIaADB3L/3PG9Z8lRTwb2PkmpM3olVGOSoFFlh5H2rwKBWJplqGX5vzdt9p3lZ6qLUVtjbMXz2tSA8S/49nryhDMNgSRkeQpCh0pQTI9I4UmtkDIbAcZOIxWdMNSSpyMGu90lRMJpaDSf+Gy1MXG7XYH9akLTyEFmRpZBI0nUYUI05UG51+uZDhZET+db0ZseQcoa6MfZTUWzXKNEZO4QXX1/+7Ezc7yQM3hXm4g6TUyox1UJuwyCjkpPcVtRqaLntOD4wBzRaU5aNTZi1NCRXmJZSmYpXJu0+JEshUzSl4Usq84GDWWsOrtdUQSZQ8Z6GjZC3sMCUlApBLIEJvgJTIjBOVEftpNSga9WGeyo6Ss6+FhKV4S4I/TTP4GgEMs+ohCMFR1/Aj9s0XVXM35TodN3NFcZL52RJKFOwQciEDZNwDVSDFqC0KLy9lR2tMb1NprYnIaw7KkhpJg+bBgtoUSPK1bk9YY7alOMQbijXs6q5GXIDI2OkPy0Y1WHvqBe1pGV+dAlhRzzBL/Aianbb9Dqc4cz+AgdQMbXBX0oUmpxXqIFwGE+AZCZ2LjSMxqdXjaH7NmgCQwhvxpPjLDMHMGvSaAO4KSnXP72aQVBWezBsFgPSr1R3czIkb+SShfEehu5/rfUigkStGYQ/vYKkk1P0oDI2vE50AS32hWVb9XsRSdSl5BC2WZhChy7QZEF4Zi1FzwGsstHpCQuiA+8A3qJWoNcIzc0CKpW00LCUInc7TCwM/iSC8VYwkqIysDRn16HaDr+Z5m3IeWrthUEmNpwJks1LSQ3Z1Z8ZlTU2bTxwjkooOKGcSFo1Y+CCsi06BN/MBx8pz8TGXWVT1GXRL9RL3+vQ7zuxAt/CqkrJj2E3jNg/8uOO7Qhi8G2SpW28XYWMytj/tKvg/FV08BEXV/ilRKUheS/pd52ZC8JcAN91UgPiQRkKkt6SFSqX+b7EKwnHbX9F+v+P7C3habltQDJFy4kWzuY+gwwX5WpF+aoPjug3lDEQ7vo1GFaayAYGWlR2uuj9lKVCNaOow2yfidWhBb1eI4etKCElHK5OJ1BZ0MKa3zgsQk7SNeXodGTJnW/nNSe8JIxtjc7GNGhtYo1VpP2HR2iawWxTN95Ulh5hPPSbgdeMSdV4Z7jFj5tpzxztDNwMm5oZ1u0H5+1U60TemDm1EgRaGCmId8fXwgouhHCE8f5qXDvrzqexP4PqWqp2HWFC7M+MSR+S7nxnvXQXqt5ynFBRVJeh3PYeqtkNA56ZFmsPI8HvUGpw+YGrjzlDm7W5krQAAr9OLy+ASEm2Zmho+L3mKMvn3Vtpt2hRf4W62jrZalRhVM29xuJsMLjCO5TKDFNF9IRFswfJZ0E59Pq9KGruDCdfPy9gCP/cCYSXjHUuKdMzYUBhCC/+DgGFhGnoIsEsxjFEsDsOBhw388dZ0idT25udMxI9NrqTZ7Xa5trIN0nGw1q52mtEaBHHXrt0333AzZWWYIab2k6/cXstpnZcqmFxnNnOh0JIDbzMFyjdUdvRpzXXd4AxF/PLqDs9dzzGQ/AHr17+UhG1CwkNgbXye4/loRt3NhE8NWm18jcBnT302/reLcpnJcxoVjXCtUh+NQsdY/ukdz4TiXY0gJszfkel4DlyPRsMLnDzznCiX/FWUEh6RzRWQLINfIG6OQT4HTbmTQHfIJjX+H5Dcsq2tsL+eHL3sw/3HbmdEbhmmWDeHizcQ2QO9CPCLRcbR8tObINAJILgfTgnt26wQaIoSksAuRl7pFiUSrtm3U1uirqz8IFIShYMQzugzI/fnl1cz8cT/7CbdBvVIfjn7sLwK66zuKoI+9FTTJZ8bt4Yw+cYLfY/PTkcQdK0Tq97dD1IrODExTiegB+HeyOOIPahpdv3kkFvh2x74D94INRP/6cBW+dlkApJLT/4T6BlifAQto3hzlXxR213b5de10Bvn5cd5dd+/GeqzsQKXr3+W6f5Ote7GRCUEatHhNqj/8w7s5Z5yCIW3HmpNCwQMiyY2FK+AlLd5P8DMDnw/BE0uY0WTjWWulz7PIz+snrde/ZxVI2SzviZlEJCMPfuvf8GAAD//xJFHhXeFAAA"
+          },
+          "storageProfile": {
+            "imageReference": {
+              "id": "[resourceId('Microsoft.Compute/images','win40012CustomWindowsImage')]"
+            },
+            "osDisk": {
+              "caching": "ReadOnly",
+              "createOption": "FromImage"
+            }
+          }
+        }
+      },
+      "sku": {
+        "capacity": "[variables('win40012Count')]",
+        "name": "[variables('win40012VMSize')]",
+        "tier": "[variables('win40012VMSizeTier')]"
+      },
+      "tags": {
+        "creationSource": "[concat('acsengine-', variables('win40012VMNamePrefix'), '-vmss')]"
+      },
+      "type": "Microsoft.Compute/virtualMachineScaleSets"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('linpub40012NSGName')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "Allow_80",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow traffic from the Internet to port 80",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "80",
+              "direction": "Inbound",
+              "priority": 200,
+              "protocol": "*",
+              "sourceAddressPrefix": "Internet",
+              "sourcePortRange": "*"
+            }
+          },
+          {
+            "name": "Allow_443",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow traffic from the Internet to port 443",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "443",
+              "direction": "Inbound",
+              "priority": 201,
+              "protocol": "*",
+              "sourceAddressPrefix": "Internet",
+              "sourcePortRange": "*"
+            }
+          },
+          {
+            "name": "Allow_22",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow traffic from the Internet to port 22",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "22",
+              "direction": "Inbound",
+              "priority": 202,
+              "protocol": "*",
+              "sourceAddressPrefix": "Internet",
+              "sourcePortRange": "*"
+            }
+          }
+        ]
+      },
+      "type": "Microsoft.Network/networkSecurityGroups"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('linpub40012IPAddressName')]",
+      "properties": {
+        "dnsSettings": {
+          "domainNameLabel": "[variables('linpub40012EndpointDNSNamePrefix')]"
+        },
+        "publicIPAllocationMethod": "Dynamic"
+      },
+      "type": "Microsoft.Network/publicIPAddresses"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('linpub40012IPAddressName'))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[variables('linpub40012LbName')]",
+      "properties": {
+        "backendAddressPools": [
+          {
+            "name": "[variables('linpub40012LbBackendPoolName')]"
+          }
+        ],
+        "frontendIPConfigurations": [
+          {
+            "name": "[variables('linpub40012LbIPConfigName')]",
+            "properties": {
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('linpub40012IPAddressName'))]"
+              }
+            }
+          }
+        ],
+        "inboundNatRules": [],
+        "loadBalancingRules": [
+          {
+            "name": "LBRule80",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[concat(variables('linpub40012LbID'), '/backendAddressPools/', variables('linpub40012LbBackendPoolName'))]"
+              },
+              "backendPort": 80,
+              "enableFloatingIP": false,
+              "frontendIPConfiguration": {
+                "id": "[variables('linpub40012LbIPConfigID')]"
+              },
+              "frontendPort": 80,
+              "idleTimeoutInMinutes": 5,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(variables('linpub40012LbID'),'/probes/tcp80Probe')]"
+              },
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "LBRule443",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[concat(variables('linpub40012LbID'), '/backendAddressPools/', variables('linpub40012LbBackendPoolName'))]"
+              },
+              "backendPort": 443,
+              "enableFloatingIP": false,
+              "frontendIPConfiguration": {
+                "id": "[variables('linpub40012LbIPConfigID')]"
+              },
+              "frontendPort": 443,
+              "idleTimeoutInMinutes": 5,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(variables('linpub40012LbID'),'/probes/tcp443Probe')]"
+              },
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "LBRule22",
+            "properties": {
+              "backendAddressPool": {
+                "id": "[concat(variables('linpub40012LbID'), '/backendAddressPools/', variables('linpub40012LbBackendPoolName'))]"
+              },
+              "backendPort": 22,
+              "enableFloatingIP": false,
+              "frontendIPConfiguration": {
+                "id": "[variables('linpub40012LbIPConfigID')]"
+              },
+              "frontendPort": 22,
+              "idleTimeoutInMinutes": 5,
+              "loadDistribution": "Default",
+              "probe": {
+                "id": "[concat(variables('linpub40012LbID'),'/probes/tcp22Probe')]"
+              },
+              "protocol": "tcp"
+            }
+          }
+        ],
+        "probes": [
+          {
+            "name": "tcp80Probe",
+            "properties": {
+              "intervalInSeconds": "5",
+              "numberOfProbes": "2",
+              "port": 80,
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "tcp443Probe",
+            "properties": {
+              "intervalInSeconds": "5",
+              "numberOfProbes": "2",
+              "port": 443,
+              "protocol": "tcp"
+            }
+          },
+          {
+            "name": "tcp22Probe",
+            "properties": {
+              "intervalInSeconds": "5",
+              "numberOfProbes": "2",
+              "port": 22,
+              "protocol": "tcp"
+            }
+          }
+        ]
+      },
+      "type": "Microsoft.Network/loadBalancers"
+    },
+    {
+      "apiVersion": "[variables('apiVersionStorageManagedDisks')]",
+      "dependsOn": [
+        "[variables('vnetID')]",
+        "[concat('Microsoft.Network/loadBalancers/', variables('linpub40012LbName'))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('linpub40012VMNamePrefix'), '-vmss')]",
+      "properties": {
+        "upgradePolicy": {
+          "mode": "Manual"
+        },
+        "virtualMachineProfile": {
+          "networkProfile": {
+            "networkInterfaceConfigurations": [
+              {
+                "name": "nic",
+                "properties": {
+                  "ipConfigurations": [
+                    {
+                      "name": "nicipconfig",
+                      "properties": {
+                        "loadBalancerBackendAddressPools": [
+                          {
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('linpub40012LbName'), '/backendAddressPools/',variables('linpub40012LbBackendPoolName'))]"
+                          }
+                        ],
+                        "subnet": {
+                          "id": "[variables('linpub40012VnetSubnetID')]"
+                        }
+                      }
+                    }
+                  ],
+                  "primary": "true"
+                }
+              }
+            ]
+          },
+          "osProfile": {
+            "adminUsername": "[variables('adminUsername')]",
+            "computerNamePrefix": "[variables('linpub40012VMNamePrefix')]",
+            "customData": "[base64(concat('#cloud-config\n\n', '{\"bootcmd\":[\"bash -c \\\"if [ ! -f /var/lib/sdb-gpt ];then echo DCOS-5890;parted -s /dev/sdb mklabel gpt;touch /var/lib/sdb-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdc-gpt ];then echo DCOS-5890;parted -s /dev/sdc mklabel gpt\\u0026\\u0026touch /var/lib/sdc-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdd-gpt ];then echo DCOS-5890;parted -s /dev/sdd mklabel gpt\\u0026\\u0026touch /var/lib/sdd-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sde-gpt ];then echo DCOS-5890;parted -s /dev/sde mklabel gpt\\u0026\\u0026touch /var/lib/sde-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdf-gpt ];then echo DCOS-5890;parted -s /dev/sdf mklabel gpt\\u0026\\u0026touch /var/lib/sdf-gpt;fi\\\"\",\"bash -c \\\"mkdir -p /dcos/volume{0,1,2,3}\\\"\"],\"disk_setup\":{\"/dev/sdc\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sdd\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sde\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sdf\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"ephemeral0\":{\"layout\":[45,45,10],\"overwrite\":true,\"table_type\":\"gpt\"}},\"fs_setup\":[{\"device\":\"ephemeral0.1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"ephemeral0.2\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"ephemeral0.3\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdc1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdd1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sde1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdf1\",\"filesystem\":\"ext4\",\"overwrite\":true}],\"mounts\":[[\"ephemeral0.1\",\"/var/lib/mesos\"],[\"ephemeral0.2\",\"/var/lib/docker\"],[\"ephemeral0.3\",\"/var/tmp\"],[\"/dev/sdc1\",\"/dcos/volume0\"],[\"/dev/sdd1\",\"/dcos/volume1\"],[\"/dev/sde1\",\"/dcos/volume2\"],[\"/dev/sdf1\",\"/dcos/volume3\"]],\"runcmd\":[[\"ln\",\"-s\",\"/bin/rm\",\"/usr/bin/rm\"],[\"ln\",\"-s\",\"/bin/mkdir\",\"/usr/bin/mkdir\"],[\"ln\",\"-s\",\"/bin/tar\",\"/usr/bin/tar\"],[\"ln\",\"-s\",\"/bin/ln\",\"/usr/bin/ln\"],[\"ln\",\"-s\",\"/bin/cp\",\"/usr/bin/cp\"],[\"ln\",\"-s\",\"/bin/systemctl\",\"/usr/bin/systemctl\"],[\"ln\",\"-s\",\"/bin/mount\",\"/usr/bin/mount\"],[\"ln\",\"-s\",\"/bin/bash\",\"/usr/bin/bash\"],[\"ln\",\"-s\",\"/usr/sbin/useradd\",\"/usr/bin/useradd\"],[\"systemctl\",\"disable\",\"--now\",\"resolvconf.service\"],[\"systemctl\",\"mask\",\"--now\",\"lxc-net.service\"],[\"systemctl\",\"disable\",\"--now\",\"unscd.service\"],[\"systemctl\",\"stop\",\"--now\",\"unscd.service\"],\"/opt/azure/containers/provision.sh\",[\"cp\",\"-p\",\"/etc/resolv.conf\",\"/tmp/resolv.conf\"],[\"rm\",\"-f\",\"/etc/resolv.conf\"],[\"cp\",\"-p\",\"/tmp/resolv.conf\",\"/etc/resolv.conf\"],[\"systemctl\",\"start\",\"dcos-docker-install.service\"],[\"systemctl\",\"start\",\"dcos-config-writer.service\"],[\"systemctl\",\"restart\",\"systemd-journald.service\"],[\"systemctl\",\"restart\",\"docker.service\"],[\"systemctl\",\"start\",\"dcos-link-env.service\"],[\"systemctl\",\"enable\",\"dcos-setup.service\"],[\"systemctl\",\"--no-block\",\"start\",\"dcos-setup.service\"]],\"write_files\":[{\"content\":\"https://dcosio.azureedge.net/dcos/stable/1.10.0\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/repository-url\",\"permissions\":\"0644\"},{\"content\":\"[\\\"adminrouter--1166a3736442e7963a68d1d644bf5f54ca3cb01d\\\", \\\"avro-cpp--9cb0ee14e3cd5bbdb171efcc72a84d16862ea02d\\\", \\\"boost-libs--8d515c2f703c666ae1b6c5ccc35cc0f8fa36677f\\\", \\\"bootstrap--c1bc86593e212cf9fe83db2246bacd129a6b3adc\\\", \\\"boto--3890cb2817c00b874ba033abe784b5b343caa3c7\\\", \\\"check-time--79e3f6ab99125471e1d94d5f6bc0fea88446831c\\\", \\\"cni--7a8572e385c3f5262945c52c8003d1bbb22cf7aa\\\", \\\"cosmos--e84c5bf3259405df90d682536ba445cc4839a324\\\", \\\"curl--17866a8ae9305826aa5f357a09db2c1f2b2c2ad0\\\", \\\"dcos-checks--8fd33919e6f163dba1bd13e4c7e4e0523919a719\\\", \\\"dcos-cni--12a77c1e9bebd4cbd600524a864c2bd8483330d3\\\", \\\"dcos-config--setup_c4ec6210f396b8e435177b82e3280a2cef0ce721\\\", \\\"dcos-diagnostics--e3b557b0ec8e98617d0cd0fdf136ef9dded96316\\\", \\\"dcos-history--23de88ddc1a5f9018dd11b279c5be6a768a18de4\\\", \\\"dcos-image--df630d8e930d6650ce3d0ade519660142233d862\\\", \\\"dcos-image-deps--81d23d00b1acddb316c9b15fd8499c2b10f6b697\\\", \\\"dcos-integration-test--9ec173650d4e73ba494603324e7583d23970e4b8\\\", \\\"dcos-log--d2af4b1a47d3755a51823e95fbc6c366cf0f9269\\\", \\\"dcos-metadata--setup_c4ec6210f396b8e435177b82e3280a2cef0ce721\\\", \\\"dcos-metrics--2a26c0b50b0b6564f86c48d50aa86f681c9af93c\\\", \\\"dcos-oauth--445bb1388670981c6acc667b2529fc32d4c1fbd4\\\", \\\"dcos-signal--4366023212ea49a64c5c9aef1965e5a3133c4b61\\\", \\\"dcos-test-utils--1066d896d25f4c1e3f6d9a5e7f9c1c6e8c675bb7\\\", \\\"dcos-ui--cc2e3d26537ea190efacd6f899dd4cc2210d45b7\\\", \\\"dnspython--0be432372a3820eafcfa66975943c9536dbe1164\\\", \\\"docker-gc--89f5535aea154dca504f84cd60eac6f61836aef9\\\", \\\"dvdcli--ee85411e3cb9f0988ed54b5cc0789172b887f12f\\\", \\\"erlang--d693172f6f033707c7f07ff78fc18ac543d66b41\\\", \\\"exhibitor--c3e48bbae19c0ed9c30d7f9396305d1e77130658\\\", \\\"flask--6d0f985ad677e8422c7190cbe207424acd813c3b\\\", \\\"java--ce5ff19502fca31eaf4a9af86d50a10a8c212a5b\\\", \\\"libevent--05dc18bc0ab7434b2738318c5ebaa2e61a311f50\\\", \\\"libffi--0e5b99b94f296b2a9a1b75e9fe5f74f5446f5e9b\\\", \\\"libsodium--e7056355f1fe160ade83aac0d11352a2bf3844e6\\\", \\\"logrotate--877aece1fd506af3b9167b6938c316adfa79d4f5\\\", \\\"marathon--accdc43bafeca02da1be340baba4b55011eadf63\\\", \\\"mesos--0677ce2b7d2e8c45091f6481884542f1f765c3d5\\\", \\\"mesos-dns--600da87080b7634f2380594499004a7ff0b34662\\\", \\\"mesos-modules--1f5c4860450949db92ed27326c3146526041e681\\\", \\\"metronome--2ec6f56be44ed822e7228cb66c4dae6a78345789\\\", \\\"navstar--c66f92f01d837433de3e2b19d221c64d26cc54b1\\\", \\\"ncurses--030fd6b08ed46a7ecce001c36901f5b4ad5d2af5\\\", \\\"octarine--4e37c062d2f145f9c2ce01d30dadf72c2aac5c4a\\\", \\\"openssl--44777d19d54a3c33cc19543f2201cb20bf085d98\\\", \\\"pkgpanda-api--30cb1e68f92ed5d4b89d57ca526f8a69b44132c8\\\", \\\"pkgpanda-role--612a6734567cc0c7c2ae1d508f03172f4bc7beed\\\", \\\"pytest--5e26c8ed9fd2c325672d56fe558299bfbd0f7018\\\", \\\"python--5a4285ff7296548732203950bf73d360ea67f6ab\\\", \\\"python-azure-mgmt-resource--26cbe8349f3fe139f7dc8bff7f0cb735382314fc\\\", \\\"python-cryptography--0d83d8afef4a8faddf0d8b713619d9d76e510a9e\\\", \\\"python-dateutil--519201adebeba186049ecd79a9f358f614173b10\\\", \\\"python-docopt--0af809c220a922f7f6c58f15beafebaa043477c7\\\", \\\"python-gunicorn--2ceb53716237da0736f67f4004682083f6ac68e1\\\", \\\"python-isodate--c9efb5859a0cfb06d82f25220cc5b387914af85d\\\", \\\"python-jinja2--601a1443aa4c649ab1da10c2a6d7a4477a263fb3\\\", \\\"python-kazoo--0ff8e6ef528f58c6f36f0a9df6dc27d3871e5c27\\\", \\\"python-markupsafe--1388c95920b4eb920c7a753d620a1ad07fc8b64d\\\", \\\"python-passlib--4691268be760073188b555dc436f836c6706b37a\\\", \\\"python-pyyaml--d8a775d6e43da5eb239af5cccdf1d3fceeb0335f\\\", \\\"python-requests--db0474fab16019ba29a609a354285f221c1a2859\\\", \\\"python-retrying--37dd25bf69bcbefe0c50139085d6bb2e22ccf439\\\", \\\"python-tox--322c468e2a75c5b143cb06af460b5e801ee34342\\\", \\\"rexray--da7f17f8a4b772c0bac3f8d289a08abd4ff272b4\\\", \\\"six--93734bac9907087744815f9cb5b6152e9a198fae\\\", \\\"spartan--c3d8005b1340bcbc3a00496861745b2d0bb2d697\\\", \\\"strace--9be573456909e3931a890785eb6474af7e0dcce4\\\", \\\"teamcity-messages--073793b16cf369e58ebdb6348b93ed14b0e5e59a\\\", \\\"toybox--0c49f879bfe2f99e6f99b397136894fa5096fa0c\\\"]\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/cluster-packages.json\",\"permissions\":\"0644\"},{\"content\":\"[Journal]\\nMaxLevelConsole=warning\\nRateLimitInterval=1s\\nRateLimitBurst=20000\\n\",\"owner\":\"root\",\"path\":\"/etc/systemd/journald.conf.d/dcos.conf\",\"permissions\":\"0644\"},{\"content\":\"rexray:\\n  loglevel: info\\n  modules:\\n    default-docker:\\n      disabled: true\\n  service: vfs\\n\",\"path\":\"/etc/rexray/config.yml\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nAfter=network-online.target\\nWants=network-online.target\\n[Service]\\nType=oneshot\\nEnvironment=DEBIAN_FRONTEND=noninteractive\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/curl -fLsSv --retry 20 -Y 100000 -y 60 -o /var/tmp/d.deb https://mesosphere.blob.core.windows.net/dcos-deps/docker-engine_1.13.1-0-ubuntu-xenial_amd64.deb\\nExecStart=/usr/bin/bash -c \\\"try=1;until dpkg -D3 -i /var/tmp/d.deb || ((try\\u003e9));do echo retry $((try++));sleep $((try*try));done;systemctl --now start docker;systemctl restart docker.socket\\\"\\n\",\"path\":\"/etc/systemd/system/dcos-docker-install.service\",\"permissions\":\"0644\"},{\"content\":\"[Service]\\nRestart=always\\nStartLimitInterval=0\\nRestartSec=15\\nExecStartPre=-/sbin/ip link del docker0\\nExecStart=\\nExecStart=/usr/bin/dockerd --storage-driver=overlay\\n\",\"path\":\"/etc/systemd/system/docker.service.d/execstart.conf\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nPartOf=docker.service\\n[Socket]\\nListenStream=/var/run/docker.sock\\nSocketMode=0660\\nSocketUser=root\\nSocketGroup=docker\\nListenStream=2375\\nBindIPv6Only=both\\n[Install]\\nWantedBy=sockets.target\\n\",\"path\":\"/etc/systemd/system/docker.socket\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nRequires=dcos-setup.service\\nAfter=dcos-setup.service\\n[Service]\\nType=oneshot\\nEnvironmentFile=/etc/environment\\nEnvironmentFile=/opt/mesosphere/environment\\nExecStart=/usr/bin/bash -c \\\"echo $(detect_ip) $(hostname) \\u003e /etc/hosts\\\"\\n\",\"path\":\"/etc/systemd/system/dcos-config-writer.service\",\"permissions\":\"0644\"},{\"content\":\"\\\"bound_values\\\":\\n  \\\"adminrouter_auth_enabled\\\": |-\\n    ',variables('oauthEnabled'),'\\n  \\\"cluster_name\\\": |-\\n    ',variables('masterPublicIPAddressName'),'\\n  \\\"exhibitor_azure_account_key\\\": |-\\n    ', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('masterStorageAccountExhibitorName')), '2015-06-15').key1, '\\n  \\\"exhibitor_azure_account_name\\\": |-\\n    ',variables('masterStorageAccountExhibitorName'),'\\n  \\\"exhibitor_azure_prefix\\\": |-\\n    ',variables('masterPublicIPAddressName'),'\\n  \\\"master_list\\\": |-\\n    [\\\"', reference(variables('masterVMNic')[0]).ipConfigurations[0].properties.privateIPAddress,'\\\"]\\n  \\\"oauth_enabled\\\": |-\\n    ',variables('oauthEnabled'),'\\n\\\"late_bound_package_id\\\": |-\\n  dcos-provider-c4ec6210f396b8e435177b82e3280a2cef0ce721-azure--setup\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/late-config.yaml\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nBefore=dcos.target\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/mkdir -p /etc/profile.d\\nExecStart=/usr/bin/ln -sf /opt/mesosphere/bin/add_dcos_path.sh /etc/profile.d/dcos.sh\\n\",\"path\":\"/etc/systemd/system/dcos-link-env.service\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nDescription=Pkgpanda: Download DC/OS to this host.\\nAfter=network-online.target\\nWants=network-online.target\\nConditionPathExists=!/opt/mesosphere/\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/curl --keepalive-time 2 -fLsSv --retry 20 -Y 100000 -y 60 -o //var/tmp/bootstrap.tar.xz https://dcosio.azureedge.net/dcos/stable/1.10.0/bootstrap/4d92536e7381176206e71ee15b5ffe454439920c.bootstrap.tar.xz\\nExecStartPre=/usr/bin/mkdir -p /opt/mesosphere\\nExecStart=/usr/bin/tar -axf //var/tmp/bootstrap.tar.xz -C /opt/mesosphere\\nExecStartPost=-/usr/bin/rm -f //var/tmp/bootstrap.tar.xz\\n\",\"path\":\"/etc/systemd/system/dcos-download.service\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nDescription=Pkgpanda: Specialize DC/OS for this host.\\nRequires=dcos-download.service\\nAfter=dcos-download.service\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nEnvironmentFile=/opt/mesosphere/environment\\nExecStart=/opt/mesosphere/bin/pkgpanda setup --no-block-systemd\\n[Install]\\nWantedBy=multi-user.target\\n\",\"path\":\"/etc/systemd/system/dcos-setup.service\",\"permissions\":\"0644\"},{\"content\":\"\",\"path\":\"/etc/mesosphere/roles/azure\"},{\"content\":\"MESOS_ATTRIBUTES=\\\"os:linux;public_ip:yes\\\"\",\"owner\":\"root\",\"path\":\"/var/lib/dcos/mesos-slave-common\",\"permissions\":\"0644\"},{\"content\":\"#!/bin/bash\\n\\n\\nMESOSDIR=/var/lib/mesos/dl\\nmkdir $MESOSDIR\\n\\n\\n# load the env vars\\n. /etc/mesosphere/setup-flags/dcos-deploy-environment\\n\\n\\n# default dc/os component download address (Azure CDN)\\nDOCKER_ENGINE_DOWNLOAD_URL=https://mesosphere.blob.core.windows.net/dcos-deps/docker-engine_1.13.1-0-ubuntu-xenial_amd64.deb\\nLIBIPSET_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/libipset3_6.29-1_amd64.deb\\nIPSET_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/ipset_6.29-1_amd64.deb\\nUNZIP_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/unzip_6.0-20ubuntu1_amd64.deb\\nLIBLTDL_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/libltdl7_2.4.6-0.1_amd64.deb\\n\\n\\ncase $DCOS_ENVIRONMENT in\\n# because of Chinese GreatWall Firewall, the default packages on Azure CDN is blocked. So the following Chinese local mirror url should be used instead.\\nAzureChinaCloud)\\nDOCKER_ENGINE_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/docker-engine_1.11.2-0~xenial_amd64.deb\\nLIBIPSET_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/libipset3_6.29-1_amd64.deb\\nIPSET_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/ipset_6.29-1_amd64.deb\\nUNZIP_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/unzip_6.0-20ubuntu1_amd64.deb\\nLIBLTDL_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/libltdl7_2.4.6-0.1_amd64.deb\\n;;\\nesac\\n\\n\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/d.deb $DOCKER_ENGINE_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/1.deb $LIBIPSET_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/2.deb $IPSET_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/3.deb $UNZIP_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/4.deb $LIBLTDL_DOWNLOAD_URL \\u0026\\nwait\\n\\n\\nfor i in {1..300}; do\\ndpkg -i $MESOSDIR/{1,2,3,4}.deb\\nif [ \\\"$?\\\" = \\\"0\\\" ]\\nthen\\necho \\\"succeeded\\\"\\nbreak\\nfi\\nsleep 1\\ndone\\n\\n\\ntouch /etc/mesosphere/roles/slave_public\\n\\n\\n# add Azure update domain and fault domain attributes\\nud=$( curl -H Metadata:true \\\"http://169.254.169.254/metadata/instance/compute/platformUpdateDomain?api-version=2017-04-02\\u0026format=text\\\" )\\nfd=$( curl -H Metadata:true \\\"http://169.254.169.254/metadata/instance/compute/platformFaultDomain?api-version=2017-04-02\\u0026format=text\\\" )\\necho \\\";azure.faultdomain:$fd;azure.updatedomain:$ud\\\" \\u003e\\u003e /var/lib/dcos/mesos-slave-common\",\"owner\":\"root\",\"path\":\"/opt/azure/containers/provision.sh\",\"permissions\":\"0744\"}]}'))]",
+            "linuxConfiguration": {
+              "disablePasswordAuthentication": "true",
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "keyData": "[parameters('sshRSAPublicKey')]",
+                    "path": "[variables('sshKeyPath')]"
+                  }
+                ]
+              }
+            }
+          },
+          "storageProfile": {
+            "imageReference": {
+              "offer": "[variables('osImageOffer')]",
+              "publisher": "[variables('osImagePublisher')]",
+              "sku": "[variables('osImageSKU')]",
+              "version": "[variables('osImageVersion')]"
+            },
+            "osDisk": {
+              "caching": "ReadOnly",
+              "createOption": "FromImage"
+            }
+          }
+        }
+      },
+      "sku": {
+        "capacity": "[variables('linpub40012Count')]",
+        "name": "[variables('linpub40012VMSize')]",
+        "tier": "[variables('linpub40012VMSizeTier')]"
+      },
+      "tags": {
+        "creationSource": "[concat('acsengine-', variables('linpub40012VMNamePrefix'), '-vmss')]"
+      },
+      "type": "Microsoft.Compute/virtualMachineScaleSets"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('linux40012NSGName')]",
+      "properties": {
+        "securityRules": []
+      },
+      "type": "Microsoft.Network/networkSecurityGroups"
+    },
+    {
+      "apiVersion": "[variables('apiVersionStorageManagedDisks')]",
+      "dependsOn": [
+        "[variables('vnetID')]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('linux40012VMNamePrefix'), '-vmss')]",
+      "properties": {
+        "upgradePolicy": {
+          "mode": "Manual"
+        },
+        "virtualMachineProfile": {
+          "networkProfile": {
+            "networkInterfaceConfigurations": [
+              {
+                "name": "nic",
+                "properties": {
+                  "ipConfigurations": [
+                    {
+                      "name": "nicipconfig",
+                      "properties": {
+                        "subnet": {
+                          "id": "[variables('linux40012VnetSubnetID')]"
+                        }
+                      }
+                    }
+                  ],
+                  "primary": "true"
+                }
+              }
+            ]
+          },
+          "osProfile": {
+            "adminUsername": "[variables('adminUsername')]",
+            "computerNamePrefix": "[variables('linux40012VMNamePrefix')]",
+            "customData": "[base64(concat('#cloud-config\n\n', '{\"bootcmd\":[\"bash -c \\\"if [ ! -f /var/lib/sdb-gpt ];then echo DCOS-5890;parted -s /dev/sdb mklabel gpt;touch /var/lib/sdb-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdc-gpt ];then echo DCOS-5890;parted -s /dev/sdc mklabel gpt\\u0026\\u0026touch /var/lib/sdc-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdd-gpt ];then echo DCOS-5890;parted -s /dev/sdd mklabel gpt\\u0026\\u0026touch /var/lib/sdd-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sde-gpt ];then echo DCOS-5890;parted -s /dev/sde mklabel gpt\\u0026\\u0026touch /var/lib/sde-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdf-gpt ];then echo DCOS-5890;parted -s /dev/sdf mklabel gpt\\u0026\\u0026touch /var/lib/sdf-gpt;fi\\\"\",\"bash -c \\\"mkdir -p /dcos/volume{0,1,2,3}\\\"\"],\"disk_setup\":{\"/dev/sdc\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sdd\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sde\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sdf\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"ephemeral0\":{\"layout\":[45,45,10],\"overwrite\":true,\"table_type\":\"gpt\"}},\"fs_setup\":[{\"device\":\"ephemeral0.1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"ephemeral0.2\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"ephemeral0.3\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdc1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdd1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sde1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdf1\",\"filesystem\":\"ext4\",\"overwrite\":true}],\"mounts\":[[\"ephemeral0.1\",\"/var/lib/mesos\"],[\"ephemeral0.2\",\"/var/lib/docker\"],[\"ephemeral0.3\",\"/var/tmp\"],[\"/dev/sdc1\",\"/dcos/volume0\"],[\"/dev/sdd1\",\"/dcos/volume1\"],[\"/dev/sde1\",\"/dcos/volume2\"],[\"/dev/sdf1\",\"/dcos/volume3\"]],\"runcmd\":[[\"ln\",\"-s\",\"/bin/rm\",\"/usr/bin/rm\"],[\"ln\",\"-s\",\"/bin/mkdir\",\"/usr/bin/mkdir\"],[\"ln\",\"-s\",\"/bin/tar\",\"/usr/bin/tar\"],[\"ln\",\"-s\",\"/bin/ln\",\"/usr/bin/ln\"],[\"ln\",\"-s\",\"/bin/cp\",\"/usr/bin/cp\"],[\"ln\",\"-s\",\"/bin/systemctl\",\"/usr/bin/systemctl\"],[\"ln\",\"-s\",\"/bin/mount\",\"/usr/bin/mount\"],[\"ln\",\"-s\",\"/bin/bash\",\"/usr/bin/bash\"],[\"ln\",\"-s\",\"/usr/sbin/useradd\",\"/usr/bin/useradd\"],[\"systemctl\",\"disable\",\"--now\",\"resolvconf.service\"],[\"systemctl\",\"mask\",\"--now\",\"lxc-net.service\"],[\"systemctl\",\"disable\",\"--now\",\"unscd.service\"],[\"systemctl\",\"stop\",\"--now\",\"unscd.service\"],\"/opt/azure/containers/provision.sh\",[\"cp\",\"-p\",\"/etc/resolv.conf\",\"/tmp/resolv.conf\"],[\"rm\",\"-f\",\"/etc/resolv.conf\"],[\"cp\",\"-p\",\"/tmp/resolv.conf\",\"/etc/resolv.conf\"],[\"systemctl\",\"start\",\"dcos-docker-install.service\"],[\"systemctl\",\"start\",\"dcos-config-writer.service\"],[\"systemctl\",\"restart\",\"systemd-journald.service\"],[\"systemctl\",\"restart\",\"docker.service\"],[\"systemctl\",\"start\",\"dcos-link-env.service\"],[\"systemctl\",\"enable\",\"dcos-setup.service\"],[\"systemctl\",\"--no-block\",\"start\",\"dcos-setup.service\"]],\"write_files\":[{\"content\":\"https://dcosio.azureedge.net/dcos/stable/1.10.0\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/repository-url\",\"permissions\":\"0644\"},{\"content\":\"[\\\"adminrouter--1166a3736442e7963a68d1d644bf5f54ca3cb01d\\\", \\\"avro-cpp--9cb0ee14e3cd5bbdb171efcc72a84d16862ea02d\\\", \\\"boost-libs--8d515c2f703c666ae1b6c5ccc35cc0f8fa36677f\\\", \\\"bootstrap--c1bc86593e212cf9fe83db2246bacd129a6b3adc\\\", \\\"boto--3890cb2817c00b874ba033abe784b5b343caa3c7\\\", \\\"check-time--79e3f6ab99125471e1d94d5f6bc0fea88446831c\\\", \\\"cni--7a8572e385c3f5262945c52c8003d1bbb22cf7aa\\\", \\\"cosmos--e84c5bf3259405df90d682536ba445cc4839a324\\\", \\\"curl--17866a8ae9305826aa5f357a09db2c1f2b2c2ad0\\\", \\\"dcos-checks--8fd33919e6f163dba1bd13e4c7e4e0523919a719\\\", \\\"dcos-cni--12a77c1e9bebd4cbd600524a864c2bd8483330d3\\\", \\\"dcos-config--setup_c4ec6210f396b8e435177b82e3280a2cef0ce721\\\", \\\"dcos-diagnostics--e3b557b0ec8e98617d0cd0fdf136ef9dded96316\\\", \\\"dcos-history--23de88ddc1a5f9018dd11b279c5be6a768a18de4\\\", \\\"dcos-image--df630d8e930d6650ce3d0ade519660142233d862\\\", \\\"dcos-image-deps--81d23d00b1acddb316c9b15fd8499c2b10f6b697\\\", \\\"dcos-integration-test--9ec173650d4e73ba494603324e7583d23970e4b8\\\", \\\"dcos-log--d2af4b1a47d3755a51823e95fbc6c366cf0f9269\\\", \\\"dcos-metadata--setup_c4ec6210f396b8e435177b82e3280a2cef0ce721\\\", \\\"dcos-metrics--2a26c0b50b0b6564f86c48d50aa86f681c9af93c\\\", \\\"dcos-oauth--445bb1388670981c6acc667b2529fc32d4c1fbd4\\\", \\\"dcos-signal--4366023212ea49a64c5c9aef1965e5a3133c4b61\\\", \\\"dcos-test-utils--1066d896d25f4c1e3f6d9a5e7f9c1c6e8c675bb7\\\", \\\"dcos-ui--cc2e3d26537ea190efacd6f899dd4cc2210d45b7\\\", \\\"dnspython--0be432372a3820eafcfa66975943c9536dbe1164\\\", \\\"docker-gc--89f5535aea154dca504f84cd60eac6f61836aef9\\\", \\\"dvdcli--ee85411e3cb9f0988ed54b5cc0789172b887f12f\\\", \\\"erlang--d693172f6f033707c7f07ff78fc18ac543d66b41\\\", \\\"exhibitor--c3e48bbae19c0ed9c30d7f9396305d1e77130658\\\", \\\"flask--6d0f985ad677e8422c7190cbe207424acd813c3b\\\", \\\"java--ce5ff19502fca31eaf4a9af86d50a10a8c212a5b\\\", \\\"libevent--05dc18bc0ab7434b2738318c5ebaa2e61a311f50\\\", \\\"libffi--0e5b99b94f296b2a9a1b75e9fe5f74f5446f5e9b\\\", \\\"libsodium--e7056355f1fe160ade83aac0d11352a2bf3844e6\\\", \\\"logrotate--877aece1fd506af3b9167b6938c316adfa79d4f5\\\", \\\"marathon--accdc43bafeca02da1be340baba4b55011eadf63\\\", \\\"mesos--0677ce2b7d2e8c45091f6481884542f1f765c3d5\\\", \\\"mesos-dns--600da87080b7634f2380594499004a7ff0b34662\\\", \\\"mesos-modules--1f5c4860450949db92ed27326c3146526041e681\\\", \\\"metronome--2ec6f56be44ed822e7228cb66c4dae6a78345789\\\", \\\"navstar--c66f92f01d837433de3e2b19d221c64d26cc54b1\\\", \\\"ncurses--030fd6b08ed46a7ecce001c36901f5b4ad5d2af5\\\", \\\"octarine--4e37c062d2f145f9c2ce01d30dadf72c2aac5c4a\\\", \\\"openssl--44777d19d54a3c33cc19543f2201cb20bf085d98\\\", \\\"pkgpanda-api--30cb1e68f92ed5d4b89d57ca526f8a69b44132c8\\\", \\\"pkgpanda-role--612a6734567cc0c7c2ae1d508f03172f4bc7beed\\\", \\\"pytest--5e26c8ed9fd2c325672d56fe558299bfbd0f7018\\\", \\\"python--5a4285ff7296548732203950bf73d360ea67f6ab\\\", \\\"python-azure-mgmt-resource--26cbe8349f3fe139f7dc8bff7f0cb735382314fc\\\", \\\"python-cryptography--0d83d8afef4a8faddf0d8b713619d9d76e510a9e\\\", \\\"python-dateutil--519201adebeba186049ecd79a9f358f614173b10\\\", \\\"python-docopt--0af809c220a922f7f6c58f15beafebaa043477c7\\\", \\\"python-gunicorn--2ceb53716237da0736f67f4004682083f6ac68e1\\\", \\\"python-isodate--c9efb5859a0cfb06d82f25220cc5b387914af85d\\\", \\\"python-jinja2--601a1443aa4c649ab1da10c2a6d7a4477a263fb3\\\", \\\"python-kazoo--0ff8e6ef528f58c6f36f0a9df6dc27d3871e5c27\\\", \\\"python-markupsafe--1388c95920b4eb920c7a753d620a1ad07fc8b64d\\\", \\\"python-passlib--4691268be760073188b555dc436f836c6706b37a\\\", \\\"python-pyyaml--d8a775d6e43da5eb239af5cccdf1d3fceeb0335f\\\", \\\"python-requests--db0474fab16019ba29a609a354285f221c1a2859\\\", \\\"python-retrying--37dd25bf69bcbefe0c50139085d6bb2e22ccf439\\\", \\\"python-tox--322c468e2a75c5b143cb06af460b5e801ee34342\\\", \\\"rexray--da7f17f8a4b772c0bac3f8d289a08abd4ff272b4\\\", \\\"six--93734bac9907087744815f9cb5b6152e9a198fae\\\", \\\"spartan--c3d8005b1340bcbc3a00496861745b2d0bb2d697\\\", \\\"strace--9be573456909e3931a890785eb6474af7e0dcce4\\\", \\\"teamcity-messages--073793b16cf369e58ebdb6348b93ed14b0e5e59a\\\", \\\"toybox--0c49f879bfe2f99e6f99b397136894fa5096fa0c\\\"]\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/cluster-packages.json\",\"permissions\":\"0644\"},{\"content\":\"[Journal]\\nMaxLevelConsole=warning\\nRateLimitInterval=1s\\nRateLimitBurst=20000\\n\",\"owner\":\"root\",\"path\":\"/etc/systemd/journald.conf.d/dcos.conf\",\"permissions\":\"0644\"},{\"content\":\"rexray:\\n  loglevel: info\\n  modules:\\n    default-docker:\\n      disabled: true\\n  service: vfs\\n\",\"path\":\"/etc/rexray/config.yml\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nAfter=network-online.target\\nWants=network-online.target\\n[Service]\\nType=oneshot\\nEnvironment=DEBIAN_FRONTEND=noninteractive\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/curl -fLsSv --retry 20 -Y 100000 -y 60 -o /var/tmp/d.deb https://mesosphere.blob.core.windows.net/dcos-deps/docker-engine_1.13.1-0-ubuntu-xenial_amd64.deb\\nExecStart=/usr/bin/bash -c \\\"try=1;until dpkg -D3 -i /var/tmp/d.deb || ((try\\u003e9));do echo retry $((try++));sleep $((try*try));done;systemctl --now start docker;systemctl restart docker.socket\\\"\\n\",\"path\":\"/etc/systemd/system/dcos-docker-install.service\",\"permissions\":\"0644\"},{\"content\":\"[Service]\\nRestart=always\\nStartLimitInterval=0\\nRestartSec=15\\nExecStartPre=-/sbin/ip link del docker0\\nExecStart=\\nExecStart=/usr/bin/dockerd --storage-driver=overlay\\n\",\"path\":\"/etc/systemd/system/docker.service.d/execstart.conf\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nPartOf=docker.service\\n[Socket]\\nListenStream=/var/run/docker.sock\\nSocketMode=0660\\nSocketUser=root\\nSocketGroup=docker\\nListenStream=2375\\nBindIPv6Only=both\\n[Install]\\nWantedBy=sockets.target\\n\",\"path\":\"/etc/systemd/system/docker.socket\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nRequires=dcos-setup.service\\nAfter=dcos-setup.service\\n[Service]\\nType=oneshot\\nEnvironmentFile=/etc/environment\\nEnvironmentFile=/opt/mesosphere/environment\\nExecStart=/usr/bin/bash -c \\\"echo $(detect_ip) $(hostname) \\u003e /etc/hosts\\\"\\n\",\"path\":\"/etc/systemd/system/dcos-config-writer.service\",\"permissions\":\"0644\"},{\"content\":\"\\\"bound_values\\\":\\n  \\\"adminrouter_auth_enabled\\\": |-\\n    ',variables('oauthEnabled'),'\\n  \\\"cluster_name\\\": |-\\n    ',variables('masterPublicIPAddressName'),'\\n  \\\"exhibitor_azure_account_key\\\": |-\\n    ', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('masterStorageAccountExhibitorName')), '2015-06-15').key1, '\\n  \\\"exhibitor_azure_account_name\\\": |-\\n    ',variables('masterStorageAccountExhibitorName'),'\\n  \\\"exhibitor_azure_prefix\\\": |-\\n    ',variables('masterPublicIPAddressName'),'\\n  \\\"master_list\\\": |-\\n    [\\\"', reference(variables('masterVMNic')[0]).ipConfigurations[0].properties.privateIPAddress,'\\\"]\\n  \\\"oauth_enabled\\\": |-\\n    ',variables('oauthEnabled'),'\\n\\\"late_bound_package_id\\\": |-\\n  dcos-provider-c4ec6210f396b8e435177b82e3280a2cef0ce721-azure--setup\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/late-config.yaml\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nBefore=dcos.target\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/mkdir -p /etc/profile.d\\nExecStart=/usr/bin/ln -sf /opt/mesosphere/bin/add_dcos_path.sh /etc/profile.d/dcos.sh\\n\",\"path\":\"/etc/systemd/system/dcos-link-env.service\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nDescription=Pkgpanda: Download DC/OS to this host.\\nAfter=network-online.target\\nWants=network-online.target\\nConditionPathExists=!/opt/mesosphere/\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/curl --keepalive-time 2 -fLsSv --retry 20 -Y 100000 -y 60 -o //var/tmp/bootstrap.tar.xz https://dcosio.azureedge.net/dcos/stable/1.10.0/bootstrap/4d92536e7381176206e71ee15b5ffe454439920c.bootstrap.tar.xz\\nExecStartPre=/usr/bin/mkdir -p /opt/mesosphere\\nExecStart=/usr/bin/tar -axf //var/tmp/bootstrap.tar.xz -C /opt/mesosphere\\nExecStartPost=-/usr/bin/rm -f //var/tmp/bootstrap.tar.xz\\n\",\"path\":\"/etc/systemd/system/dcos-download.service\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nDescription=Pkgpanda: Specialize DC/OS for this host.\\nRequires=dcos-download.service\\nAfter=dcos-download.service\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nEnvironmentFile=/opt/mesosphere/environment\\nExecStart=/opt/mesosphere/bin/pkgpanda setup --no-block-systemd\\n[Install]\\nWantedBy=multi-user.target\\n\",\"path\":\"/etc/systemd/system/dcos-setup.service\",\"permissions\":\"0644\"},{\"content\":\"\",\"path\":\"/etc/mesosphere/roles/azure\"},{\"content\":\"MESOS_ATTRIBUTES=\\\"os:linux\\\"\",\"owner\":\"root\",\"path\":\"/var/lib/dcos/mesos-slave-common\",\"permissions\":\"0644\"},{\"content\":\"#!/bin/bash\\n\\n\\nMESOSDIR=/var/lib/mesos/dl\\nmkdir $MESOSDIR\\n\\n\\n# load the env vars\\n. /etc/mesosphere/setup-flags/dcos-deploy-environment\\n\\n\\n# default dc/os component download address (Azure CDN)\\nDOCKER_ENGINE_DOWNLOAD_URL=https://mesosphere.blob.core.windows.net/dcos-deps/docker-engine_1.13.1-0-ubuntu-xenial_amd64.deb\\nLIBIPSET_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/libipset3_6.29-1_amd64.deb\\nIPSET_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/ipset_6.29-1_amd64.deb\\nUNZIP_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/unzip_6.0-20ubuntu1_amd64.deb\\nLIBLTDL_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/libltdl7_2.4.6-0.1_amd64.deb\\n\\n\\ncase $DCOS_ENVIRONMENT in\\n# because of Chinese GreatWall Firewall, the default packages on Azure CDN is blocked. So the following Chinese local mirror url should be used instead.\\nAzureChinaCloud)\\nDOCKER_ENGINE_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/docker-engine_1.11.2-0~xenial_amd64.deb\\nLIBIPSET_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/libipset3_6.29-1_amd64.deb\\nIPSET_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/ipset_6.29-1_amd64.deb\\nUNZIP_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/unzip_6.0-20ubuntu1_amd64.deb\\nLIBLTDL_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/libltdl7_2.4.6-0.1_amd64.deb\\n;;\\nesac\\n\\n\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/d.deb $DOCKER_ENGINE_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/1.deb $LIBIPSET_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/2.deb $IPSET_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/3.deb $UNZIP_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/4.deb $LIBLTDL_DOWNLOAD_URL \\u0026\\nwait\\n\\n\\nfor i in {1..300}; do\\ndpkg -i $MESOSDIR/{1,2,3,4}.deb\\nif [ \\\"$?\\\" = \\\"0\\\" ]\\nthen\\necho \\\"succeeded\\\"\\nbreak\\nfi\\nsleep 1\\ndone\\n\\n\\ntouch /etc/mesosphere/roles/slave\\n\\n\\n# add Azure update domain and fault domain attributes\\nud=$( curl -H Metadata:true \\\"http://169.254.169.254/metadata/instance/compute/platformUpdateDomain?api-version=2017-04-02\\u0026format=text\\\" )\\nfd=$( curl -H Metadata:true \\\"http://169.254.169.254/metadata/instance/compute/platformFaultDomain?api-version=2017-04-02\\u0026format=text\\\" )\\necho \\\";azure.faultdomain:$fd;azure.updatedomain:$ud\\\" \\u003e\\u003e /var/lib/dcos/mesos-slave-common\",\"owner\":\"root\",\"path\":\"/opt/azure/containers/provision.sh\",\"permissions\":\"0744\"}]}'))]",
+            "linuxConfiguration": {
+              "disablePasswordAuthentication": "true",
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "keyData": "[parameters('sshRSAPublicKey')]",
+                    "path": "[variables('sshKeyPath')]"
+                  }
+                ]
+              }
+            }
+          },
+          "storageProfile": {
+            "imageReference": {
+              "offer": "[variables('osImageOffer')]",
+              "publisher": "[variables('osImagePublisher')]",
+              "sku": "[variables('osImageSKU')]",
+              "version": "[variables('osImageVersion')]"
+            },
+            "osDisk": {
+              "caching": "ReadOnly",
+              "createOption": "FromImage"
+            }
+          }
+        }
+      },
+      "sku": {
+        "capacity": "[variables('linux40012Count')]",
+        "name": "[variables('linux40012VMSize')]",
+        "tier": "[variables('linux40012VMSizeTier')]"
+      },
+      "tags": {
+        "creationSource": "[concat('acsengine-', variables('linux40012VMNamePrefix'), '-vmss')]"
+      },
+      "type": "Microsoft.Compute/virtualMachineScaleSets"
+    },
+    {
+      "apiVersion": "[variables('apiVersionStorageManagedDisks')]",
+      "location": "[variables('location')]",
+      "name": "[variables('masterAvailabilitySet')]",
+      "properties": {
+        "managed": "true",
+        "platformFaultDomainCount": "2",
+        "platformUpdateDomainCount": "3"
+      },
+      "type": "Microsoft.Compute/availabilitySets"
+    },
+    {
+      "apiVersion": "[variables('apiVersionStorage')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('masterPublicIPAddressName'))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[variables('masterStorageAccountExhibitorName')]",
+      "properties": {
+        "accountType": "Standard_LRS"
+      },
+      "type": "Microsoft.Storage/storageAccounts"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/networkSecurityGroups/', variables('wrs40012NSGName'))]",
+        "[concat('Microsoft.Network/networkSecurityGroups/', variables('win40012NSGName'))]",
+        "[concat('Microsoft.Network/networkSecurityGroups/', variables('linpub40012NSGName'))]",
+        "[concat('Microsoft.Network/networkSecurityGroups/', variables('linux40012NSGName'))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[variables('virtualNetworkName')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('masterSubnet')]",
+            "[variables('wrs40012Subnet')]",
+            "[variables('win40012Subnet')]",
+            "[variables('linpub40012Subnet')]",
+            "[variables('linux40012Subnet')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('masterSubnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('masterSubnet')]"
+            }
+          },
+          {
+            "name": "[variables('wrs40012SubnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('wrs40012Subnet')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('wrs40012NSGName'))]"
+              }
+            }
+          },
+          {
+            "name": "[variables('win40012SubnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('win40012Subnet')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('win40012NSGName'))]"
+              }
+            }
+          },
+          {
+            "name": "[variables('linpub40012SubnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('linpub40012Subnet')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('linpub40012NSGName'))]"
+              }
+            }
+          },
+          {
+            "name": "[variables('linux40012SubnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('linux40012Subnet')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('linux40012NSGName'))]"
+              }
+            }
+          }
+        ]
+      },
+      "type": "Microsoft.Network/virtualNetworks"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('masterPublicIPAddressName')]",
+      "properties": {
+        "dnsSettings": {
+          "domainNameLabel": "[variables('masterEndpointDNSNamePrefix')]"
+        },
+        "publicIPAllocationMethod": "Dynamic"
+      },
+      "type": "Microsoft.Network/publicIPAddresses"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('masterPublicIPAddressName'))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[variables('masterLbName')]",
+      "properties": {
+        "backendAddressPools": [
+          {
+            "name": "[variables('masterLbBackendPoolName')]"
+          }
+        ],
+        "frontendIPConfigurations": [
+          {
+            "name": "[variables('masterLbIPConfigName')]",
+            "properties": {
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('masterPublicIPAddressName'))]"
+              }
+            }
+          }
+        ]
+      },
+      "type": "Microsoft.Network/loadBalancers"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "copy": {
+        "count": "[variables('masterCount')]",
+        "name": "masterLbLoopNode"
+      },
+      "dependsOn": [
+        "[variables('masterLbID')]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('masterLbName'), '/', 'SSH-', variables('masterVMNamePrefix'), copyIndex())]",
+      "properties": {
+        "backendPort": 22,
+        "enableFloatingIP": false,
+        "frontendIPConfiguration": {
+          "id": "[variables('masterLbIPConfigID')]"
+        },
+        "frontendPort": "[copyIndex(2200)]",
+        "protocol": "tcp"
+      },
+      "type": "Microsoft.Network/loadBalancers/inboundNatRules"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "location": "[variables('location')]",
+      "name": "[variables('masterNSGName')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "ssh",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow SSH",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "22",
+              "direction": "Inbound",
+              "priority": 200,
+              "protocol": "Tcp",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*"
+            }
+          }
+        ]
+      },
+      "type": "Microsoft.Network/networkSecurityGroups"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "copy": {
+        "count": "[variables('masterCount')]",
+        "name": "nicLoopNode"
+      },
+      "dependsOn": [
+        "[variables('masterNSGID')]",
+        "[variables('vnetID')]",
+        "[variables('masterLbID')]",
+        "[concat(variables('masterLbID'),'/inboundNatRules/SSH-',variables('masterVMNamePrefix'),copyIndex())]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('masterVMNamePrefix'), 'nic-', copyIndex())]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipConfigNode",
+            "properties": {
+              "loadBalancerBackendAddressPools": [
+                {
+                  "id": "[concat(variables('masterLbID'), '/backendAddressPools/', variables('masterLbBackendPoolName'))]"
+                }
+              ],
+              "loadBalancerInboundNatRules": [
+                {
+                  "id": "[concat(variables('masterLbID'),'/inboundNatRules/SSH-',variables('masterVMNamePrefix'),copyIndex())]"
+                }
+              ],
+              "privateIPAddress": "[concat(variables('masterFirstAddrPrefix'), copyIndex(int(variables('masterFirstAddrOctet4'))))]",
+              "privateIPAllocationMethod": "Static",
+              "subnet": {
+                "id": "[variables('masterVnetSubnetID')]"
+              }
+            }
+          }
+        ],
+        "networkSecurityGroup": {
+          "id": "[variables('masterNSGID')]"
+        }
+      },
+      "type": "Microsoft.Network/networkInterfaces"
+    },
+    {
+      "apiVersion": "[variables('apiVersionStorageManagedDisks')]",
+      "copy": {
+        "count": "[variables('masterCount')]",
+        "name": "vmLoopNode"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/networkInterfaces/', variables('masterVMNamePrefix'), 'nic-', copyIndex())]",
+        "[concat('Microsoft.Compute/availabilitySets/',variables('masterAvailabilitySet'))]",
+        "[variables('masterStorageAccountExhibitorName')]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('masterVMNamePrefix'), copyIndex())]",
+      "properties": {
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('masterAvailabilitySet'))]"
+        },
+        "hardwareProfile": {
+          "vmSize": "[variables('masterVMSize')]"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('masterVMNamePrefix'), 'nic-', copyIndex()))]"
+            }
+          ]
+        },
+        "osProfile": {
+          "adminUsername": "[variables('adminUsername')]",
+          "computername": "[concat(variables('masterVMNamePrefix'), copyIndex())]",
+          "customData": "[base64(concat('#cloud-config\n\n', '{\"bootcmd\":[\"bash -c \\\"if [ ! -f /var/lib/sdb-gpt ];then echo DCOS-5890;parted -s /dev/sdb mklabel gpt;touch /var/lib/sdb-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdc-gpt ];then echo DCOS-5890;parted -s /dev/sdc mklabel gpt\\u0026\\u0026touch /var/lib/sdc-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdd-gpt ];then echo DCOS-5890;parted -s /dev/sdd mklabel gpt\\u0026\\u0026touch /var/lib/sdd-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sde-gpt ];then echo DCOS-5890;parted -s /dev/sde mklabel gpt\\u0026\\u0026touch /var/lib/sde-gpt;fi\\\"\",\"bash -c \\\"if [ ! -f /var/lib/sdf-gpt ];then echo DCOS-5890;parted -s /dev/sdf mklabel gpt\\u0026\\u0026touch /var/lib/sdf-gpt;fi\\\"\",\"bash -c \\\"mkdir -p /dcos/volume{0,1,2,3}\\\"\"],\"disk_setup\":{\"/dev/sdc\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sdd\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sde\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"/dev/sdf\":{\"layout\":true,\"overwrite\":true,\"table_type\":\"gpt\"},\"ephemeral0\":{\"layout\":[45,45,10],\"overwrite\":true,\"table_type\":\"gpt\"}},\"fs_setup\":[{\"device\":\"ephemeral0.1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"ephemeral0.2\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"ephemeral0.3\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdc1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdd1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sde1\",\"filesystem\":\"ext4\",\"overwrite\":true},{\"device\":\"/dev/sdf1\",\"filesystem\":\"ext4\",\"overwrite\":true}],\"mounts\":[[\"ephemeral0.1\",\"/var/lib/mesos\"],[\"ephemeral0.2\",\"/var/lib/docker\"],[\"ephemeral0.3\",\"/var/tmp\"],[\"/dev/sdc1\",\"/dcos/volume0\"],[\"/dev/sdd1\",\"/dcos/volume1\"],[\"/dev/sde1\",\"/dcos/volume2\"],[\"/dev/sdf1\",\"/dcos/volume3\"]],\"runcmd\":[[\"ln\",\"-s\",\"/bin/rm\",\"/usr/bin/rm\"],[\"ln\",\"-s\",\"/bin/mkdir\",\"/usr/bin/mkdir\"],[\"ln\",\"-s\",\"/bin/tar\",\"/usr/bin/tar\"],[\"ln\",\"-s\",\"/bin/ln\",\"/usr/bin/ln\"],[\"ln\",\"-s\",\"/bin/cp\",\"/usr/bin/cp\"],[\"ln\",\"-s\",\"/bin/systemctl\",\"/usr/bin/systemctl\"],[\"ln\",\"-s\",\"/bin/mount\",\"/usr/bin/mount\"],[\"ln\",\"-s\",\"/bin/bash\",\"/usr/bin/bash\"],[\"ln\",\"-s\",\"/usr/sbin/useradd\",\"/usr/bin/useradd\"],[\"systemctl\",\"disable\",\"--now\",\"resolvconf.service\"],[\"systemctl\",\"mask\",\"--now\",\"lxc-net.service\"],[\"systemctl\",\"disable\",\"--now\",\"unscd.service\"],[\"systemctl\",\"stop\",\"--now\",\"unscd.service\"],\"/opt/azure/containers/provision.sh\",[\"cp\",\"-p\",\"/etc/resolv.conf\",\"/tmp/resolv.conf\"],[\"rm\",\"-f\",\"/etc/resolv.conf\"],[\"cp\",\"-p\",\"/tmp/resolv.conf\",\"/etc/resolv.conf\"],[\"systemctl\",\"start\",\"dcos-docker-install.service\"],[\"systemctl\",\"start\",\"dcos-config-writer.service\"],[\"systemctl\",\"restart\",\"systemd-journald.service\"],[\"systemctl\",\"restart\",\"docker.service\"],[\"systemctl\",\"start\",\"dcos-link-env.service\"],[\"systemctl\",\"enable\",\"dcos-setup.service\"],[\"systemctl\",\"--no-block\",\"start\",\"dcos-setup.service\"]],\"write_files\":[{\"content\":\"https://dcosio.azureedge.net/dcos/stable/1.10.0\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/repository-url\",\"permissions\":\"0644\"},{\"content\":\"[\\\"adminrouter--1166a3736442e7963a68d1d644bf5f54ca3cb01d\\\", \\\"avro-cpp--9cb0ee14e3cd5bbdb171efcc72a84d16862ea02d\\\", \\\"boost-libs--8d515c2f703c666ae1b6c5ccc35cc0f8fa36677f\\\", \\\"bootstrap--c1bc86593e212cf9fe83db2246bacd129a6b3adc\\\", \\\"boto--3890cb2817c00b874ba033abe784b5b343caa3c7\\\", \\\"check-time--79e3f6ab99125471e1d94d5f6bc0fea88446831c\\\", \\\"cni--7a8572e385c3f5262945c52c8003d1bbb22cf7aa\\\", \\\"cosmos--e84c5bf3259405df90d682536ba445cc4839a324\\\", \\\"curl--17866a8ae9305826aa5f357a09db2c1f2b2c2ad0\\\", \\\"dcos-checks--8fd33919e6f163dba1bd13e4c7e4e0523919a719\\\", \\\"dcos-cni--12a77c1e9bebd4cbd600524a864c2bd8483330d3\\\", \\\"dcos-config--setup_c4ec6210f396b8e435177b82e3280a2cef0ce721\\\", \\\"dcos-diagnostics--e3b557b0ec8e98617d0cd0fdf136ef9dded96316\\\", \\\"dcos-history--23de88ddc1a5f9018dd11b279c5be6a768a18de4\\\", \\\"dcos-image--df630d8e930d6650ce3d0ade519660142233d862\\\", \\\"dcos-image-deps--81d23d00b1acddb316c9b15fd8499c2b10f6b697\\\", \\\"dcos-integration-test--9ec173650d4e73ba494603324e7583d23970e4b8\\\", \\\"dcos-log--d2af4b1a47d3755a51823e95fbc6c366cf0f9269\\\", \\\"dcos-metadata--setup_c4ec6210f396b8e435177b82e3280a2cef0ce721\\\", \\\"dcos-metrics--2a26c0b50b0b6564f86c48d50aa86f681c9af93c\\\", \\\"dcos-oauth--445bb1388670981c6acc667b2529fc32d4c1fbd4\\\", \\\"dcos-signal--4366023212ea49a64c5c9aef1965e5a3133c4b61\\\", \\\"dcos-test-utils--1066d896d25f4c1e3f6d9a5e7f9c1c6e8c675bb7\\\", \\\"dcos-ui--cc2e3d26537ea190efacd6f899dd4cc2210d45b7\\\", \\\"dnspython--0be432372a3820eafcfa66975943c9536dbe1164\\\", \\\"docker-gc--89f5535aea154dca504f84cd60eac6f61836aef9\\\", \\\"dvdcli--ee85411e3cb9f0988ed54b5cc0789172b887f12f\\\", \\\"erlang--d693172f6f033707c7f07ff78fc18ac543d66b41\\\", \\\"exhibitor--c3e48bbae19c0ed9c30d7f9396305d1e77130658\\\", \\\"flask--6d0f985ad677e8422c7190cbe207424acd813c3b\\\", \\\"java--ce5ff19502fca31eaf4a9af86d50a10a8c212a5b\\\", \\\"libevent--05dc18bc0ab7434b2738318c5ebaa2e61a311f50\\\", \\\"libffi--0e5b99b94f296b2a9a1b75e9fe5f74f5446f5e9b\\\", \\\"libsodium--e7056355f1fe160ade83aac0d11352a2bf3844e6\\\", \\\"logrotate--877aece1fd506af3b9167b6938c316adfa79d4f5\\\", \\\"marathon--accdc43bafeca02da1be340baba4b55011eadf63\\\", \\\"mesos--0677ce2b7d2e8c45091f6481884542f1f765c3d5\\\", \\\"mesos-dns--600da87080b7634f2380594499004a7ff0b34662\\\", \\\"mesos-modules--1f5c4860450949db92ed27326c3146526041e681\\\", \\\"metronome--2ec6f56be44ed822e7228cb66c4dae6a78345789\\\", \\\"navstar--c66f92f01d837433de3e2b19d221c64d26cc54b1\\\", \\\"ncurses--030fd6b08ed46a7ecce001c36901f5b4ad5d2af5\\\", \\\"octarine--4e37c062d2f145f9c2ce01d30dadf72c2aac5c4a\\\", \\\"openssl--44777d19d54a3c33cc19543f2201cb20bf085d98\\\", \\\"pkgpanda-api--30cb1e68f92ed5d4b89d57ca526f8a69b44132c8\\\", \\\"pkgpanda-role--612a6734567cc0c7c2ae1d508f03172f4bc7beed\\\", \\\"pytest--5e26c8ed9fd2c325672d56fe558299bfbd0f7018\\\", \\\"python--5a4285ff7296548732203950bf73d360ea67f6ab\\\", \\\"python-azure-mgmt-resource--26cbe8349f3fe139f7dc8bff7f0cb735382314fc\\\", \\\"python-cryptography--0d83d8afef4a8faddf0d8b713619d9d76e510a9e\\\", \\\"python-dateutil--519201adebeba186049ecd79a9f358f614173b10\\\", \\\"python-docopt--0af809c220a922f7f6c58f15beafebaa043477c7\\\", \\\"python-gunicorn--2ceb53716237da0736f67f4004682083f6ac68e1\\\", \\\"python-isodate--c9efb5859a0cfb06d82f25220cc5b387914af85d\\\", \\\"python-jinja2--601a1443aa4c649ab1da10c2a6d7a4477a263fb3\\\", \\\"python-kazoo--0ff8e6ef528f58c6f36f0a9df6dc27d3871e5c27\\\", \\\"python-markupsafe--1388c95920b4eb920c7a753d620a1ad07fc8b64d\\\", \\\"python-passlib--4691268be760073188b555dc436f836c6706b37a\\\", \\\"python-pyyaml--d8a775d6e43da5eb239af5cccdf1d3fceeb0335f\\\", \\\"python-requests--db0474fab16019ba29a609a354285f221c1a2859\\\", \\\"python-retrying--37dd25bf69bcbefe0c50139085d6bb2e22ccf439\\\", \\\"python-tox--322c468e2a75c5b143cb06af460b5e801ee34342\\\", \\\"rexray--da7f17f8a4b772c0bac3f8d289a08abd4ff272b4\\\", \\\"six--93734bac9907087744815f9cb5b6152e9a198fae\\\", \\\"spartan--c3d8005b1340bcbc3a00496861745b2d0bb2d697\\\", \\\"strace--9be573456909e3931a890785eb6474af7e0dcce4\\\", \\\"teamcity-messages--073793b16cf369e58ebdb6348b93ed14b0e5e59a\\\", \\\"toybox--0c49f879bfe2f99e6f99b397136894fa5096fa0c\\\"]\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/cluster-packages.json\",\"permissions\":\"0644\"},{\"content\":\"[Journal]\\nMaxLevelConsole=warning\\nRateLimitInterval=1s\\nRateLimitBurst=20000\\n\",\"owner\":\"root\",\"path\":\"/etc/systemd/journald.conf.d/dcos.conf\",\"permissions\":\"0644\"},{\"content\":\"rexray:\\n  loglevel: info\\n  modules:\\n    default-docker:\\n      disabled: true\\n  service: vfs\\n\",\"path\":\"/etc/rexray/config.yml\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nAfter=network-online.target\\nWants=network-online.target\\n[Service]\\nType=oneshot\\nEnvironment=DEBIAN_FRONTEND=noninteractive\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/curl -fLsSv --retry 20 -Y 100000 -y 60 -o /var/tmp/d.deb https://mesosphere.blob.core.windows.net/dcos-deps/docker-engine_1.13.1-0-ubuntu-xenial_amd64.deb\\nExecStart=/usr/bin/bash -c \\\"try=1;until dpkg -D3 -i /var/tmp/d.deb || ((try\\u003e9));do echo retry $((try++));sleep $((try*try));done;systemctl --now start docker;systemctl restart docker.socket\\\"\\n\",\"path\":\"/etc/systemd/system/dcos-docker-install.service\",\"permissions\":\"0644\"},{\"content\":\"[Service]\\nRestart=always\\nStartLimitInterval=0\\nRestartSec=15\\nExecStartPre=-/sbin/ip link del docker0\\nExecStart=\\nExecStart=/usr/bin/dockerd --storage-driver=overlay\\n\",\"path\":\"/etc/systemd/system/docker.service.d/execstart.conf\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nPartOf=docker.service\\n[Socket]\\nListenStream=/var/run/docker.sock\\nSocketMode=0660\\nSocketUser=root\\nSocketGroup=docker\\nListenStream=2375\\nBindIPv6Only=both\\n[Install]\\nWantedBy=sockets.target\\n\",\"path\":\"/etc/systemd/system/docker.socket\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nRequires=dcos-setup.service\\nAfter=dcos-setup.service\\n[Service]\\nType=oneshot\\nEnvironmentFile=/etc/environment\\nEnvironmentFile=/opt/mesosphere/environment\\nExecStart=/usr/bin/bash -c \\\"echo $(detect_ip) $(hostname) \\u003e /etc/hosts\\\"\\n\",\"path\":\"/etc/systemd/system/dcos-config-writer.service\",\"permissions\":\"0644\"},{\"content\":\"\\\"bound_values\\\":\\n  \\\"adminrouter_auth_enabled\\\": |-\\n    ',variables('oauthEnabled'),'\\n  \\\"cluster_name\\\": |-\\n    ',variables('masterPublicIPAddressName'),'\\n  \\\"exhibitor_azure_account_key\\\": |-\\n    ', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('masterStorageAccountExhibitorName')), '2015-06-15').key1, '\\n  \\\"exhibitor_azure_account_name\\\": |-\\n    ',variables('masterStorageAccountExhibitorName'),'\\n  \\\"exhibitor_azure_prefix\\\": |-\\n    ',variables('masterPublicIPAddressName'),'\\n  \\\"master_list\\\": |-\\n    [\\\"', reference(variables('masterVMNic')[0]).ipConfigurations[0].properties.privateIPAddress,'\\\"]\\n  \\\"oauth_enabled\\\": |-\\n    ',variables('oauthEnabled'),'\\n\\\"late_bound_package_id\\\": |-\\n  dcos-provider-c4ec6210f396b8e435177b82e3280a2cef0ce721-azure--setup\\n\",\"owner\":\"root\",\"path\":\"/etc/mesosphere/setup-flags/late-config.yaml\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nBefore=dcos.target\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/mkdir -p /etc/profile.d\\nExecStart=/usr/bin/ln -sf /opt/mesosphere/bin/add_dcos_path.sh /etc/profile.d/dcos.sh\\n\",\"path\":\"/etc/systemd/system/dcos-link-env.service\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nDescription=Pkgpanda: Download DC/OS to this host.\\nAfter=network-online.target\\nWants=network-online.target\\nConditionPathExists=!/opt/mesosphere/\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nExecStartPre=/usr/bin/curl --keepalive-time 2 -fLsSv --retry 20 -Y 100000 -y 60 -o //var/tmp/bootstrap.tar.xz https://dcosio.azureedge.net/dcos/stable/1.10.0/bootstrap/4d92536e7381176206e71ee15b5ffe454439920c.bootstrap.tar.xz\\nExecStartPre=/usr/bin/mkdir -p /opt/mesosphere\\nExecStart=/usr/bin/tar -axf //var/tmp/bootstrap.tar.xz -C /opt/mesosphere\\nExecStartPost=-/usr/bin/rm -f //var/tmp/bootstrap.tar.xz\\n\",\"path\":\"/etc/systemd/system/dcos-download.service\",\"permissions\":\"0644\"},{\"content\":\"[Unit]\\nDescription=Pkgpanda: Specialize DC/OS for this host.\\nRequires=dcos-download.service\\nAfter=dcos-download.service\\n[Service]\\nType=oneshot\\nStandardOutput=journal+console\\nStandardError=journal+console\\nEnvironmentFile=/opt/mesosphere/environment\\nExecStart=/opt/mesosphere/bin/pkgpanda setup --no-block-systemd\\n[Install]\\nWantedBy=multi-user.target\\n\",\"path\":\"/etc/systemd/system/dcos-setup.service\",\"permissions\":\"0644\"},{\"content\":\"\",\"path\":\"/etc/mesosphere/roles/azure\"},{\"content\":\"\",\"owner\":\"root\",\"path\":\"/var/lib/dcos/mesos-slave-common\",\"permissions\":\"0644\"},{\"content\":\"#!/bin/bash\\n\\n\\nMESOSDIR=/var/lib/mesos/dl\\nmkdir $MESOSDIR\\n\\n\\n# load the env vars\\n. /etc/mesosphere/setup-flags/dcos-deploy-environment\\n\\n\\n# default dc/os component download address (Azure CDN)\\nDOCKER_ENGINE_DOWNLOAD_URL=https://mesosphere.blob.core.windows.net/dcos-deps/docker-engine_1.13.1-0-ubuntu-xenial_amd64.deb\\nLIBIPSET_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/libipset3_6.29-1_amd64.deb\\nIPSET_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/ipset_6.29-1_amd64.deb\\nUNZIP_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/unzip_6.0-20ubuntu1_amd64.deb\\nLIBLTDL_DOWNLOAD_URL=https://az837203.vo.msecnd.net/dcos-deps/libltdl7_2.4.6-0.1_amd64.deb\\n\\n\\ncase $DCOS_ENVIRONMENT in\\n# because of Chinese GreatWall Firewall, the default packages on Azure CDN is blocked. So the following Chinese local mirror url should be used instead.\\nAzureChinaCloud)\\nDOCKER_ENGINE_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/docker-engine_1.11.2-0~xenial_amd64.deb\\nLIBIPSET_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/libipset3_6.29-1_amd64.deb\\nIPSET_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/ipset_6.29-1_amd64.deb\\nUNZIP_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/unzip_6.0-20ubuntu1_amd64.deb\\nLIBLTDL_DOWNLOAD_URL=http://acsengine.blob.core.chinacloudapi.cn/dcos/libltdl7_2.4.6-0.1_amd64.deb\\n;;\\nesac\\n\\n\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/d.deb $DOCKER_ENGINE_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/1.deb $LIBIPSET_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/2.deb $IPSET_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/3.deb $UNZIP_DOWNLOAD_URL \\u0026\\ncurl -fLsSv --retry 20 -Y 100000 -y 60 -o $MESOSDIR/4.deb $LIBLTDL_DOWNLOAD_URL \\u0026\\nwait\\n\\n\\nfor i in {1..300}; do\\ndpkg -i $MESOSDIR/{1,2,3,4}.deb\\nif [ \\\"$?\\\" = \\\"0\\\" ]\\nthen\\necho \\\"succeeded\\\"\\nbreak\\nfi\\nsleep 1\\ndone\\n\\n\\ntouch /etc/mesosphere/roles/master\\ntouch /etc/mesosphere/roles/azure_master\\n\\n\\n# add Azure update domain and fault domain attributes\\nud=$( curl -H Metadata:true \\\"http://169.254.169.254/metadata/instance/compute/platformUpdateDomain?api-version=2017-04-02\\u0026format=text\\\" )\\nfd=$( curl -H Metadata:true \\\"http://169.254.169.254/metadata/instance/compute/platformFaultDomain?api-version=2017-04-02\\u0026format=text\\\" )\\necho \\\";azure.faultdomain:$fd;azure.updatedomain:$ud\\\" \\u003e\\u003e /var/lib/dcos/mesos-slave-common\",\"owner\":\"root\",\"path\":\"/opt/azure/containers/provision.sh\",\"permissions\":\"0744\"}]}'))]",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": "true",
+            "ssh": {
+              "publicKeys": [
+                {
+                  "keyData": "[variables('sshRSAPublicKey')]",
+                  "path": "[variables('sshKeyPath')]"
+                }
+              ]
+            }
+          }
+        },
+        "storageProfile": {
+          "imageReference": {
+            "offer": "[variables('osImageOffer')]",
+            "publisher": "[variables('osImagePublisher')]",
+            "sku": "[variables('osImageSKU')]",
+            "version": "[variables('osImageVersion')]"
+          },
+          "osDisk": {
+            "caching": "ReadWrite",
+            "createOption": "FromImage"
+          }
+        }
+      },
+      "tags": {
+        "creationSource": "[concat('acsengine-', variables('masterVMNamePrefix'), copyIndex())]"
+      },
+      "type": "Microsoft.Compute/virtualMachines"
+    },
+    {
+      "apiVersion": "[variables('apiVersionDefault')]",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('masterVMNamePrefix'), sub(variables('masterCount'), 1))]"
+      ],
+      "location": "[variables('location')]",
+      "name": "[concat(variables('masterVMNamePrefix'), sub(variables('masterCount'), 1), '/waitforleader')]",
+      "properties": {
+        "autoUpgradeMinorVersion": true,
+        "publisher": "Microsoft.OSTCExtensions",
+        "settings": {
+          "commandToExecute": "sh -c 'until ping -c1 leader.mesos;do echo waiting for leader.mesos;sleep 15;done;echo leader.mesos up'"
+        },
+        "type": "CustomScriptForLinux",
+        "typeHandlerVersion": "1.4"
+      },
+      "type": "Microsoft.Compute/virtualMachines/extensions"
+    }
+  ],
+  "outputs": {
+    "linpub40012FQDN": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('linpub40012IPAddressName'))).dnsSettings.fqdn]"
+    },
+    "masterFQDN": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('masterPublicIPAddressName'))).dnsSettings.fqdn]"
+    },
+    "wrs40012FQDN": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('wrs40012IPAddressName'))).dnsSettings.fqdn]"
+    }
+  }
+}
