@@ -32,16 +32,16 @@
               "dnsPrefix": ""
             },
             {
-        "name": "linpub40012",
-        "count": 2,
-        "vmSize": "Standard_D2_v2",
-        "osType": "linux",
-        "dnsPrefix": "linpub40012",
-        "ports": [
-          80,
-          443,
-          22
-          ]
+             "name": "linpub40012",
+             "count": 2,
+             "vmSize": "Standard_D2_v2",
+             "osType": "linux",
+             "dnsPrefix": "linpub40012",
+             "ports": [
+             80,
+             443,
+             22
+            ]
             },
             {
               "name": "linux40012",
