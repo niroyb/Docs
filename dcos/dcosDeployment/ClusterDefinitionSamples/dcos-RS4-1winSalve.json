@@ -17,7 +17,6 @@
         "vmSize": "Standard_D2s_v3",
         "osType": "Windows",
         "dnsPrefix": "wpub40001",
-        "availabilityProfile": "AvailabilitySet",
         "ports": [
              80,
              443,
