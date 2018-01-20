@@ -1,0 +1,8 @@
+Log file created at: 2018/01/19 22:16:18
+Running on machine: 14267acs000003
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0119 22:16:18.301939  3460 slave.cpp:1009] Failed to attach 'C:\DCOS\mesos\log\mesos-service.err.log' to virtual path '/slave/log': Failed to get realpath of 'C:\DCOS\mesos\log\mesos-service.err.log': Failed to get attributes for file 'C:\DCOS\mesos\log\mesos-service.err.log': The system cannot find the file specified.
+W0119 22:16:21.671696  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050
+W0119 22:16:21.680698  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050
+W0119 22:16:21.682698  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050
+W0119 22:16:21.684698  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050

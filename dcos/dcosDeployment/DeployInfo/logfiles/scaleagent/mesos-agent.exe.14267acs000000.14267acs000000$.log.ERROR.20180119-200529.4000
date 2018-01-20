@@ -1,0 +1,4 @@
+Log file created at: 2018/01/19 20:05:29
+Running on machine: 14267acs000000
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0119 20:05:29.955039  4776 slave.cpp:1009] Failed to attach 'C:\DCOS\mesos\log\mesos-service.err.log' to virtual path '/slave/log': Failed to get realpath of 'C:\DCOS\mesos\log\mesos-service.err.log': Failed to get attributes for file 'C:\DCOS\mesos\log\mesos-service.err.log': The system cannot find the file specified.

@@ -1,0 +1,251 @@
+Log file created at: 2018/01/19 22:16:17
+Running on machine: 14267acs000003
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0119 22:16:17.334841  3460 logging.cpp:201] INFO level logging started!
+I0119 22:16:17.338836  3460 main.cpp:365] Build: 2018-01-19 00:27:07 UTC by mesos
+I0119 22:16:17.338836  3460 main.cpp:366] Version: 1.6.0
+I0119 22:16:17.338836  3460 main.cpp:373] Git SHA: ab6f0d2c8d76206caf0f66a06e92bfebca19dfbf
+I0119 22:16:17.358839  3460 resolver.cpp:69] Creating default secret resolver
+I0119 22:16:18.123939  3460 containerizer.cpp:304] Using isolation { filesystem/windows, windows/cpu, environment_secret }
+I0119 22:16:18.126937  3460 provisioner.cpp:299] Using default backend 'copy'
+I0119 22:16:18.146935  3460 slave.cpp:262] Mesos agent started on (1)@10.0.0.6:5051
+I0119 22:16:18.149935  3460 slave.cpp:263] Flags at startup: --appc_simple_discovery_uri_prefix="http://" --appc_store_dir="C:\Windows\TEMP\mesos\store\appc" --attributes="os:Windows;public_ip:yes" --authenticate_http_readonly="false" --authenticate_http_readwrite="false" --authenticatee="crammd5" --authentication_backoff_factor="1secs" --authorizer="local" --container_disk_watch_interval="15secs" --containerizers="docker,mesos" --default_role="slave_public" --disk_watch_interval="1mins" --docker="docker" --docker_kill_orphans="true" --docker_registry="https://registry-1.docker.io" --docker_remove_delay="6hrs" --docker_socket="//./pipe/docker_engine" --docker_stop_timeout="0ns" --docker_store_dir="C:\Windows\TEMP\mesos\store\docker" --docker_volume_checkpoint_dir="/var/run/mesos/isolators/docker/volume" --enforce_container_disk_quota="false" --executor_environment_variables="{"PATH":"C:\\Program Files\\Docker;C:\\DCOS\\mesos\\bin"}" --executor_registration_timeout="1mins" --executor_reregistration_timeout="2secs" --executor_shutdown_grace_period="5secs" --external_log_file="C:\DCOS\mesos\log\mesos-service.err.log" --fetcher_cache_dir="C:\Windows\TEMP\mesos\fetch" --fetcher_cache_size="2GB" --frameworks_home="" --gc_delay="1weeks" --gc_disk_headroom="0.1" --hadoop_home="" --help="false" --hostname_lookup="true" --http_command_executor="false" --http_heartbeat_interval="30secs" --initialize_driver_logging="true" --ip="10.0.0.6" --isolation="windows/cpu,filesystem/windows" --launcher="windows" --launcher_dir="C:\DCOS\mesos\bin" --log_dir="C:\DCOS\mesos\log" --logbufsecs="0" --logging_level="INFO" --master="zk://192.168.255.5:2181/mesos" --max_completed_executors_per_framework="150" --oversubscribed_resources_interval="15secs" --port="5051" --qos_correction_interval_min="0ns" --quiet="false" --reconfiguration_policy="equal" --recover="reconnect" --recovery_timeout="15mins" --registration_backoff_factor="1secs" --runtime_dir="C:\DCOS\mesos\work" --sandbox_directory="C:\mesos\sandbox" --strict="true" --version="false" --work_dir="C:\DCOS\mesos\work" --zk_session_timeout="10secs"
+I0119 22:16:18.170934  1300 group.cpp:341] Group process (zookeeper-group(1)@10.0.0.6:5051) connected to ZooKeeper
+I0119 22:16:18.170934  1300 group.cpp:831] Syncing group operations: queue size (joins, cancels, datas) = (0, 0, 0)
+I0119 22:16:18.170934  1300 group.cpp:419] Trying to create path '/mesos' in ZooKeeper
+I0119 22:16:18.175937  5792 detector.cpp:152] Detected a new leader: (id='2')
+I0119 22:16:18.175937  1044 group.cpp:700] Trying to get '/mesos/json.info_0000000002' in ZooKeeper
+I0119 22:16:18.272956  5792 zookeeper.cpp:262] A new leading master (UPID=master@192.168.255.5:5050) is detected
+I0119 22:16:18.201938  3460 slave.cpp:612] Agent resources: [{"name":"cpus","reservations":[{"role":"slave_public","type":"STATIC"}],"scalar":{"value":2.0},"type":"SCALAR"},{"name":"mem","reservations":[{"role":"slave_public","type":"STATIC"}],"scalar":{"value":7167.0},"type":"SCALAR"},{"name":"disk","reservations":[{"role":"slave_public","type":"STATIC"}],"scalar":{"value":35839.0},"type":"SCALAR"},{"name":"ports","ranges":{"range":[{"begin":31000,"end":32000}]},"reservations":[{"role":"slave_public","type":"STATIC"}],"type":"RANGES"}]
+I0119 22:16:18.276952  3460 slave.cpp:620] Agent attributes: [ os=Windows, public_ip=yes ]
+I0119 22:16:18.276952  3460 slave.cpp:629] Agent hostname: 14267acs000003.wpglhdhu2yfudgoh0ji4xwfika.xx.internal.cloudapp.net
+I0119 22:16:18.277936  1004 task_status_update_manager.cpp:181] Pausing sending task status updates
+I0119 22:16:18.301939  1300 state.cpp:66] Recovering state from 'C:\DCOS\mesos\work\meta'
+E0119 22:16:18.301939  3460 slave.cpp:1009] Failed to attach 'C:\DCOS\mesos\log\mesos-service.err.log' to virtual path '/slave/log': Failed to get realpath of 'C:\DCOS\mesos\log\mesos-service.err.log': Failed to get attributes for file 'C:\DCOS\mesos\log\mesos-service.err.log': The system cannot find the file specified.
+I0119 22:16:18.308933  1044 task_status_update_manager.cpp:207] Recovering task status update manager
+I0119 22:16:18.310936  1004 docker.cpp:898] Recovering Docker containers
+I0119 22:16:18.310936  4236 containerizer.cpp:674] Recovering containerizer
+I0119 22:16:18.320933  5656 provisioner.cpp:493] Provisioner recovery complete
+I0119 22:16:18.554350  5656 slave.cpp:6727] Finished recovery
+I0119 22:16:18.563352  1044 task_status_update_manager.cpp:181] Pausing sending task status updates
+I0119 22:16:18.563352  5168 slave.cpp:1055] New master detected at master@192.168.255.5:5050
+I0119 22:16:18.563352  5168 slave.cpp:1099] No credentials provided. Attempting to register without authentication
+I0119 22:16:18.564352  5168 slave.cpp:1110] Detecting new master
+I0119 22:16:21.656700  1004 slave.cpp:1276] Registered with master master@192.168.255.5:5050; given agent ID dc25e219-b012-40eb-95d9-ca31cbacde13-S8
+I0119 22:16:21.665704  1300 task_status_update_manager.cpp:188] Resuming sending task status updates
+I0119 22:16:21.670711  1004 slave.cpp:1343] Forwarding agent update {"operations":{},"resource_version_uuid":{"value":"2X6QMgKZSUSCc+mkjEwtkA=="},"slave_id":{"value":"dc25e219-b012-40eb-95d9-ca31cbacde13-S8"},"update_oversubscribed_resources":true}
+W0119 22:16:21.671696  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050
+I0119 22:16:21.679695  1004 slave.cpp:1343] Forwarding agent update {"operations":{},"resource_version_uuid":{"value":"2X6QMgKZSUSCc+mkjEwtkA=="},"slave_id":{"value":"dc25e219-b012-40eb-95d9-ca31cbacde13-S8"},"update_oversubscribed_resources":true}
+W0119 22:16:21.680698  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050
+I0119 22:16:21.681696  1004 slave.cpp:1343] Forwarding agent update {"operations":{},"resource_version_uuid":{"value":"2X6QMgKZSUSCc+mkjEwtkA=="},"slave_id":{"value":"dc25e219-b012-40eb-95d9-ca31cbacde13-S8"},"update_oversubscribed_resources":true}
+W0119 22:16:21.682698  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050
+I0119 22:16:21.683696  1004 slave.cpp:1343] Forwarding agent update {"operations":{},"resource_version_uuid":{"value":"2X6QMgKZSUSCc+mkjEwtkA=="},"slave_id":{"value":"dc25e219-b012-40eb-95d9-ca31cbacde13-S8"},"update_oversubscribed_resources":true}
+W0119 22:16:21.684698  1004 slave.cpp:1325] Already registered with master master@192.168.255.5:5050
+I0119 22:16:21.685700  1004 slave.cpp:1343] Forwarding agent update {"operations":{},"resource_version_uuid":{"value":"2X6QMgKZSUSCc+mkjEwtkA=="},"slave_id":{"value":"dc25e219-b012-40eb-95d9-ca31cbacde13-S8"},"update_oversubscribed_resources":true}
+I0119 22:17:18.287107  5168 slave.cpp:6265] Current disk usage 35.83%. Max allowed age: 3.791681514605116days
+I0119 22:18:18.296133  1004 slave.cpp:6265] Current disk usage 36.04%. Max allowed age: 3.777400123195845days
+I0119 22:19:18.311169  1044 slave.cpp:6265] Current disk usage 36.20%. Max allowed age: 3.766224281865382days
+I0119 22:20:18.327030  5656 slave.cpp:6265] Current disk usage 36.20%. Max allowed age: 3.766012661191481days
+I0119 22:21:18.339359  4236 slave.cpp:6265] Current disk usage 36.30%. Max allowed age: 3.758678703073298days
+I0119 22:22:18.355489  1044 slave.cpp:6265] Current disk usage 36.42%. Max allowed age: 3.750700536909965days
+I0119 22:23:18.355600  5168 slave.cpp:6265] Current disk usage 36.58%. Max allowed age: 3.739500662947766days
+I0119 22:24:18.365993  1004 slave.cpp:6265] Current disk usage 36.72%. Max allowed age: 3.729894953557408days
+I0119 22:25:18.371419  1044 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743946699818982days
+I0119 22:26:18.783892  4236 slave.cpp:6265] Current disk usage 36.53%. Max allowed age: 3.742937329286053days
+I0119 22:27:18.797451  1300 slave.cpp:6265] Current disk usage 36.54%. Max allowed age: 3.742090846590451days
+I0119 22:28:18.806638  1004 slave.cpp:6265] Current disk usage 36.53%. Max allowed age: 3.742927983262604days
+I0119 22:29:18.817170  4236 slave.cpp:6265] Current disk usage 36.53%. Max allowed age: 3.742927983262604days
+I0119 22:30:18.828001  1300 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:31:18.834697  1004 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:32:18.851459  5792 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:33:18.863193  4920 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:34:18.866936  4236 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:35:18.880214  5792 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:36:18.881999  4920 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:37:18.884268  4236 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:38:18.895462  4236 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:39:18.910503  4920 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:40:18.925168  5168 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743654302799525days
+I0119 22:41:18.928859  1044 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743644956776065days
+I0119 22:42:18.941905  5656 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743644956776065days
+I0119 22:43:18.942744  5168 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743644956776065days
+I0119 22:44:18.955251  1044 slave.cpp:6265] Current disk usage 36.52%. Max allowed age: 3.743644956776065days
+I0119 22:45:18.959844  1044 slave.cpp:6265] Current disk usage 36.68%. Max allowed age: 3.732345614421400days
+I0119 22:46:18.970614  1300 slave.cpp:6265] Current disk usage 36.68%. Max allowed age: 3.732226786408935days
+I0119 22:47:18.987221  1004 slave.cpp:6265] Current disk usage 36.69%. Max allowed age: 3.731948408424653days
+I0119 22:48:18.988976  4236 slave.cpp:6265] Current disk usage 36.69%. Max allowed age: 3.731925710939120days
+I0119 22:49:19.001895  4236 slave.cpp:6265] Current disk usage 36.69%. Max allowed age: 3.731759485236285days
+I0119 22:50:19.010653  5656 slave.cpp:6265] Current disk usage 36.70%. Max allowed age: 3.731291516490532days
+I0119 22:51:19.022819  4920 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730204039904468days
+I0119 22:52:19.034135  4920 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730196029027222days
+I0119 22:53:19.038055  1300 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730196029027222days
+I0119 22:54:19.049868  5792 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730196029027222days
+I0119 22:55:19.055984  5168 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730632621837095days
+I0119 22:56:19.068140  5792 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730587894439144days
+I0119 22:57:19.080698  4920 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730587226866030days
+I0119 22:58:19.091322  1300 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730587226866030days
+I0119 22:59:19.107286  5656 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730587226866030days
+I0119 23:00:19.112330  4920 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730416328151470days
+I0119 23:01:19.127820  4236 slave.cpp:6265] Current disk usage 36.71%. Max allowed age: 3.730092555196134days
+I0119 23:02:19.141762  5168 slave.cpp:6265] Current disk usage 36.72%. Max allowed age: 3.729545812824132days
+I0119 23:03:19.159839  1004 slave.cpp:6265] Current disk usage 36.72%. Max allowed age: 3.729545812824132days
+I0119 23:04:19.172715  4920 slave.cpp:6265] Current disk usage 36.72%. Max allowed age: 3.729545812824132days
+I0119 23:05:19.176190  1300 slave.cpp:6265] Current disk usage 36.72%. Max allowed age: 3.729534464081366days
+I0119 23:06:19.181090  1044 slave.cpp:6265] Current disk usage 36.72%. Max allowed age: 3.729374246536458days
+I0119 23:07:19.194010  5656 slave.cpp:6265] Current disk usage 36.72%. Max allowed age: 3.729288129606076days
+I0119 23:08:19.211311  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729245404927430days
+I0119 23:09:19.225991  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729245404927430days
+I0119 23:10:19.232738  1044 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729089192821146days
+I0119 23:11:19.248189  5656 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729089192821146days
+I0119 23:12:19.260421  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729089192821146days
+I0119 23:13:19.265455  4236 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729089192821146days
+I0119 23:14:19.279386  5792 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729089192821146days
+I0119 23:15:19.282094  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729059819604572days
+I0119 23:16:19.297139  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729059152031470days
+I0119 23:17:19.300336  5168 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728352192114560days
+I0119 23:18:19.314064  4920 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728352192114560days
+I0119 23:19:19.326249  5656 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728352192114560days
+I0119 23:20:19.337709  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729035786972835days
+I0119 23:21:19.342725  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728872899135521days
+I0119 23:22:19.358217  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728872899135521days
+I0119 23:23:19.373883  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728872899135521days
+I0119 23:24:19.376515  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728872899135521days
+I0119 23:25:19.388852  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728872899135521days
+I0119 23:26:19.402308  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728872231562407days
+I0119 23:27:19.417752  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728871563989306days
+I0119 23:28:19.419982  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728871563989306days
+I0119 23:29:19.423368  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728871563989306days
+I0119 23:30:19.432827  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729213361418449days
+I0119 23:31:19.449903  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728871563989306days
+I0119 23:32:19.463347  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728871563989306days
+I0119 23:33:19.473731  4236 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728871563989306days
+I0119 23:34:19.482861  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728871563989306days
+I0119 23:35:19.497149  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729209355979827days
+I0119 23:36:19.510421  5792 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728839520480324days
+I0119 23:37:19.525279  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:38:19.540923  5656 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:39:19.545847  1044 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:40:19.558522  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729167298874283days
+I0119 23:41:19.572152  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:42:19.587807  1044 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:43:19.603423  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:44:19.610885  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:45:19.622000  4236 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729167298874283days
+I0119 23:46:19.636874  5792 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728825501445150days
+I0119 23:47:19.650642  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728814152702384days
+I0119 23:48:19.665622  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728814152702384days
+I0119 23:49:19.680797  5792 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728814152702384days
+I0119 23:50:19.697029  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729155950131516days
+I0119 23:51:19.710700  1044 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728814152702384days
+I0119 23:52:19.726207  5656 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728814152702384days
+I0119 23:53:19.741190  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728814152702384days
+I0119 23:54:19.746269  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728814152702384days
+I0119 23:55:19.758894  4236 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729155950131516days
+I0119 23:56:19.774446  5168 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728813485129282days
+I0119 23:57:19.787185  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728802803959618days
+I0119 23:58:19.796772  5792 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728802803959618days
+I0119 23:59:19.803628  4236 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728802803959618days
+I0120 00:00:19.811396  1300 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.729144601388762days
+I0120 00:01:19.823040  5656 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728802803959618days
+I0120 00:02:19.833761  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728642586414711days
+I0120 00:03:19.849634  1044 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728642586414711days
+I0120 00:04:19.851351  5656 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728642586414711days
+I0120 00:05:19.865077  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728984383843854days
+I0120 00:06:19.880657  4920 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728641918841609days
+I0120 00:07:19.891887  5792 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728630570098843days
+I0120 00:08:19.901880  4236 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728630570098843days
+I0120 00:09:19.910686  4920 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728459671384271days
+I0120 00:10:19.925923  5792 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728800133667199days
+I0120 00:11:19.940707  5168 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727903582988819days
+I0120 00:12:19.950542  1300 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727903582988819days
+I0120 00:13:19.960846  5792 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727903582988819days
+I0120 00:14:19.978452  5656 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727903582988819days
+I0120 00:15:19.993563  1004 slave.cpp:6265] Current disk usage 36.73%. Max allowed age: 3.728758076561667days
+I0120 00:16:20.006587  4920 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728416279132523days
+I0120 00:17:20.029798  5656 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727731349128044days
+I0120 00:18:20.037109  5792 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727720667958379days
+I0120 00:19:20.049742  5168 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727720667958379days
+I0120 00:20:20.065500  5656 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727720667958379days
+I0120 00:21:20.081178  5792 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728537109864317days
+I0120 00:22:20.084101  5168 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728537109864317days
+I0120 00:23:20.100517  5656 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728537109864317days
+I0120 00:24:20.114894  5792 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727673270268009days
+I0120 00:25:20.126554  5168 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727673270268009days
+I0120 00:26:20.141999  1044 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728313472874548days
+I0120 00:27:20.158588  4920 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728131892990313days
+I0120 00:28:20.160161  5792 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728131892990313days
+I0120 00:29:20.173688  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727432943950648days
+I0120 00:30:20.174705  4920 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727432943950648days
+I0120 00:31:20.179740  1300 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728001716235081days
+I0120 00:32:20.188403  1004 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728001716235081days
+I0120 00:33:20.204597  4236 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728001716235081days
+I0120 00:34:20.220444  1300 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728001716235081days
+I0120 00:35:20.234189  1004 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728001716235081days
+I0120 00:36:20.250162  5168 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728129222697905days
+I0120 00:37:20.265926  4236 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728117873955139days
+I0120 00:38:20.267459  1044 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728117873955139days
+I0120 00:39:20.281749  5168 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728117873955139days
+I0120 00:40:20.284317  4236 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.728117873955139days
+I0120 00:41:20.297489  1300 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727989699919213days
+I0120 00:42:20.304203  5168 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727989699919213days
+I0120 00:43:20.317582  4920 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727989699919213days
+I0120 00:44:20.328042  1044 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727989699919213days
+I0120 00:45:20.344527  5656 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727989699919213days
+I0120 00:46:20.356314  4920 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727989699919213days
+I0120 00:47:20.360867  5792 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727978351176447days
+I0120 00:48:20.371803  1300 slave.cpp:6265] Current disk usage 36.74%. Max allowed age: 3.727978351176447days
+I0120 00:49:20.377147  4920 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727807452461875days
+I0120 00:50:20.392374  5792 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727807452461875days
+I0120 00:51:20.396481  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727786090122558days
+I0120 00:52:20.407930  4920 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727786090122558days
+I0120 00:53:20.420882  1300 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727786090122558days
+I0120 00:54:20.435617  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727786090122558days
+I0120 00:55:20.449676  4920 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727786090122558days
+I0120 00:56:20.464771  5656 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727785422549444days
+I0120 00:57:20.480039  4236 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 00:58:20.482594  4920 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 00:59:20.498864  5792 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 01:00:20.511409  4236 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 01:01:20.526417  1004 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 01:02:20.528966  5792 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 01:03:20.543658  4236 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 01:04:20.557360  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 01:05:20.572798  5792 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727774073806690days
+I0120 01:06:20.588610  5792 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727772738660474days
+I0120 01:07:20.605581  5168 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727687289303194days
+I0120 01:08:20.619400  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727516390588623days
+I0120 01:09:20.622547  5656 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727516390588623days
+I0120 01:10:20.635599  4920 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727516390588623days
+I0120 01:11:20.645485  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727643897051447days
+I0120 01:12:20.654098  4236 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727643897051447days
+I0120 01:13:20.667979  5168 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727643897051447days
+I0120 01:14:20.681397  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727643897051447days
+I0120 01:15:20.696714  4236 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727643897051447days
+I0120 01:16:20.712577  5656 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726810098244826days
+I0120 01:17:20.726498  5168 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726798749502060days
+I0120 01:18:20.732183  1044 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726777387162731days
+I0120 01:19:20.742569  1300 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726777387162731days
+I0120 01:20:20.757663  4920 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726777387162731days
+I0120 01:21:20.759917  1004 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727460314447905days
+I0120 01:22:20.761476  1300 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727460314447905days
+I0120 01:23:20.778203  5168 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727460314447905days
+I0120 01:24:20.789674  1044 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727452971143761days
+I0120 01:25:20.802889  1300 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727463652313426days
+I0120 01:26:20.819380  4236 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727463652313426days
+I0120 01:27:20.823851  4920 slave.cpp:6265] Current disk usage 36.75%. Max allowed age: 3.727292086025752days
+I0120 01:28:20.836539  5792 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726583790962639days
+I0120 01:29:20.846803  1300 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726583790962639days
+I0120 01:30:20.850168  4920 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726583790962639days
+I0120 01:31:20.859920  1044 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726583123389537days
+I0120 01:32:20.870112  5656 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726583123389537days
+I0120 01:33:20.880671  4920 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726583123389537days
+I0120 01:34:20.885376  4236 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726583123389537days
+I0120 01:35:20.895427  1300 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726604485728854days
+I0120 01:36:20.910979  5792 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726602483009549days
+I0120 01:37:20.926968  5168 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726591801839884days
+I0120 01:38:20.941643  1004 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726591801839884days
+I0120 01:39:20.952307  5656 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726591801839884days
+I0120 01:40:20.956883  5168 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726591801839884days
+I0120 01:41:20.958602  1004 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726575112512291days
+I0120 01:42:20.974468  5792 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726519036371574days
+I0120 01:43:20.990571  1300 slave.cpp:6265] Current disk usage 36.76%. Max allowed age: 3.726515698506053days
