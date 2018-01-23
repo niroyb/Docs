@@ -1,6 +1,6 @@
       {
         "id": "dcos-iis",
-        "cmd": null,
+        "cmd": "ping -t 127.0.0.1",
         "cpus": 1,
         "mem": 512,
         "disk": 0,
