@@ -1,5 +1,5 @@
 
-# DC/OS cluster definition file for creating 1 master, two Windows slaves nodes and two Linux slaves nodes
+# DC/OS cluster definition file for creating 1 master, two RS3 Windows slaves nodes and two Linux slaves nodes
 
     {
         "apiVersion": "vlabs",
