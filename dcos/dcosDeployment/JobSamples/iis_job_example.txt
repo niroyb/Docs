@@ -12,13 +12,10 @@
   ],
   "container": {
     "type": "DOCKER",
+    "networks": [ { "mode": "container", "name": "nat_network" } ],
     "docker": {
       "image": "microsoft/iis",
       "parameters": [
-        {
-          "key": "network",
-          "value": "nat"
-        },
         {
           "key": "publish",
           "value": "80:80"
