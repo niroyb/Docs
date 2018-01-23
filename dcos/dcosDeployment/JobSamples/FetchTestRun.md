@@ -1,5 +1,5 @@
 
-# A test run on the fetecher local files
+# A test run on the fetecher for a local zip file
 
 - Deployment a DC/OS with RS3 build
 
