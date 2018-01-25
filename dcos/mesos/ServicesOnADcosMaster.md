@@ -221,6 +221,27 @@
         
 # Windows Agent node parameters
 
+## New setup
+        Mesos (and Spartan as well) are configured to run under LocalSystem.
+        This can be checked via: sc.exe qc dcos-mesos-slave
+
+        PS C:\Users\azureuser> sc.exe qc dcos-mesos-slave
+        [SC] QueryServiceConfig SUCCESS
+
+        SERVICE_NAME: dcos-mesos-slave
+                TYPE               : 10  WIN32_OWN_PROCESS
+                START_TYPE         : 2   AUTO_START
+                ERROR_CONTROL      : 1   NORMAL
+                BINARY_PATH_NAME   : "C:\DCOS\mesos\service\service-wrapper.exe" --service-name "dcos-mesos-slave" --environment-file "C:\DCOS\mesos\service\environment-file" C:\DCOS\mesos\bin\mesos-agent.exe --master="zk://192.168.255.5:2181/mesos" --work_dir="C:\DCOS\mesos\work" --runtime_dir="C:\DCOS\mesos\work" --launcher_dir="C:\DCOS\mesos\bin" --external_log_file="C:\DCOS\mesos\log\mesos-service.err.log" --log_dir="C:\DCOS\mesos\log" --ip="10.0.0.4" --isolation="windows/cpu,filesystem/windows" --containerizers="docker,mesos" --attributes="os:Windows;public_ip:yes" --hostname="10.0.0.4" --executor_environment_variables="{\\\"PATH\\\": \\\"C:\\Program Files\\Docker;C:\\DCOS\\mesos\\bin\\\"}" --default_role="slave_public"
+                LOAD_ORDER_GROUP   :
+                TAG                : 0
+                DISPLAY_NAME       : DCOS Mesos Windows Slave
+                DEPENDENCIES       :
+                SERVICE_START_NAME : LocalSystem
+
+        The SERVICE_START_NAME represents the user under which the service is running. LocalSystem has full administrative privileges by default.
+
+## Old setup
         C:\DCOS\mesos\service>notepad mesos-service.xml
 
         <configuration>
@@ -241,7 +262,6 @@
             <keepFiles>8</keepFiles>
           </log>
         </configuration>
-
 
 # Linux Agent run parameters
 
