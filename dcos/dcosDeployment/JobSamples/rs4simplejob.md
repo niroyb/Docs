@@ -18,7 +18,7 @@
           "networks": [ { "mode": "container", "name": "nat_network" } ],
           "docker": {
             "network": "BRIDGE",
-            "image": "microsoft/iis:windowsservercore-1709",
+            "image": "microsoft/windowsservercore:rs4",
             "privileged": false,
             "parameters": [
               {
