@@ -1,0 +1,26 @@
+Log file created at: 2018/01/26 23:44:21
+Running on machine: 39613acs000001
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0126 23:44:21.626821  2084 slave.cpp:6802] EXIT with status 1:
+ Failed to perform recovery: Failed to recover framework 83a3baa4-88ec-4cae-97ed-9c16f1ec694f-0001: 
+                             Failed to recover executor 'simplejob.2d02eb81-02f1-11e8-a981-0e38bb9778bd': 
+                             Failed to find latest run of executor 'simplejob.2d02eb81-02f1-11e8-a981-0e38bb9778bd': 
+                             Failed to get attributes for file 'latest': The system cannot find the file specified.
+
+If recovery failed due to a change in configuration and you want to
+keep the current agent id, you might want to change the
+`--reconfiguration_policy` flag to a more permissive value.
+
+To restart this agent with a new agent id instead, do as follows:
+rm -f C:\DCOS\mesos\work\meta\slaves\latest
+This ensures that the agent does not recover old live executors.
+
+If you use the Docker containerizer and think that the Docker
+daemon state is broken, you can try to clear it. But be careful:
+these commands will erase all containers and images from this host,
+not just those started by Mesos!
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -q)
+
+Finally, restart the agent.
