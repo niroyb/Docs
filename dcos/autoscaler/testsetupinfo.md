@@ -4,7 +4,7 @@
 
     git clone git@github.com:niroyb/DCOS.git
 
-# [install Pester](https://github.com/pester/Pester/wiki/Installation-and-Update)
+# [Install Pester](https://github.com/pester/Pester/wiki/Installation-and-Update)
 
     (testing framework)
     Install-Module -Name Pester -Force -SkipPublisherCheck
@@ -21,7 +21,15 @@
 
 # [Create a service principal](https://www.terraform.io/docs/providers/azurerm/authenticating_via_service_principal.html)
 
-    az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998"
+        PS D:\github\nick\ScaleUp> az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTIONID"
+        Retrying role assignment creation: 1/36
+        {
+          "appId": "3c870b83-fc7d-4528-8950-3ba5e1da27c2",
+          "displayName": "azure-cli-2018-01-30-01-56-30",
+          "name": "http://azure-cli-2018-01-30-01-56-30",
+          "password": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "tenant": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
 
 
   Note: you  might get the following error this if you are not a owner of your subscription 
@@ -36,6 +44,8 @@
 
 
 # Create environment variable file
+
+
 
   It will contains service credential info.
   
