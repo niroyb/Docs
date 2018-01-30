@@ -23,6 +23,18 @@
 
     az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998"
 
+
+  Note: you  might get the following error this if you are not a owner of your subscription 
+  
+          PS D:\github\nick\ScaleUp> az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998"
+        Role assignment creation failed.
+
+        role assignment response headers: {'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'x-ms-failure-cause': 'gateway', 'x-ms-request-id': '69ead45c-763a-4cfb-82c0-4421c98605a9', 'x-ms-correlation-request-id': '69ead45c-763a-4cfb-82c0-4421c98605a9', 'x-ms-routing-request-id': 'WESTUS2:20180130T015758Z:69ead45c-763a-4cfb-82c0-4421c98605a9', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'Date': 'Tue, 30 Jan 2018 01:57:58 GMT', 'Connection': 'close', 'Content-Length': '307'}
+
+        The client 'soccerl@ntdev.microsoft.com' with object id 'd5080403-0c12-4bea-afea-01f17ee4c5d0' does not have authorization to perform action 'Microsoft.Authorization/roleAssignments/write' over scope '/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998'.
+        PS D:\github\nick\ScaleUp>
+
+
 # Create environment variable file
 
   It will contains service credential info.
