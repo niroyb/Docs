@@ -5,7 +5,7 @@
   git clone git@github.com:niroyb/DCOS.git
 
 
-# [install Pester] (https://github.com/pester/Pester/wiki/Installation-and-Update)
+# [install Pester](https://github.com/pester/Pester/wiki/Installation-and-Update)
   (testing framework)
 
   Install-Module -Name Pester -Force -SkipPublisherCheck
