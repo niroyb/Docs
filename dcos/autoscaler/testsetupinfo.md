@@ -21,7 +21,8 @@
 
 # [Create a service principal](https://www.terraform.io/docs/providers/azurerm/authenticating_via_service_principal.html)
 
-        PS D:\github\nick\ScaleUp> az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTIONID"
+    D:\github\nick\ScaleUp> az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTIONID"
+     
         Retrying role assignment creation: 1/36
         {
           "appId": "3c870b83-fc7d-4528-8950-3ba5e1da27c2",
