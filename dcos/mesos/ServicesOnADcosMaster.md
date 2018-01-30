@@ -221,7 +221,18 @@
         
 # Windows Agent node 
 
-## Components 
+
+## Services 
+
+        PS C:\dcos\mesos\bin> get-service
+        Status   Name               DisplayName
+        ------   ----               -----------
+        ...
+        Running  dcos-epmd          DCOS EPMD Windows Agent
+        Stopped  dcos-mesos-slave   DCOS Mesos Windows Slave
+        Running  dcos-spartan       DCOS Spartan Windows Agent
+
+## Mesos Agent binary list
 
         PS C:\dcos\mesos\bin> dir
 
