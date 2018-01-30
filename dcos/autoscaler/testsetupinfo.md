@@ -10,17 +10,26 @@ git clone git@github.com:niroyb/DCOS.git
   Install-Module -Name Pester -Force -SkipPublisherCheck
 
 
-PS D:\github\nick> invoke-pester -script  .\ScaleUp\ScaleUp.Tests.ps1
-Executing all tests in '.\ScaleUp\ScaleUp.Tests.ps1'
+# [Create a service principa](https://www.terraform.io/docs/providers/azurerm/authenticating_via_service_principal.html)
 
-Executing script .\ScaleUp\ScaleUp.Tests.ps1
-
+  az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998"
 
 
-Create a service principal:
+# [Install and configure Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps?view=azurermps-5.1.1)
+  
+    PS D:\github\nick> Get-Module PowerShellGet -list | Select-Object Name,Version,Path
+    Name          Version Path
+    ----          ------- ----
+    PowerShellGet 1.0.0.1 C:\Program Files\WindowsPowerShell\Modules\PowerShellGet\1.0.0.1\PowerShellGet.psd1
 
-https://www.terraform.io/docs/providers/azurerm/authenticating_via_service_principal.html
+    PS D:\github\nick> Install-Module AzureRM -AllowClobber
 
 
-az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998"
+# Run test script
+
+
+  PS D:\github\nick> invoke-pester -script  .\ScaleUp\ScaleUp.Tests.ps1
+  Executing all tests in '.\ScaleUp\ScaleUp.Tests.ps1'
+
+  Executing script .\ScaleUp\ScaleUp.Tests.ps1
 
