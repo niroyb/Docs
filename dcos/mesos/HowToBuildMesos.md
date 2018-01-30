@@ -1,8 +1,24 @@
 
-How to build Mesos Windows agent binaries:
+# [How to build Mesos Windows agent binaries](https://github.com/apache/mesos/blob/master/docs/windows.md)
 
-https://github.com/apache/mesos/blob/master/docs/windows.md
+      Short cheat sheet
 
+      # Clone (or extract) Mesos.
+      git clone https://git-wip-us.apache.org/repos/asf/mesos.git
+      cd mesos
 
-PS D:\github\mesos\build> cmake --build . --target mesos-agent
+      # Configure using CMake for an out-of-tree build.
+      mkdir build
+      cd build
+      cmake .. -G "Visual Studio 15 2017 Win64" -T "host=x64" -DENABLE_LIBEVENT=1
+
+      # Build Mesos.
+      # To build just the Mesos agent, add `--target mesos-agent`.
+      cmake --build .
+
+      or 
+      cmake --build . --target mesos-agent
+
+      Built binaries could be found in .\src 
+
 
