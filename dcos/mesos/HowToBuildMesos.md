@@ -1,5 +1,5 @@
 
-# [How to build Mesos Windows agent binaries](https://github.com/apache/mesos/blob/master/docs/windows.md)
+# [How to build binaries for Mesos Windows agent noded ](https://github.com/apache/mesos/blob/master/docs/windows.md)
 
       Short cheat sheet
 
