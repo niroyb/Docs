@@ -4,11 +4,10 @@
 
     git clone git@github.com:niroyb/DCOS.git
 
-# [Install Pester](https://github.com/pester/Pester/wiki/Installation-and-Update)
+# [Install Pester](https://github.com/pester/Pester/wiki/Installation-and-Update) 
+    Pester is a BDD based test runner, a framework for running Unit Tests to execute and validate PowerShell commands
 
-    (testing framework)
     Install-Module -Name Pester -Force -SkipPublisherCheck
-
 
 # [Install and configure Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps?view=azurermps-5.1.1)
   
