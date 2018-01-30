@@ -219,36 +219,6 @@
           web.ui.url = ${?METRONOME_WEB_UI_URL}
         }        
         
-# Windows Agent node 
-
-
-## Services 
-
-        PS C:\dcos\mesos\bin> get-service
-        Status   Name               DisplayName
-        ------   ----               -----------
-        ...
-        Running  dcos-epmd          DCOS EPMD Windows Agent
-        Stopped  dcos-mesos-slave   DCOS Mesos Windows Slave
-        Running  dcos-spartan       DCOS Spartan Windows Agent
-
-## Mesos Agent binary list
-
-        PS C:\dcos\mesos\bin> dir
-
-        Directory: C:\dcos\mesos\bin
-        Mode                LastWriteTime         Length Name
-        ----                -------------         ------ ----
-        d-----        1/27/2018   1:23 AM                bak
-        -a----        1/29/2018  11:43 PM        2382336 curl.exe
-        -a----        1/29/2018  11:59 PM       85065216 mesos-agent.exe
-        -a----        1/29/2018  11:55 PM       16149504 mesos-containerizer.exe
-        -a----        1/29/2018  11:56 PM       43906048 mesos-default-executor.exe
-        -a----        1/29/2018  11:56 PM       44007936 mesos-docker-executor.exe
-        -a----        1/29/2018  11:57 PM       44332032 mesos-executor.exe
-        -a----        1/29/2018  11:57 PM       33486848 mesos-fetcher.exe
-        -a----        1/29/2018  11:57 PM        2782720 mesos-tcp-connect.exe
-        -a----        1/29/2018  11:57 PM       28662784 mesos-usage.exe
 
 
 ## mesos-agent.exe parameters 
