@@ -55,7 +55,8 @@
 
 # Create environment variable file
 
-  It will contains the service credential info that will be used by the test cases to access the Azure subscription
+  Add the service principal credential into this file in the following format.
+  The unittest case uses this credential to access the Azure subscription for the scaleup and down operations
 
   Eg.
         PS D:\github\nick> type .\env.ps1
