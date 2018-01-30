@@ -19,6 +19,9 @@
         -a----        1/29/2018  11:57 PM        2782720 mesos-tcp-connect.exe
         -a----        1/29/2018  11:57 PM       28662784 mesos-usage.exe
         
+        
+       This is the code-base for the wrapper: https://github.com/cloudbase/OpenStackService
+       
 ## Services 
 
         PS C:\dcos\mesos\bin> get-service
