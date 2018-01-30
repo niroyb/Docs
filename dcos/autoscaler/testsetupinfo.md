@@ -28,8 +28,5 @@ git clone git@github.com:niroyb/DCOS.git
 # Run test script
 
 
-  PS D:\github\nick> invoke-pester -script  .\ScaleUp\ScaleUp.Tests.ps1
-  Executing all tests in '.\ScaleUp\ScaleUp.Tests.ps1'
 
-  Executing script .\ScaleUp\ScaleUp.Tests.ps1
-
+PS D:\github\nick\ScaleUp> invoke-pester -script  .\ScaleUp.Tests.ps1
