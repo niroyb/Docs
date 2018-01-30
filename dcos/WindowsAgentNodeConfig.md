@@ -33,6 +33,38 @@
         Running  dcos-mesos-slave   DCOS Mesos Windows Slave
         Running  dcos-spartan       DCOS Spartan Windows Agent
       
+  
+###     service-wrapper
+    
+        The wrapper binary is available at: http://dcos-win.westus.cloudapp.azure.com/downloads/service-wrapper.exe
+
+        The wrapper accepts the following named parameters:
+        •	--exec-start-pre, used to pass  a prestart script. This needs to be an executable recognized by the operating system. A cmd script will do just fine by default, but you can execute PowerShell as in the example given below.
+        •	--service-name, used to pass the Windows service name.
+        •	--environment-file, used to pass the environment file path to be loaded before the service starts. Multiple instances of this parameter can be passed.
+        Besides the named parameters given above the wrapper also accepts a single positional parameter with the service binary.
+
+        Here’s an example on how to create a Windows service using the wrapper, in PowerShell (make sure you have the proper escaping as given below when defining the Windows service):
+
+        $wrapperPath = "C:\test\service-wrapper.exe"
+        $serviceName = "test"
+        $envFile1 = "C:\test\env-file-1"
+        $envFile2 = "C:\test\env-file-2"
+        $serviceBinaryPath = "C:\test\DumpEnv.exe"
+        $preStartScript = "C:\test\pre-start-script.ps1"
+
+        New-Service -Name $serviceName 
+                    -DisplayName $serviceName 
+                    -StartupType Automatic `
+                    -BinaryPathName "`"$wrapperPath`" 
+                    --exec-start-pre `"powershell.exe 
+                    -File $preStartScript`" 
+                    --service-name `"$serviceName`" 
+                    --environment-file `"$envFile1`" 
+                    --environment-file `"$envFile2`" `"$serviceBinaryPath`""
+                    
+  This wrapper's source code is located [here](https://github.com/cloudbase/OpenStackService)
+     
   ###     dcos-mesos-slave 
    Note:
    
@@ -44,7 +76,9 @@
    
    See HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dcos-mesos-slave for detailed service parameters
    
-   This wrapper's source code is located [here](https://github.com/cloudbase/OpenStackService)
+
+   
+   We have an updated service wrapper that supports multiple --environment-file parameters.
 
 ## parameters for dcos-mesos-slave 
 
