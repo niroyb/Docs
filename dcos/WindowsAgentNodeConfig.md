@@ -18,10 +18,11 @@
         -a----        1/29/2018  11:57 PM       33486848 mesos-fetcher.exe
         -a----        1/29/2018  11:57 PM        2782720 mesos-tcp-connect.exe
         -a----        1/29/2018  11:57 PM       28662784 mesos-usage.exe
+
+        C:\DCOS\mesos\service
+        01/30/2018  02:20 AM           780,800 service-wrapper.exe
+
         
-        
-       This is the code-base for the wrapper: https://github.com/cloudbase/OpenStackService
-       
 ## Services 
 
         PS C:\dcos\mesos\bin> get-service
@@ -29,9 +30,21 @@
         ------   ----               -----------
         ...
         Running  dcos-epmd          DCOS EPMD Windows Agent
-        Stopped  dcos-mesos-slave   DCOS Mesos Windows Slave
+        Running  dcos-mesos-slave   DCOS Mesos Windows Slave
         Running  dcos-spartan       DCOS Spartan Windows Agent
-
+      
+  ###     dcos-mesos-slave 
+   Note:
+   
+   service-wrapper.exe is a light weight WinNT service wrapper for any executable to run inside a Windows 
+   
+   service context without worrying about the Service API. 
+   
+   mesos-agent.exe runs inside the dcos-mesos-slave service, which was service-wrapper.exe
+   
+   See HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dcos-mesos-slave for detailed service parameters
+   
+   This wrapper's source code is located [here](https://github.com/cloudbase/OpenStackService)
 
 ## parameters for dcos-mesos-slave 
 
