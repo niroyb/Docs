@@ -241,7 +241,7 @@
 
 
 ## mesos-agent.exe parameters 
-### New setup
+   ### New setup
         Mesos (and Spartan as well) are configured to run under LocalSystem.
         This can be checked via: sc.exe qc dcos-mesos-slave
 
@@ -261,7 +261,7 @@
 
         The SERVICE_START_NAME represents the user under which the service is running. LocalSystem has full administrative privileges by default.
 
-### Old setup
+      ### Old setup
         C:\DCOS\mesos\service>notepad mesos-service.xml
 
         <configuration>
