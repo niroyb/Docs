@@ -1,4 +1,35 @@
 
+##  Linux Agent : services
+
+        root@dcos-linpub40012-14267337-000001:~# systemctl | grep dcos
+          sys-devices-virtual-net-d\x2ddcos.device   loaded active     plugged         /sys/devices/virtual/net/d-dcos
+          sys-subsystem-net-devices-d\x2ddcos.device loaded active     plugged         /sys/subsystem/net/devices/d-dcos
+          dcos-volume0.mount                         loaded inactive   dead      start /dcos/volume0
+          dcos-volume1.mount                         loaded inactive   dead      start /dcos/volume1
+          dcos-volume2.mount                         loaded inactive   dead      start /dcos/volume2
+          dcos-volume3.mount                         loaded inactive   dead      start /dcos/volume3
+          dcos-adminrouter-agent.service             loaded active     running         Admin Router Agent: exposes a unified control plane proxy for components and services using NGINX
+          dcos-diagnostics.service                   loaded active     running         DC/OS Diagnostics Agent: exposes component health
+          dcos-epmd.service                          loaded active     running         Erlang Port Mapping Daemon (EPMD): facilitates communication between distributed Erlang programs
+          dcos-log-agent.service                     loaded active     running         DC/OS Log Agent: exposes agent node, component, and container (task) logs
+          dcos-mesos-slave-public.service            loaded active     running         Mesos Agent Public: distributed systems kernel public agent
+          dcos-metrics-agent.service                 loaded active     running         DC/OS Metrics Agent: exposes node, container, and application metrics
+          dcos-navstar.service                       loaded active     running         Navstar: A distributed systems & network overlay orchestration engine
+          dcos-pkgpanda-api.service                  loaded active     running         DC/OS Component Package Manager (Pkgpanda): installs and manages DC/OS components
+          dcos-rexray.service                        loaded active     running         REX-Ray: A vendor agnostic storage orchestration engine
+          dcos-spartan-watchdog.service              loaded activating start-pre start DNS Forwarder (Spartan) Watchdog: restarts Spartan when it is unhealthy
+          dcos-spartan.service                       loaded active     running         DNS Forwarder (Spartan): forwards DNS requests to multiple DNS servers
+          dcos-diagnostics.socket                    loaded active     running         DC/OS Diagnostics Agent Socket: socket for DC/OS Diagnostics Agent
+          dcos-log-agent.socket                      loaded active     running         DC/OS Log Socket: socket for DC/OS Log service
+          dcos-metrics-agent.socket                  loaded active     running         DC/OS Metrics Agent Socket: socket for DC/OS Metrics Agent service
+          dcos.target                                loaded active     active          dcos.target
+          dcos-docker-gc.timer                       loaded active     waiting         Docker GC Timer: timer to periodically trigger Docker GC
+          dcos-gen-resolvconf.timer                  loaded active     waiting         Generate resolv.conf Timer: periodically updates the network name resolution configuration
+          dcos-logrotate-agent.timer                 loaded active     waiting         Logrotate Timer: Timer to trigger every 2 minutes
+          dcos-spartan-watchdog.timer                loaded active     running         DNS Forwarder (Spartan) Watchdog Timer: timer to periodically trigger Spartan Watchdog
+        root@dcos-linpub40012-14267337-000001:~#
+
+
 # Windows Agent node
 
 ## Mesos Agent binary list
