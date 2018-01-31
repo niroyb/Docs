@@ -1,5 +1,5 @@
 
-## Master: DC/OS Service
+## Master: DC/OS Services
 
         root@dcos-master-14267337-0:/home/azureuser/.ssh# systemctl | grep dcos
           dcos-volume0.mount                         loaded inactive   dead      start /dcos/volume0
