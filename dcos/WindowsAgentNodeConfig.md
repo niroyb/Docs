@@ -53,6 +53,7 @@ root@dcos-master-14267337-0:/home/azureuser/.ssh#
           dcos-rexray.service                        loaded active     running         REX-Ray: A vendor agnostic storage orchestration engine
           dcos-spartan-watchdog.service              loaded activating start-pre start DNS Forwarder (Spartan) Watchdog: restarts Spartan when it is unhealthy
           dcos-spartan.service                       loaded active     running         DNS Forwarder (Spartan): forwards DNS requests to multiple DNS servers
+          dcos-spartan-watchdog.timer                loaded active     running         DNS Forwarder (Spartan) Watchdog Timer: timer to periodically trigger Spartan Watchdog          
           dcos-diagnostics.socket                    loaded active     running         DC/OS Diagnostics Agent Socket: socket for DC/OS Diagnostics Agent
           dcos-log-agent.socket                      loaded active     running         DC/OS Log Socket: socket for DC/OS Log service
           dcos-metrics-agent.socket                  loaded active     running         DC/OS Metrics Agent Socket: socket for DC/OS Metrics Agent service
@@ -60,7 +61,7 @@ root@dcos-master-14267337-0:/home/azureuser/.ssh#
           dcos-docker-gc.timer                       loaded active     waiting         Docker GC Timer: timer to periodically trigger Docker GC
           dcos-gen-resolvconf.timer                  loaded active     waiting         Generate resolv.conf Timer: periodically updates the network name resolution configuration
           dcos-logrotate-agent.timer                 loaded active     waiting         Logrotate Timer: Timer to trigger every 2 minutes
-          dcos-spartan-watchdog.timer                loaded active     running         DNS Forwarder (Spartan) Watchdog Timer: timer to periodically trigger Spartan Watchdog
+          
         root@dcos-linpub40012-14267337-000001:~#
 
 
