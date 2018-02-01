@@ -838,3 +838,96 @@
 
       
 
+
+# Node Checks
+      Node checks report the status of individual nodes after installation. Node checks can be run post-installation by connecting to an individual node via SSH. You can view which node checks have been defined by SSHing to your cluster node and running this command: /opt/mesosphere/bin/dcos-shell dcos-diagnostics check node-poststart --list
+      
+      root@dcos-linpub40012-14267337-000001:/opt/mesosphere/etc# /opt/mesosphere/bin/dcos-shell dcos-diagnostics check node-poststart --list
+            {
+              "clock_sync": {
+                "description": "System clock is in sync.",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "time"
+                ],
+                "timeout": "1s"
+              },
+              "components_agent": {
+                "description": "All DC/OS components are healthy",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "--role",
+                  "agent",
+                  "components",
+                  "--port",
+                  "61001"
+                ],
+                "timeout": "3s"
+              },
+              "curl": {
+                "description": "The curl utility is available",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "executable",
+                  "curl"
+                ],
+                "timeout": "1s"
+              },
+              "ip_detect_script": {
+                "description": "The IP detect script produces valid output",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "ip"
+                ],
+                "timeout": "1s"
+              },
+              "journald_dir_permissions": {
+                "description": "Journald directory has the right owners and permissions",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "journald"
+                ],
+                "timeout": "1s"
+              },
+              "mesos_agent_registered_with_masters": {
+                "description": "The Mesos agent has registered with the masters",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "--role",
+                  "agent",
+                  "mesos-metrics"
+                ],
+                "timeout": "1s"
+              },
+              "tar": {
+                "description": "The tar utility is available",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "executable",
+                  "tar"
+                ],
+                "timeout": "1s"
+              },
+              "unzip": {
+                "description": "The unzip utility is available",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "executable",
+                  "unzip"
+                ],
+                "timeout": "1s"
+              },
+              "xz": {
+                "description": "The xz utility is available",
+                "cmd": [
+                  "/opt/mesosphere/bin/dcos-checks",
+                  "executable",
+                  "xz"
+                ],
+                "timeout": "1s"
+              }
+            }
+            root@dcos-linpub40012-14267337-000001:/opt/mesosphere/etc#
+
+
+
