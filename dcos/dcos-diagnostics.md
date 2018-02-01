@@ -2,8 +2,10 @@
       
 # Master node : dcos-diagnostics.service    
 
-       dcos-diagnostics.service: DC/OS Diagnostics Master: aggregates and exposes component health
+      dcos-diagnostics.service: DC/OS Diagnostics Master: aggregates and exposes component health
 
+      root@dcos-master-14267337-0:/etc/systemd/system# vi ./dcos-diagnostics.service
+      
       [Unit]
       Description=DC/OS Diagnostics Master: aggregates and exposes component health
       [Service]
@@ -22,6 +24,26 @@
       ExecStartPre=/opt/mesosphere/bin/bootstrap dcos-checks-master
       ExecStart=/opt/mesosphere/bin/dcos-diagnostics daemon --config ${DCOS_DIAGNOSTICS_CONFIG_PATH}
       Sockets=dcos-diagnostics.socket
+
+      root@dcos-master-14267337-0:/opt/mesosphere/etc
+      dcos-diagnostics-config.json
+      dcos-diagnostics-endpoint-config.json
+      dcos-diagnostics.env
+      dcos-diagnostics-runner-config.json
+      
+      root@dcos-master-14267337-0:/opt/mesosphere/etc# cat /opt/mesosphere/etc/dcos-diagnostics.env
+      DCOS_DIAGNOSTICS_CONFIG_PATH=/opt/mesosphere/etc/dcos-diagnostics-config.json
+
+      
+      root@dcos-master-14267337-0:/etc/systemd/system# cat /opt/mesosphere/etc/dcos-diagnostics-config.json
+      {
+        "role": "master",
+        "pull": true,
+        "diagnostics-bundle-dir": "/var/lib/dcos/dcos-diagnostics/diag-bundles",
+        "endpoint-config": "/opt/mesosphere/etc/dcos-diagnostics-endpoint-config.json",
+        "no-unix-socket": true,
+        "agent-port": 61001
+      }
 
 # Linux agent : dcos-diagnostics.service
 
