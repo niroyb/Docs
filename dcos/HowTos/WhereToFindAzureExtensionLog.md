@@ -22,13 +22,13 @@
         2018/02/01 19:48:51
         root@dcos-master-28955507-0:~#
         
-        // In this specifc case that Dmistris showed us, it's caused by the fact that dcos-setup.service failed! 
-        // See below.
+// In this specifc case that Dmistris showed us, it's caused by the fact that dcos-setup.service failed! See below.
         
         root@dcos-master-28955507-0:~# systemctl | grep spartan
         root@dcos-master-28955507-0:~# systemctl | grep dcos
-        ● dcos-setup.service                                                                                                                             loaded failed failed    
-                 Pkgpanda: Specialize DC/OS for this host.
+        ● dcos-setup.service
+                 loaded failed failed, Pkgpanda: Specialize DC/OS for this host.
+                 
         root@dcos-master-28955507-0:~#
 
 
