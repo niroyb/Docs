@@ -27,7 +27,8 @@
         
         root@dcos-master-28955507-0:~# systemctl | grep spartan
         root@dcos-master-28955507-0:~# systemctl | grep dcos
-        ● dcos-setup.service                                                                                                                             loaded failed failed    Pkgpanda: Specialize DC/OS for this host.
+        ● dcos-setup.service                                                                                                                             loaded failed failed    
+                 Pkgpanda: Specialize DC/OS for this host.
         root@dcos-master-28955507-0:~#
 
 
