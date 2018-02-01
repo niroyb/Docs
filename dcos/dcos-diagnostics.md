@@ -840,7 +840,9 @@
 
 
 # Node Checks
-      Node checks report the status of individual nodes after installation. Node checks can be run post-installation by connecting to an individual node via SSH. You can view which node checks have been defined by SSHing to your cluster node and running this command: /opt/mesosphere/bin/dcos-shell dcos-diagnostics check node-poststart --list
+      Node checks report the status of individual nodes after installation. Node checks can be run post-installation by
+      connecting to an individual node via SSH. You can view which node checks have been defined by SSHing to your cluster 
+      node and running this command: /opt/mesosphere/bin/dcos-shell dcos-diagnostics check node-poststart --list
       
       root@dcos-linpub40012-14267337-000001:/opt/mesosphere/etc# /opt/mesosphere/bin/dcos-shell dcos-diagnostics check node-poststart --list
             {
