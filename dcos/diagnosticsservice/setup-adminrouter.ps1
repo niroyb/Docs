@@ -5,10 +5,8 @@
    
 
 function Setup( 
-           [string] $script_path,
            [string[]]$MasterAddress,
-           [string]$AgentPrivateIP,
-           [switch]$Public=$false
+           [string]$AgentPrivateIP
         ) {
         [Uri]    $URLRewrite_Plugin_Uri  = 'http://download.microsoft.com/download/D/D/E/DDE57C26-C62C-4C59-A1BB-31D58B36ADA2/rewrite_amd64_en-US.msi'
         [string] $URLRewrite_Plugin_File ="c:/dcos-download/rewrite_amd64_en-US.msi"
@@ -87,14 +85,30 @@ function Setup(
 
         $server_default_physicalpath = "c:\inetpub\wwwroot"
 
-        $adminappgroup = new-item "IIS:\AppPools\AdminRouter" -Force
+
+	$adminRouterPath="IIS:\AppPools\AdminRouter"
+	$existed = Test-Path -Path $adminRouterPath
+	if (! $existed -eq $True)
+	{
+		Write-Host "creating IIS:\AppPools\AdminRouter"
+		$adminappgroup = new-item "IIS:\AppPools\AdminRouter" -Force
+	}
+        else
+        {
+		Write-Host "IIS:\AppPools\AdminRouter already existed"
+        }
+
+	Write-Host "Setting up new directory: $env:SystemDrive:\inetpub\wwwroot\DCOS"
         $adminrouter_dir = new-item -ItemType "Directory" "$env:SystemDrive:\inetpub\wwwroot\DCOS" -force
+
+	Write-Host "Setting up new website at $agentPrivateIP"
         New-Website -Name "adminrouter" -Port 61001 -IPAddress $agentPrivateIP -PhysicalPath $adminrouter_dir -ApplicationPool "AdminRouter"
         return $true
     }
 
     Write-Output "start setting up AdminRouter"
 
-    Setup("script_path", "192.168.255.5" , "10.0.0.5", $true)
+#    Setup("script_path", "192.168.255.5" , "10.0.0.5", $true)
+    Setup -MasterAddress "192.168.255.5" -AgentPrivateIP "10.0.0.5"
 
     
