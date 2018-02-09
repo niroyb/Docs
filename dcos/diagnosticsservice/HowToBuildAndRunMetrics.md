@@ -1,4 +1,4 @@
-#Build
+# Build
 
         PS D:\github\src\github.com\dcos\dcos-metrics> .\scripts\build.ps1
         Script requires one or all of the parameters 'collector', 'statsd-emitter', and/or 'plugins'
@@ -100,9 +100,12 @@
              
         C:\mesos>        
 
-#Run
+# Run
 
-    .\dcos-metrics.exe -loglevel debug -role agent
+        .\dcos-metrics.exe -loglevel debug -role agent
+        curl http://10.0.0.5:61001/system/v1/metrics/containers
+        curl http://10.0.0.5:61001/system/v1/metrics/v0/ping
+        curl http://10.0.0.5:61001/system/v1/metrics/v0/node
 
 
 
