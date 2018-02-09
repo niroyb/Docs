@@ -29,3 +29,9 @@
 
 # Run
 c:\DCOS\diagnostics>dcos-diagnostics.exe daemon --role agent --debug --no-unix-socket --port 9003 --endpoint-config "C:\dcos\diagnostics\config\dcos-diagnostics-endpoint-config.json"
+
+
+
+# IIS Failed Requests Logging instructions
+
+https://docs.microsoft.com/en-us/iis/troubleshoot/using-failed-request-tracing/troubleshooting-failed-requests-using-tracing-in-iis
