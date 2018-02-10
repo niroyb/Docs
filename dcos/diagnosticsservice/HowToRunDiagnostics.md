@@ -35,3 +35,8 @@ c:\DCOS\diagnostics>dcos-diagnostics.exe daemon --role agent --debug --no-unix-s
 # IIS Failed Requests Logging instructions
 
 https://docs.microsoft.com/en-us/iis/troubleshoot/using-failed-request-tracing/troubleshooting-failed-requests-using-tracing-in-iis
+
+# Web.config
+
+[Creating Outbound Rules for URL Rewrite Module](https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/creating-outbound-rules-for-url-rewrite-module)
+
