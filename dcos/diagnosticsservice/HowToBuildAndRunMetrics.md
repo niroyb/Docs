@@ -109,3 +109,100 @@
 
 
 
+# Test commands from Paul's machine
+
+        dcos --help
+
+        C:\mesos\bin>dcos node
+                                     HOSTNAME                                  IP                        ID
+        55216acs000000.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net  10.0.0.4  0a8542a4-01ce-4766-a50c-1153b409df99-S0
+
+        C:\mesos\bin>dcos node metrics summary 0a8542a4-01ce-4766-a50c-1153b409df99-S0
+
+
+        C:\mesos\bin>dcos node metrics details 0a8542a4-01ce-4766-a50c-1153b409df99-S0
+        NAME                       VALUE      TAGS
+        filesystem.capacity.used   32.96GiB   path: C:
+        network.in.packets         0          interface: Loopback Pseudo-Interface 1
+        memory.cached              0.00GiB
+        cpu.cores                  2
+        network.in.errors          0          interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        network.in.errors          0          interface: Loopback Pseudo-Interface 1
+        filesystem.capacity.free   94.04GiB   path: C:
+        network.in.packets         23859019   interface: Ethernet 3
+        filesystem.inode.free      0          path: C:
+        network.in                 0.00GiB    interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        filesystem.capacity.total  127.00GiB  path: C:
+        network.out.packets        0          interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        network.out.errors         0          interface: Ethernet 3
+        network.out.dropped        0          interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        memory.free                0.00GiB
+        network.out.dropped        0          interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        network.in.packets         1874239    interface: vEthernet (HNS Internal NIC)
+        network.out.dropped        0          interface: Ethernet 3
+        network.in.dropped         0          interface: Loopback Pseudo-Interface 1
+        process.count              97
+        swap.total                 0.00GiB
+        network.in.packets         0          interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        network.in.errors          0          interface: vEthernet (HNS Internal NIC)
+        swap.used                  0.00GiB
+        network.in                 2.25GiB    interface: Ethernet 3
+        memory.total               7.00GiB
+        filesystem.capacity.free   12.82GiB   path: D:
+        network.out                0.85GiB    interface: Ethernet 3
+        network.in                 0.00GiB    interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        network.in.dropped         0          interface: Ethernet 3
+        network.out                0.00GiB    interface: Loopback Pseudo-Interface 1
+        cpu.idle                   91.69%
+        network.in.dropped         0          interface: vEthernet (HNS Internal NIC)
+        network.out.packets        2596253    interface: vEthernet (HNS Internal NIC)
+        network.in.errors          0          interface: Ethernet 3
+        network.out.dropped        0          interface: Loopback Pseudo-Interface 1
+        cpu.user                   6.00%
+        network.out.errors         0          interface: vEthernet (HNS Internal NIC)
+        network.in.errors          0          interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        cpu.wait                   0.00%
+        network.out                0.00GiB    interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        network.out.errors         0          interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        swap.free                  0.00GiB
+        network.out.packets        0          interface: Loopback Pseudo-Interface 1
+        filesystem.inode.total     0          path: D:
+        filesystem.inode.used      0          path: D:
+        cpu.total                  8.31%
+        network.in.dropped         0          interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        filesystem.capacity.total  14.00GiB   path: D:
+        filesystem.inode.total     0          path: C:
+        network.out                0.00GiB    interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        network.in                 0.00GiB    interface: Loopback Pseudo-Interface 1
+        system.uptime              3111945
+        network.out.packets        0          interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        cpu.system                 2.31%
+        network.in.dropped         0          interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        network.in                 0.37GiB    interface: vEthernet (HNS Internal NIC)
+        filesystem.inode.free      0          path: D:
+        network.out.errors         0          interface: isatap.{C0FCD815-A6C2-4B5A-ACD3-502915E7D93D}
+        memory.buffers             0.00GiB
+        filesystem.inode.used      0          path: C:
+        network.out.packets        19150338   interface: Ethernet 3
+        network.out.dropped        0          interface: vEthernet (HNS Internal NIC)
+        network.out.errors         0          interface: Loopback Pseudo-Interface 1
+        network.out                0.69GiB    interface: vEthernet (HNS Internal NIC)
+        network.in.packets         0          interface: isatap.5yrtti21qlzurg2gnvyfoqzc5h.dx.internal.cloudapp.net
+        filesystem.capacity.used   1.18GiB    path: D:
+
+        C:\mesos\bin>
+
+        C:\mesos\bin>dcos node metrics summary 0a8542a4-01ce-4766-a50c-1153b409df99-S0
+        CPU            MEM                DISK
+        0.00 (12.86%)  7.00GiB (100.00%)  0.00GiB (0.00%)
+
+        C:\mesos\bin>
+
+
+
+
+
+
+
+
+
