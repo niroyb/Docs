@@ -21,3 +21,27 @@
       Crash dump is being written to: erl_crash.dump...done
 
       C:\DCOS\erl8.3\erts-8.3\bin>
+      
+      
+ 
+ From the source code in  release\lib\spartan\src\spartan_udp_server.erl
+ 
+ It points the crash to the following like. {error,eaddrnotavail} is the error code, 
+ I am not sure how to get the address in question hereErlang code
+  
+%%%===================================================================
+%%% gen_server callbacks
+%%%===================================================================
+
+init([LocalIP]) ->
+    Port = spartan_config:udp_port(),
+    RecBuf = application:get_env(spartan, udp_recbuf, 1024 * 1024),
+    {ok, Socket} = gen_udp:open(Port, [                                      Thsi line!
+        {reuseaddr, true}, {active, true}, binary,
+        {ip, LocalIP}, {recbuf, RecBuf}
+    ]),
+    link(Socket),
+    {ok, #state{port = Port, socket = Socket}}.
+
+
+
