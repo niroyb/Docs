@@ -6,35 +6,49 @@
 
 - Get a DC/OS cluster depolyment json file
 
-     [Examples](https://github.com/soccerGB/Docs/tree/master/dcos/dcosDeployment/ClusterDefinitionSamples)
+     [Sample cluster definiton json file](https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/Hybrid_1W_1L.md)
 
 - Use ACS to Generate cluster deployment files
           
-          D:\dcos\acsEngine>acs-engine.exe generate dcos-hybrid-1w.json
-          // output could be found under the _output directory
-          D:\dcos\acsEngine\_output\soccerl-mastera0>dir
+          D:\dcos\acsEngine>acs-engine generate Hybrid_1W_1L.json
+           Generating assets into _output/dcos-rs30055...
+
+          D:\dcos\acsEngine>cd _output\dcos-rs30055
+
+          D:\dcos\acsEngine\_output\dcos-rs30055>dir
            Volume in drive D is Data
            Volume Serial Number is B6F0-767C
 
-           Directory of D:\dcos\acsEngine\_output\soccerl-mastera0
+           Directory of D:\dcos\acsEngine\_output\dcos-rs30055
 
-          12/01/2017  03:56 PM    <DIR>          .
-          12/01/2017  03:56 PM    <DIR>          ..
-          12/01/2017  03:56 PM             1,915 apimodel.json
-          12/01/2017  04:11 PM            60,807 azuredeploy.json
-          12/01/2017  03:56 PM             1,998 azuredeploy.parameters.json
-                         3 File(s)         64,720 bytes
-                         2 Dir(s)  499,426,963,456 bytes free
+          02/16/2018  03:55 PM    <DIR>          .
+          02/16/2018  03:55 PM    <DIR>          ..
+          02/16/2018  04:53 PM             2,318 apimodel.json
+          02/16/2018  04:53 PM            97,993 azuredeploy.json
+          02/16/2018  04:53 PM             2,561 azuredeploy.parameters.json
+                         3 File(s)        102,872 bytes
+                         2 Dir(s)  362,288,611,328 bytes free
 
-          Note: By default, the generated output files will use Windows server 2016 as Windows Agent OS. 
-                If you want to use 1709 build, you need modify these lines in azuredeploy.json manually for now,  
-                "agentWindowsOffer": "WindowsServerSemiAnnual"
-                "agentWindowsPublisher": "MicrosoftWindowsServer"
+          D:\dcos\acsEngine\_output\dcos-rs30055>
+
+          Note: Do the following two steps to prepare azuredeploy.json for deployment:
+               
+               1.By default, the generated output files will use Windows server 2016 as Windows Agent OS. 
+                 If you want to use 1709 build, you need modify these lines in azuredeploy.json manually for now,  
+                 "agentWindowsOffer": "WindowsServerSemiAnnual"
+                 "agentWindowsPublisher": "MicrosoftWindowsServer"
                  "agentWindowsSku": "Datacenter-Core-1709-with-Containers-smalldisk",
+                 
+                 
+                2. Due to ane existing acs-engine bug, you would need to search "preprovisionExtensionParams" and 
+                remove the following exact string from azuredeploy.json
+
+	               ' -preprovisionExtensionParams \"\"',
+
                  
 - Login to Azure Portal
 
-          D:\dcos\acsEngine\_output\soccerl-mastera0>az login
+          D:\dcos\acsEngine\_output\dcos-rs30055>>az login
           To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the code FUAK5RCPC to authenticate.
           [
             {
@@ -65,7 +79,7 @@
 
 - Create new resource group
 
-          D:\dcos\acsEngine\_output\soccerl-mastera0>az group create -l westus2 -n soccerl-dcos-msi
+          D:\dcos\acsEngine\_output\dcos-rs30055>az group create -l westus2 -n soccerl-dcos-msi
                 {
                   "id": "/subscriptions/e5839dfd-61f0-4b2f-b06f-de7fc47b5998/resourceGroups/soccerl-dcos-msi",
                   "location": "westus2",
@@ -77,11 +91,10 @@
                   "tags": null
                 }
 
-          D:\dcos\acsEngine\_output\soccerl-mastera0>
-
 
 - Deploy DCOS cluster environment: 
 
+          D:\dcos\acsEngine\_output\dcos-rs30055>
           az group deployment create -g soccerl-dcos-msi --template-file azuredeploy.json --parameters @azuredeploy.parameters.json  
 
           Note: it will take ~10 mins to completed
