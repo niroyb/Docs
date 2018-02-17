@@ -9,9 +9,9 @@
 
 - Get a DC/OS cluster depolyment json file
 
-     Sample cluster definiton json files
+     Sample cluster definiton json file
 
-	[Hybrid_1W_1L.md] (https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/Hybrid_1W_1L.md)
+	[Hybrid_1W_1L.md](https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/Hybrid_1W_1L.md)
 
      Note: if you are using your own json file, make sure the DCOS verison is "1.10.0", not "1.10"
 
