@@ -45,8 +45,9 @@
                  "agentWindowsSku": "Datacenter-Core-1709-with-Containers-smalldisk",
                  
                  
-                2. Due to ane existing acs-engine bug, you would need to search "preprovisionExtensionParams" and 
-                remove the following exact string from azuredeploy.json
+                2. Due to ane existing acs-engine bug, if your deployment does not involve any preprovision, 
+		   you would need to search "preprovisionExtensionParams" and remove the following exact 
+		   string from azuredeploy.json.
 
 	               ' -preprovisionExtensionParams \"\"',
 
