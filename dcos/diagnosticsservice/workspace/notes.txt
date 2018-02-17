@@ -1,0 +1,12 @@
+.\dcos-metrics.exe -loglevel debug -role agent
+curl http://10.0.0.5:61001/system/v1/metrics/containers
+curl http://10.0.0.5:61001/system/v1/metrics/v0/ping
+curl http://10.0.0.5:61001/system/v1/metrics/v0/node
+
+netsh advfirewall firewall add rule name="Open Port 61001 for admin router" dir=in action=allow protocol=TCP localport=61001
+
+
+https://www.microsoft.com/web/downloads/platform.aspx
+
+C:\DCOS\diagnostics>dcos-diagnostics.exe daemon --role agent --debug --no-unix-socket --port 9003 --endpoint-config "C:\dcos\diagnostics\config\dcos-diagnostics-endpoint-config.json"
+
