@@ -3,10 +3,15 @@
 
 - [Install Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
+- Get the latest acs-engine.exe 
+   
+      You can find one in \\apollon\public\Soccerl\acs\ for windows
 
 - Get a DC/OS cluster depolyment json file
 
      [Sample cluster definiton json file](https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/Hybrid_1W_1L.md)
+     
+     Note: if you are using your own json file, make sure the DCOS verison is "1.10.0", not "1.10"
 
 - Use ACS to Generate cluster deployment files
           
