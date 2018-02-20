@@ -1,4 +1,0 @@
-How to run internal DockerD in global mode
-$env:LCOW_SUPPORTED=1
-$env:PLATFORM=linux
-dockerd -D -g C:\ProgramData\X1 --storage-opt "lcow.globalmode=true"
