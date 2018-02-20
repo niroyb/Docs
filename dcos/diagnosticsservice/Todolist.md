@@ -12,3 +12,4 @@
 
 - Run unitests on it.
 
+- Create structure diagrams for the DC/OS diganostics
