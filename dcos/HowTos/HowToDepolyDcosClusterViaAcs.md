@@ -11,9 +11,11 @@
 
      Sample cluster definiton json file
 
-	[dcos-1w1LRs3_custom.json.md](https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/dcos-1w1LRs3_custom.json.md)
+	[dcos-1w1LRs3.json](https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/dcos-1w1LRs3.json.md): This is the servercore version of RS3.
+	
+	[dcos-1w1LRs3_custom.json.md](https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/dcos-1w1LRs3_custom.json.md) : This custom RS3 VHD image has UI!!
 
-	[dcos-1w1LRs3.json](https://github.com/soccerGB/Docs/blob/master/dcos/dcosDeployment/ClusterDefinitionSamples/Hybrid_1W_1L.md)
+
 
      Note: if you are using your own json file, make sure the DCOS verison is "1.10.0", not "1.10"
 
