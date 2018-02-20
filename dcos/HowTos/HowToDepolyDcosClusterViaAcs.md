@@ -107,7 +107,7 @@
 - Deploy DCOS cluster environment: 
 
           D:\dcos\acsEngine\_output\dcos-rs30055>
-          az group deployment create -g soccerl-dcos-msi --template-file azuredeploy.json --parameters @azuredeploy.parameters.json  
+          az group deployment create -g soccerl-dcos-msi --template-file azuredeploy.json --parameters azuredeploy.parameters.json  
 
           Note: it will take ~10 mins to completed
 
