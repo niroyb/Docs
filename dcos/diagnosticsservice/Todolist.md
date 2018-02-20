@@ -1,8 +1,14 @@
 
-1. Port the service over to the windows
-3. Need admin router, check metrics implmentatation
-2. Need "/opt/mesosphere/bin/dcos-checks",
+-  Port the service over to the windows
+-  Need admin router, check metrics implmentatation
+-  Need "/opt/mesosphere/bin/dcos-checks",
 
 
-D bus
-https://github.com/octoblu/go-meshblu-connector-assembler/blob/d34c4b79c05c7b7faed3b7924dc1bbe801bdcb61/vendor/golang.org/x/sys/windows/svc/mgr/mgr.go#L38
+- Figure out how why the getHealth got called three times in a row
+
+- Add the Windows SCM logics into the Windows DC/OS diagnostics
+
+- Try to build it on Linux
+
+- Run unitests on it.
+
